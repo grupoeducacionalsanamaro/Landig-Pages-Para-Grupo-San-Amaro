@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/Level%20Up%20Landing.dc.html" }
+  ]
+}

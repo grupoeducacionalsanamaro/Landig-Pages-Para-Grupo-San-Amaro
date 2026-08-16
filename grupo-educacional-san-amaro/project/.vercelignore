@@ -1,0 +1,7 @@
+.thumbnail
+screenshots
+server.log
+uploads/*.txt
+uploads/*.pdf
+uploads/hf_20260805_173440_38cb43d0-faf2-4517-8c23-44b3a64a7969.mp4
+uploads/{*}.png

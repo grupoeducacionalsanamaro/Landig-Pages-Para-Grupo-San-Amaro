@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Inter',sans-serif;background:#fff;color:#0D0D0D;}
+    a{color:inherit;text-decoration:none;}
+    .acc-item{border-bottom:1px solid #E8E8E8;}
+    .acc-btn{width:100%;display:flex;justify-content:space-between;align-items:center;padding:24px 0;cursor:pointer;background:none;border:none;text-align:left;gap:16px;}
+    .acc-btn-title{font-family:'Fraunces',serif;font-size:20px;font-weight:600;color:#0D0D0D;line-height:1.2;}
+    .acc-icon{width:32px;height:32px;border-radius:50%;border:1.5px solid #0D0D0D;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s;}
+    .acc-icon svg{transition:transform .35s cubic-bezier(.22,1,.36,1);}
+    .acc-btn[aria-expanded="true"] .acc-icon{background:#0D0D0D;}
+    .acc-btn[aria-expanded="true"] .acc-icon svg{transform:rotate(45deg);}
+    .acc-btn[aria-expanded="true"] .acc-icon path{stroke:#fff;}
+    .acc-body{overflow:hidden;max-height:0;transition:max-height .45s cubic-bezier(.22,1,.36,1);}
+    .acc-body-inner{padding:0 0 28px;display:flex;flex-direction:column;gap:16px;}
+    .acc-body-inner p,.acc-body-inner li{font-size:15px;line-height:1.75;color:#555;font-weight:300;}
+    .acc-body-inner ul{padding-left:20px;display:flex;flex-direction:column;gap:8px;}
+    .acc-body-inner h4{font-family:'Fraunces',serif;font-size:16px;font-weight:600;color:#0D0D0D;margin-top:8px;}
+    .acc-body-inner strong{font-weight:600;color:#333;}
+  
+    @media (max-width: 700px) {
+      .sa-sub-navlinks { display: none !important; }
+    }
+    @media (max-width: 900px) {
+      .sa-footer-grid { grid-template-columns: 1fr 1fr !important; padding: 40px 24px 20px !important; row-gap: 32px !important; }
+      .sa-footer-grid > div:first-child { grid-column: 1 / -1 !important; }
+      .sa-sub-grid-2 { grid-template-columns: 1fr !important; gap: 40px !important; }
+      .sa-sub-grid-3 { grid-template-columns: 1fr 1fr !important; }
+    }
+    @media (max-width: 640px) {
+      .sa-footer-grid { grid-template-columns: 1fr !important; text-align: center; padding: 32px 24px 16px !important; }
+      .sa-footer-grid > div { align-items: center !important; }
+      .sa-footer-legal { flex-direction: column !important; align-items: flex-start !important; padding: 20px 24px !important; text-align: left; }
+      .sa-sub-grid-3 { grid-template-columns: 1fr !important; }
+      .sa-form-row2 { grid-template-columns: 1fr !important; gap: 16px !important; }
+    }
+</style>
+</helmet>
+
+<!-- NAVBAR -->
+<div style="position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:100;width:min(1060px,calc(100vw - 32px));">
+  <nav style="background:rgba(255,255,255,0.85);backdrop-filter:blur(20px);border:1px solid rgba(0,0,0,0.06);border-radius:100px;padding:0 8px 0 20px;height:52px;display:flex;align-items:center;justify-content:space-between;gap:20px;">
+    <a href="index.html" style="flex-shrink:0;"><img src="uploads/GRUPO EDUCACIONAL SAN AMARO.webp" alt="San Amaro" style="height:32px;display:block;"></a>
+    <div class="sa-sub-navlinks" style="display:flex;align-items:center;gap:28px;font-size:13px;color:rgba(0,0,0,0.5);">
+      <a href="index.html#quienes-somos" style="transition:color .2s;" style-hover="color:#000">Quiénes somos</a>
+      <a href="index.html#verticales" style="transition:color .2s;" style-hover="color:#000">Institutos</a>
+      <a href="index.html#contacto" style="transition:color .2s;" style-hover="color:#000">Contacto</a>
+    </div>
+    <a href="index.html#contacto" style="background:#0D0D0D;color:#fff;font-weight:600;font-size:13px;padding:11px 22px;border-radius:100px;transition:opacity .2s;" style-hover="opacity:.8;">Especialízate</a>
+  </nav>
+</div>
+
+<!-- HERO -->
+<section style="background:#0D0D0D;padding:160px 0 80px;">
+  <div style="max-width:900px;margin:0 auto;padding:0 48px;text-align:center;">
+    <p style="font-size:25px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:20px;">Legal</p>
+    <h1 style="font-family:'Fraunces',serif;font-size:clamp(36px,5vw,64px);font-weight:600;color:#FAF9F5;line-height:1.1;letter-spacing:-.025em;margin-bottom:20px;">Políticas Comerciales</h1>
+    <p style="font-size:16px;color:rgba(255,255,255,.45);font-weight:300;line-height:1.6;">Términos y condiciones de uso — Grupo San Amaro SpA.</p>
+  </div>
+</section>
+
+<!-- ACCORDIONS -->
+<section style="background:#fff;padding:80px 0 120px;">
+  <div style="max-width:860px;margin:0 auto;padding:0 48px;">
+
+    <!-- 1 -->
+    <div class="acc-item" style="border-top:1px solid #E8E8E8;">
+      <button class="acc-btn" aria-expanded="true" data-acc>
+        <span class="acc-btn-title">Generalidades</span>
+        <span class="acc-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="#0D0D0D" stroke-width="1.5" stroke-linecap="round"></path></svg></span>
+      </button>
+      <div class="acc-body" style="max-height:600px;">
+        <div class="acc-body-inner">
+          <p>Este documento regula los términos y condiciones bajo los cuales Ud. tiene derecho a acceder y usar los servicios del sitio Web <strong>https://sanamaro.cl</strong> y de cualquier información, texto, video u otro material comunicado en el sitio web.</p>
+          <p>En este sitio Web podrá usar, sin costo, el software y las aplicaciones para equipos móviles que le permitan navegar, visitar, comparar y si lo desea, adquirir los bienes o servicios que se exhiben aquí.</p>
+          <p>Al utilizar este Sitio Web, acepta estos Términos de Uso sin reticencias. Estos Términos y Condiciones serán aplicados y se entenderán incorporados en cada uno de los contratos que celebre con Grupo San Amaro SpA. por medio de este sitio web.</p>
+          <p>La aceptación de los términos, políticas y condiciones que aquí se establecen significará la celebración de un contrato de servicios entre el Usuario y Grupo San Amaro SpA., quedando automáticamente sujeto a respetar los términos, políticas y condiciones de uso que regulan los Servicios.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="acc-item">
+      <button class="acc-btn" aria-expanded="false" data-acc>
+        <span class="acc-btn-title">Comunicaciones</span>
+        <span class="acc-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="#0D0D0D" stroke-width="1.5" stroke-linecap="round"></path></svg></span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <p>Para la comunicación de cualquier presentación, consulta o reclamo a propósito del uso de este sitio o los contratos que en él se lleven a cabo, se encuentra disponible el correo electrónico: <strong>administracion@sanamaro.cl</strong> y en el teléfono de Servicio al Cliente <strong>+56 9 5977 7238</strong>.</p>
+          <p>Sin perjuicio de lo anterior, puede comunicarse con nosotros de manera presencial en: <strong>Padre Mariano 210, oficina 903, Providencia, Santiago de Chile</strong>.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="acc-item">
+      <button class="acc-btn" aria-expanded="false" data-acc>
+        <span class="acc-btn-title">Libertad de navegación y aceptación</span>
+        <span class="acc-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="#0D0D0D" stroke-width="1.5" stroke-linecap="round"></path></svg></span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <p>La mera visita de este sitio no impone ningún tipo de obligación para el usuario, a menos que éste exprese de forma inequívoca, por medio de actos positivos, su voluntad de contratar con Grupo San Amaro SpA.</p>
+          <p>Para aceptar estos Términos y Condiciones, el usuario deberá hacer click donde el sitio web ofrezca la opción "he leído y aceptado" u otra equivalente que permita dar su consentimiento inequívoco.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="acc-item">
+      <button class="acc-btn" aria-expanded="false" data-acc>
+        <span class="acc-btn-title">Política de Devoluciones</span>
+        <span class="acc-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="#0D0D0D" stroke-width="1.5" stroke-linecap="round"></path></svg></span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <p>De manera excepcional, Grupo San Amaro SpA. podrá autorizar la devolución total o parcial de los montos pagados, siempre que se cumplan las condiciones establecidas a continuación.</p>
+          <h4>1. Requisitos para solicitar una devolución</h4>
+          <ul>
+            <li>Ser presentada por la persona que haya efectuado el pago.</li>
+            <li>Presentarse dentro de los <strong>10 días corridos</strong> desde la fecha del pago y antes de los 10 días hábiles anteriores al inicio del programa.</li>
+          </ul>
+          <h4>2. Forma de presentación</h4>
+          <p>Enviar al correo <strong>administracion@sanamaro.cl</strong> indicando: fecha de solicitud, fecha de matrícula/pago, identificación del alumno, nombre del programa y copia del comprobante de pago.</p>
+          <h4>3. Devolución dentro del plazo</h4>
+          <p>Toda solicitud presentada en tiempo y forma dará derecho a la devolución de las sumas efectivamente pagadas.</p>
+          <h4>4. Solicitudes fuera del plazo</h4>
+          <p>Excepcionalmente, si el programa no ha comenzado, se podrá autorizar una devolución parcial equivalente al <strong>80%</strong> del monto pagado. Grupo San Amaro SpA. podrá retener el 20% restante por gastos administrativos.</p>
+          <h4>5. Forma de devolución</h4>
+          <p>Las devoluciones se efectuarán mediante una única transferencia bancaria al pagador registrado. En pagos con tarjeta de crédito en cuotas, la devolución excluye intereses y comisiones de la entidad financiera.</p>
+          <h4>6. Programas iniciados</h4>
+          <p>Una vez iniciado el programa, no procederá devolución alguna, cualquiera sea la causa invocada, salvo disposición legal expresa en contrario.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="acc-item">
+      <button class="acc-btn" aria-expanded="false" data-acc>
+        <span class="acc-btn-title">Política de Reservas</span>
+        <span class="acc-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="#0D0D0D" stroke-width="1.5" stroke-linecap="round"></path></svg></span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <p>Se entenderá por reserva o matrícula todo monto pagado con el objeto de asegurar un cupo en un programa, curso o fecha determinada.</p>
+          <p>La reserva implica que Grupo San Amaro SpA. bloquea un cupo para el estudiante, limitando su disponibilidad para otros postulantes. Por esta razón, los montos pagados por concepto de reserva o matrícula son <strong>no reembolsables</strong>, salvo en los casos expresamente contemplados en esta política o cuando lo disponga la legislación vigente.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="acc-item">
+      <button class="acc-btn" aria-expanded="false" data-acc>
+        <span class="acc-btn-title">Política de Cambios</span>
+        <span class="acc-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="#0D0D0D" stroke-width="1.5" stroke-linecap="round"></path></svg></span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <h4>Cambio de programa</h4>
+          <p>El alumno podrá solicitar el cambio a otro programa siempre que: informe con al menos <strong>15 días hábiles</strong> de anticipación, envíe la solicitud a admision@sanamaro.cl, indique el motivo y el nuevo programa, y pague la diferencia de arancel si corresponde. No procede devolución si el nuevo programa tiene valor inferior.</p>
+          <h4>Cambio de fecha</h4>
+          <p>Cada estudiante podrá efectuar <strong>un (1) único cambio de fecha</strong>. La nueva fecha está sujeta a disponibilidad de cupos y programación académica vigente.</p>
+          <h4>Participación del estudiante</h4>
+          <p>El estudiante deberá mantener asistencia, participación y comportamiento adecuados durante todas las actividades académicas, presenciales o remotas.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="acc-item">
+      <button class="acc-btn" aria-expanded="false" data-acc>
+        <span class="acc-btn-title">Política de Cancelación</span>
+        <span class="acc-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="#0D0D0D" stroke-width="1.5" stroke-linecap="round"></path></svg></span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <p>Grupo San Amaro SpA. se reserva el derecho de suspender, reprogramar o cancelar cualquier curso cuando: no se alcance el número mínimo de participantes, existan causas de fuerza mayor o circunstancias extraordinarias que impidan el normal desarrollo de la actividad.</p>
+          <p>En cualquiera de estos casos, se ofrecerá al estudiante: reprogramación del curso, cambio de fecha, cambio a programa equivalente o devolución íntegra de los montos pagados sin descuentos.</p>
+          <p>La suspensión será informada con al menos <strong>3 días hábiles</strong> de anticipación, salvo fuerza mayor.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="acc-item">
+      <button class="acc-btn" aria-expanded="false" data-acc>
+        <span class="acc-btn-title">Política para Estudiantes Extranjeros</span>
+        <span class="acc-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="#0D0D0D" stroke-width="1.5" stroke-linecap="round"></path></svg></span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <p>Los programas impartidos tienen carácter estrictamente académico y de perfeccionamiento profesional. En consecuencia:</p>
+          <ul>
+            <li>No constituyen habilitación legal para ejercer una profesión en Chile.</li>
+            <li>No reemplazan procesos de convalidación o revalidación de títulos.</li>
+            <li>No autorizan la ejecución de procedimientos clínicos en territorio chileno.</li>
+          </ul>
+          <p>Es responsabilidad exclusiva del estudiante extranjero informarse sobre la normativa vigente en Chile y gestionar todos los permisos y autorizaciones necesarias para ejercer legalmente.</p>
+          <p>El incumplimiento podrá derivar en término inmediato del vínculo académico, medidas administrativas sin derecho a reembolso y no otorgamiento de certificados o diplomas.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="acc-item">
+      <button class="acc-btn" aria-expanded="false" data-acc>
+        <span class="acc-btn-title">Almacenaje de Datos Personales</span>
+        <span class="acc-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="#0D0D0D" stroke-width="1.5" stroke-linecap="round"></path></svg></span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <p>El alumno autoriza a Grupo San Amaro SpA. a tratar y almacenar sus datos personales con el objeto de entregar un adecuado servicio y mejorar continuamente sus procesos y productos. En ningún caso la información será entregada a terceras partes, salvo requerimiento de autoridad competente.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="acc-item">
+      <button class="acc-btn" aria-expanded="false" data-acc>
+        <span class="acc-btn-title">Misceláneos</span>
+        <span class="acc-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="#0D0D0D" stroke-width="1.5" stroke-linecap="round"></path></svg></span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <p>Los precios de los cursos pueden variar. Se ejecutan periódicamente promociones y ofertas. El precio aplicado será el vigente al momento en que se finalice la compra.</p>
+          <p>Las copias de certificados digitales u otra documentación tienen un valor asociado, fijado con anterioridad.</p>
+          <p>Queda <strong>estrictamente prohibido</strong> al alumno reproducir, redistribuir, vender o sublicenciar ningún curso sin autorización escrita de Grupo San Amaro SpA.</p>
+          <p>Cualquier dificultad entre las partes será de competencia de los tribunales ordinarios de justicia de la República de Chile.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11 -->
+    <div class="acc-item">
+      <button class="acc-btn" aria-expanded="false" data-acc>
+        <span class="acc-btn-title">Propiedad Intelectual</span>
+        <span class="acc-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="#0D0D0D" stroke-width="1.5" stroke-linecap="round"></path></svg></span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <p>Todos los contenidos incluidos en este sitio — textos, material gráfico, logotipos, imágenes, audio clips y compilaciones de datos — son propiedad de Grupo San Amaro SpA. y están protegidos por las leyes chilenas e internacionales sobre propiedad intelectual.</p>
+          <p>Ningún producto, imagen o sonido puede ser reproducido, duplicado, copiado, vendido o explotado sin el consentimiento escrito previo de Grupo San Amaro SpA.</p>
+          <p>Si cree que su trabajo ha sido copiado en forma que constituye una violación del derecho de propiedad intelectual, contáctenos a: <strong>administracion@sanamaro.cl</strong>.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 12 -->
+    <div class="acc-item">
+      <button class="acc-btn" aria-expanded="false" data-acc>
+        <span class="acc-btn-title">Derecho de Admisión</span>
+        <span class="acc-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="#0D0D0D" stroke-width="1.5" stroke-linecap="round"></path></svg></span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <p>Grupo San Amaro SpA. se reserva el derecho de admisión, de acuerdo con lo establecido en el artículo 19 N°11 de la Constitución Política de la República de Chile. Podrá denegar el ingreso o la prestación de servicios a personas que no cumplan con las condiciones establecidas, siempre que no se incurra en discriminación arbitraria.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 13 -->
+    <div class="acc-item">
+      <button class="acc-btn" aria-expanded="false" data-acc>
+        <span class="acc-btn-title">Programas Internacionales</span>
+        <span class="acc-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="#0D0D0D" stroke-width="1.5" stroke-linecap="round"></path></svg></span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <p>Grupo San Amaro SpA. cuenta con relaciones internacionales con entes académicos. Al finalizar los programas, cada participante debe entregar la documentación necesaria para la correcta emisión de certificados. Es responsabilidad del participante entregar la documentación requerida dentro de los plazos correspondientes.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 14 -->
+    <div class="acc-item">
+      <button class="acc-btn" aria-expanded="false" data-acc>
+        <span class="acc-btn-title">Normas Disciplinarias</span>
+        <span class="acc-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="#0D0D0D" stroke-width="1.5" stroke-linecap="round"></path></svg></span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <p>El estudiante a quien se le compruebe cualquier acto contrario a las normas de convivencia podrá ser sancionado por un Consejo Disciplinario integrado por el Coordinador Académico, Docentes y Dirección General. Las medidas aplicables son:</p>
+          <ul>
+            <li>Amonestación por escrito</li>
+            <li>Suspensión de los estudios por un período determinado</li>
+            <li>Expulsión del Instituto</li>
+          </ul>
+          <p>Los estudiantes afectados podrán apelar ante el Coordinador Académico dentro de <strong>10 días hábiles</strong> desde la notificación. Todo alumno que falte a la honestidad en una evaluación será sancionado de inmediato con calificación mínima 1,0.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 15 -->
+    <div class="acc-item">
+      <button class="acc-btn" aria-expanded="false" data-acc>
+        <span class="acc-btn-title">Legislación Aplicable y Competencia</span>
+        <span class="acc-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="#0D0D0D" stroke-width="1.5" stroke-linecap="round"></path></svg></span>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <p>Los presentes términos y condiciones se rigen por las leyes de la República de Chile. Cualquier controversia o conflicto derivado de la utilización del sitio web de Grupo San Amaro SpA. será sometida a las leyes aplicables de la República de Chile y a la competencia de sus tribunales ordinarios de justicia.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#0D0D0D;padding:20px 24px 0;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="background:#1A1A1A;border-radius:48px;border:1px solid rgba(255,255,255,.08);box-shadow:0 1px 3px rgba(0,0,0,.06);">
+      <div style="background:#111;border-radius:40px;margin:8px;">
+        <div class="sa-footer-grid" style="padding:28px 56px 20px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:40px;flex-wrap:wrap;">
+          <div style="display:flex;flex-direction:column;gap:0;align-items:center;text-align:center;">
+            <a href="index.html" style="display:flex;justify-content:center;"><img loading="lazy" decoding="async" src="uploads/LOGOS -  VARIANTES-03 (1).webp" alt="San Amaro" style="height:210px;width:auto;object-fit:contain;margin-bottom:-24px;filter:brightness(0) invert(1);"></a>
+            <p style="font-size:16px;line-height:1.2;color:#8A867C;font-weight:400;max-width:300px;">Holding educacional especializado en formación continua para profesionales de la salud.</p>
+            <div style="display:flex;gap:10px;margin-top:16px;">
+              <a href="#" aria-label="LinkedIn" style="width:44px;height:44px;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;color:#fff;transition:background .2s;" style-hover="background:rgba(255,255,255,.12);"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"></path><circle cx="4" cy="4" r="2"></circle></svg></a>
+              <a href="#" aria-label="Instagram" style="width:44px;height:44px;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;color:#fff;transition:background .2s;" style-hover="background:rgba(255,255,255,.12);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+              <a href="#" aria-label="YouTube" style="width:44px;height:44px;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;color:#fff;transition:background .2s;" style-hover="background:rgba(255,255,255,.12);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.45A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.97A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"></path><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon></svg></a>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <h4 style="font-size:13px;font-weight:500;color:rgba(255,255,255,.25);letter-spacing:.08em;text-transform:uppercase;">Navegación</h4>
+            <ul style="display:flex;flex-direction:column;gap:14px;list-style:none;padding:0;margin:0;">
+              <li><a href="index.html#quienes-somos" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Quiénes somos</a></li>
+              <li><a href="index.html#proposito" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Propósito</a></li>
+              <li><a href="index.html#vision-mision" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Visión y misión</a></li>
+              <li><a href="index.html#valores" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Valores</a></li>
+              <li><a href="index.html#contacto" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Contacto</a></li>
+            </ul>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <h4 style="font-size:13px;font-weight:500;color:rgba(255,255,255,.25);letter-spacing:.08em;text-transform:uppercase;">Institutos</h4>
+            <ul style="display:flex;flex-direction:column;gap:14px;list-style:none;padding:0;margin:0;">
+              <li><a href="index.html#verticales" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">HARMONY</a></li>
+              <li><a href="index.html#verticales" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">AGC</a></li>
+              <li><a href="index.html#verticales" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Simetría</a></li>
+              <li><a href="index.html#verticales" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Premier Medical</a></li>
+              <li><a href="index.html#verticales" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Koncepto</a></li>
+              <li><a href="index.html#verticales" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Kinexia</a></li>
+            </ul>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <h4 style="font-size:13px;font-weight:500;color:rgba(255,255,255,.25);letter-spacing:.08em;text-transform:uppercase;">Enlaces</h4>
+            <ul style="display:flex;flex-direction:column;gap:14px;list-style:none;padding:0;margin:0;">
+              <li><a href="Aula Virtual.dc.html" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Aula Virtual</a></li>
+              <li><a href="Politicas Comerciales.dc.html" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Políticas Comerciales</a></li>
+              <li><a href="Certificados.dc.html" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Certificados</a></li>
+              <li><a href="Suscripciones.dc.html" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Suscripciones</a></li>
+              <li><a href="Inscripciones.dc.html" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Inscripciones</a></li>
+            </ul>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <h4 style="font-size:13px;font-weight:500;color:rgba(255,255,255,.25);letter-spacing:.08em;text-transform:uppercase;">Contacto</h4>
+            <ul style="display:flex;flex-direction:column;gap:14px;list-style:none;padding:0;margin:0;">
+              <li><a href="mailto:administracion@sanamaro.cl" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">administracion@sanamaro.cl</a></li>
+              <li><a href="https://wa.me/56959777238" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">+56 9 5977 7238</a></li>
+              <li><span style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);">Santiago, Chile</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="sa-footer-legal" style="padding:20px 56px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+        <p style="font-size:14px;color:rgba(255,255,255,.3);font-weight:500;">© 2025 Grupo Educacional San Amaro. Todos los derechos reservados.</p>
+        <div style="display:flex;gap:24px;align-items:center;">
+          <a href="Politicas Comerciales.dc.html" style="font-size:14px;color:rgba(255,255,255,.3);font-weight:500;transition:color .2s;" style-hover="color:rgba(255,255,255,.7);">Política de privacidad</a>
+          <div style="width:1px;height:16px;background:rgba(255,255,255,.15);"></div>
+          <a href="Politicas Comerciales.dc.html" style="font-size:14px;color:rgba(255,255,255,.3);font-weight:500;transition:color .2s;" style-hover="color:rgba(255,255,255,.7);">Términos de uso</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    document.querySelectorAll('[data-acc]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const body = btn.nextElementSibling;
+        const isOpen = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', !isOpen);
+        body.style.maxHeight = isOpen ? '0' : body.scrollHeight + 'px';
+      });
+    });
+  }
+}
+</script>
+</body>
+</html>

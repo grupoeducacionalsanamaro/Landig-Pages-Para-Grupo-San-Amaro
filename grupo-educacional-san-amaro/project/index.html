@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin">
+  <script src="./image-slot.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #fff; color: #0D0D0D; font-family: 'Inter', sans-serif; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+    @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .75s cubic-bezier(.22,1,.36,1), transform .75s cubic-bezier(.22,1,.36,1); }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-left { opacity: 0; transform: translateX(-36px); transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1); }
+    .reveal-left.visible { opacity: 1; transform: none; }
+    .reveal-right { opacity: 0; transform: translateX(36px); transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1); }
+    .reveal-right.visible { opacity: 1; transform: none; }
+    .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}.d5{transition-delay:.40s}.d6{transition-delay:.48s}
+    .sa-tilt-card { transition: transform .45s cubic-bezier(.22,1,.36,1); }
+    .sa-tilt-card:hover { transform: rotate(0deg) !important; }
+    @keyframes blob { 0%,100% { transform: translateY(10px); } 50% { transform: translateX(-10px); } }
+    .skew-blob-tl { animation: blob 2s ease-in-out infinite; }
+    .skew-blob-br { animation: blob 2s ease-in-out -1s infinite; }
+    .skew-card:hover .skew-panel,
+    .skew-card:hover .skew-panel-blur { transform: skewX(0deg) !important; left: 20px !important; width: calc(100% - 90px) !important; }
+    .skew-card:hover .skew-content { left: -25px !important; padding: 60px 40px !important; }
+    .skew-card:hover .skew-blob-tl { top: -50px !important; left: 50px !important; width: 100px !important; height: 100px !important; opacity: 1 !important; }
+    .skew-card:hover .skew-blob-br { bottom: -50px !important; right: 50px !important; width: 100px !important; height: 100px !important; opacity: 1 !important; }
+    .sa-two-col { display: flex; gap: 72px; align-items: center; }
+    .sa-vm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .sa-stagger-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+    .sa-programs { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .sa-tilted-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+    .sa-hamburger { display: none !important; }
+    .sa-nav-links { display: flex; }
+    .sa-alliance-logo { display: inline-flex; align-items: center; justify-content: center; height: 76px; width: 170px; flex-shrink: 0; margin-right: 48px; }
+    @media (max-width: 900px) {
+      .sa-nav-links, .sa-nav-cta { display: none !important; }
+      .sa-hamburger { display: flex !important; }
+      .sa-two-col { flex-direction: column !important; gap: 40px !important; }
+      .sa-vm-grid, .sa-stagger-grid, .sa-programs { grid-template-columns: 1fr !important; }
+      .sa-tilted-grid { grid-template-columns: 1fr !important; }
+      .sa-pad { padding-left: 20px !important; padding-right: 20px !important; }
+      .sa-hero-h1 { font-size: clamp(34px,9vw,54px) !important; }
+      .sa-h2 { font-size: clamp(24px,6vw,36px) !important; }
+      .sa-section { padding-top: 72px !important; padding-bottom: 72px !important; }
+      .sa-cta-section { padding-top: 56px !important; padding-bottom: 56px !important; }
+      .sa-stats-grid { grid-template-columns: repeat(3, 1fr) !important; }
+      .sa-stats-grid > div { padding: 16px 10px !important; }
+      .sa-espacios-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+      .sa-cta-card { padding: 56px 28px !important; }
+      .skew-card { width: min(320px, calc(100vw - 56px)) !important; margin: 16px 0 !important; }
+      .sa-footer-grid { grid-template-columns: 1fr 1fr !important; padding: 40px 24px 20px !important; row-gap: 32px !important; }
+      .sa-footer-grid > div:first-child { grid-column: 1 / -1 !important; }
+      .sa-alliances-row { flex-direction: column !important; align-items: flex-start !important; gap: 28px !important; }
+      .sa-alliances-marquee { width: 100% !important; }
+    }
+    @media (max-width: 640px) {
+      .sa-stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+      .sa-stats-grid > div { border-right: none !important; border-bottom: 1px solid #E0E0E0; }
+      .sa-stats-grid > div:nth-last-child(-n+2) { border-bottom: none; }
+      .sa-form-row { grid-template-columns: 1fr !important; gap: 16px !important; }
+      .sa-esp-main { height: 260px !important; }
+      .sa-footer-grid { grid-template-columns: 1fr !important; text-align: center; padding: 32px 24px 16px !important; }
+      .sa-footer-grid > div { align-items: center !important; }
+      .sa-footer-legal { flex-direction: column !important; align-items: flex-start !important; padding: 20px 24px !important; text-align: left; }
+    }
+    @media (max-width: 560px) {
+      .sa-hero-h1 { font-size: 28px !important; }
+      .sa-stats-grid > div p:first-child { font-size: 26px !important; }
+    }
+    input, textarea, select { font-family: inherit; }
+    ::selection { background: rgba(0,0,0,.12); }
+  </style>
+</helmet>
+
+<!-- NAVBAR -->
+<div style="position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:100;width:min(1060px,calc(100vw - 32px));">
+  <nav id="sa-nav" style="background:rgba(255,255,255,0.75);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(0,0,0,0.06);border-radius:100px;padding:0 8px 0 20px;height:56px;display:flex;align-items:center;justify-content:space-between;gap:8px;box-shadow:0 4px 24px rgba(0,0,0,0.1);">
+    <a href="#hero" style="flex-shrink:0;display:flex;align-items:center;"><img src="uploads/GRUPO EDUCACIONAL SAN AMARO.webp" alt="Grupo Educacional San Amaro" style="height:32px;display:block;"></a>
+    <div class="sa-nav-links" style="align-items:center;gap:28px;font-size:13px;color:rgba(0,0,0,0.5);">
+      <a href="#quienes-somos" style="transition:color .2s;" style-hover="color:#000">Quiénes somos</a>
+      <a href="#proposito" style="transition:color .2s;" style-hover="color:#000">Propósito</a>
+      <a href="#valores" style="transition:color .2s;" style-hover="color:#000">Valores</a>
+      <a href="#verticales" style="transition:color .2s;" style-hover="color:#000">Institutos</a>
+      <a href="#contacto" style="transition:color .2s;" style-hover="color:#000">Contacto</a>
+    </div>
+    <div class="sa-nav-cta" style="flex-shrink:0;">
+      <a href="#contacto" style="background:#0D0D0D;color:#fff;font-weight:600;font-size:13px;padding:11px 22px;border-radius:100px;white-space:nowrap;transition:opacity .2s;" style-hover="opacity:.8;">Especialízate</a>
+    </div>
+    <button id="sa-hamburger" class="sa-hamburger" aria-label="Menú" style="background:none;border:none;cursor:pointer;padding:8px;color:#fff;flex-direction:column;gap:5px;align-items:center;flex-shrink:0;">
+      <span id="sa-hb-1" style="display:block;width:20px;height:1.5px;background:#fff;transition:.3s;"></span>
+      <span id="sa-hb-2" style="display:block;width:20px;height:1.5px;background:#fff;transition:.3s;"></span>
+      <span id="sa-hb-3" style="display:block;width:20px;height:1.5px;background:#fff;transition:.3s;"></span>
+    </button>
+  </nav>
+</div>
+
+<!-- MOBILE MENU -->
+<div id="sa-mobile-menu" style="display:none;position:fixed;top:88px;left:16px;right:16px;z-index:99;background:#111;border:1px solid rgba(255,255,255,0.08);border-radius:24px;flex-direction:column;padding:20px;gap:4px;box-shadow:0 24px 48px rgba(0,0,0,.4);">
+  <a href="#quienes-somos" style="padding:13px 12px;font-size:16px;border-bottom:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,.7);display:block;">Quiénes somos</a>
+  <a href="#proposito" style="padding:13px 12px;font-size:16px;border-bottom:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,.7);display:block;">Propósito</a>
+  <a href="#valores" style="padding:13px 12px;font-size:16px;border-bottom:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,.7);display:block;">Valores</a>
+  <a href="#verticales" style="padding:13px 12px;font-size:16px;border-bottom:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,.7);display:block;">Institutos</a>
+  <a href="#contacto" style="padding:13px 12px;font-size:16px;color:rgba(255,255,255,.7);display:block;">Contacto</a>
+  <a href="#contacto" style="margin-top:16px;display:block;text-align:center;background:#fff;color:#0D0D0D;font-weight:600;padding:14px;border-radius:100px;font-size:15px;">Especialízate ahora</a>
+</div>
+
+<!-- HERO -->
+<section id="hero" style="position:relative;min-height:100dvh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#0D0D0D;padding-top:96px;">
+  <div style="position:absolute;inset:0;opacity:.04;pointer-events:none;" aria-hidden="true"><svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="g" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M 60 0 L 0 0 0 60" fill="none" stroke="#fff" stroke-width=".5"></path></pattern></defs><rect width="100%" height="100%" fill="url(#g)"></rect></svg></div>
+  <video id="hero-video" src="uploads/0805.mp4" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;transition:opacity 1.2s;" muted="muted" autoplay="autoplay" playsinline="playsinline"></video>
+  <div style="position:absolute;inset:0;z-index:2;background:linear-gradient(to bottom, rgba(13,13,13,.45) 0%, rgba(13,13,13,.65) 60%, rgba(13,13,13,.88) 100%);"></div>
+  <div class="sa-pad" style="position:relative;z-index:3;max-width:1200px;margin:0 auto;padding:80px 64px;width:100%;text-align:left;animation:fadeUp .9s cubic-bezier(.22,1,.36,1) .1s both;">
+    <p style="font-size: 15px; font-weight: 500; letter-spacing: .25em; text-transform: uppercase; color: #888; margin-bottom: 24px">Grupo Educacional San Amaro</p>
+    <h1 class="sa-hero-h1" style="font-family:'Fraunces',serif;font-weight:600;font-size:clamp(40px,6vw,82px);line-height:1.04;letter-spacing:-.03em;color:#fff;margin-bottom:28px;text-wrap:balance;max-width:720px;">El lugar donde los profesionales<br><em style="font-weight:300;font-style:italic;color:rgba(255,255,255,.75);">de la salud evolucionan</em></h1>
+    <p style="font-size:clamp(15px,1.6vw,18px);color:rgba(255,255,255,.55);max-width:420px;margin:0 0 44px;line-height:1.7;font-weight:300;">Seis institutos especializados. Un solo propósito: transformar la práctica clínica.</p>
+    <div style="display:flex;gap:14px;justify-content:flex-start;flex-wrap:wrap;margin-bottom:56px;">
+      <a href="#contacto" style="background:#fff;color:#0D0D0D;font-weight:600;font-size:14px;padding:15px 36px;border-radius:100px;transition:opacity .2s,transform .2s;" style-hover="opacity:.87;transform:translateY(-1px);">Descubre tu especialización</a>
+      <a href="#verticales" style="border:1px solid rgba(255,255,255,.22);color:rgba(255,255,255,.65);font-size:14px;padding:15px 28px;border-radius:100px;transition:border-color .2s,color .2s;" style-hover="border-color:rgba(255,255,255,.45);color:#fff;">Ver institutos →</a>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:36px;opacity:.4;">
+      <span style="font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#fff;">Explorar</span>
+      <svg style="animation:bounce 2s ease-in-out infinite;" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 2v8M3 8l4 4 4-4" stroke="#aaa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div style="background:#F5F5F3;padding:18px 0;overflow:hidden;border-bottom:1px solid #E8E8E8;">
+  <div style="display:flex;width:max-content;white-space:nowrap;animation:marqueeScroll 28s linear infinite;">
+    <div style="display:flex;align-items:center;">
+      <span style="font-family:'Fraunces',serif;font-size:clamp(16px,2vw,22px);font-weight:400;color:#0D0D0D;padding:0 28px;font-style:italic;">Programas Presenciales</span><span style="color:#ccc;font-size:18px;">◆</span>
+      <span style="font-family:'Fraunces',serif;font-size:clamp(16px,2vw,22px);font-weight:400;color:#0D0D0D;padding:0 28px;font-style:italic;">Programas Online</span><span style="color:#ccc;font-size:18px;">◆</span>
+      <span style="font-family:'Fraunces',serif;font-size:clamp(16px,2vw,22px);font-weight:400;color:#0D0D0D;padding:0 28px;font-style:italic;">Programas Internacionales</span><span style="color:#ccc;font-size:18px;">◆</span>
+      <span style="font-family:'Fraunces',serif;font-size:clamp(16px,2vw,22px);font-weight:400;color:#0D0D0D;padding:0 28px;font-style:italic;">Medicina Estética</span><span style="color:#ccc;font-size:18px;">◆</span>
+      <span style="font-family:'Fraunces',serif;font-size:clamp(16px,2vw,22px);font-weight:400;color:#0D0D0D;padding:0 28px;font-style:italic;">Dermoestética</span><span style="color:#ccc;font-size:18px;">◆</span>
+      <span style="font-family:'Fraunces',serif;font-size:clamp(16px,2vw,22px);font-weight:400;color:#0D0D0D;padding:0 28px;font-style:italic;">Odontología</span><span style="color:#ccc;font-size:18px;">◆</span>
+      <span style="font-family:'Fraunces',serif;font-size:clamp(16px,2vw,22px);font-weight:400;color:#0D0D0D;padding:0 28px;font-style:italic;">Armonización Orofacial</span><span style="color:#ccc;font-size:18px;">◆</span>
+      <span style="font-family:'Fraunces',serif;font-size:clamp(16px,2vw,22px);font-weight:400;color:#0D0D0D;padding:0 28px;font-style:italic;">Eventos</span><span style="color:#ccc;font-size:18px;">◆</span>
+      <span style="font-family:'Fraunces',serif;font-size:clamp(16px,2vw,22px);font-weight:400;color:#0D0D0D;padding:0 28px;font-style:italic;">Médicos</span><span style="color:#ccc;font-size:18px;">◆</span>
+      <span style="font-family:'Fraunces',serif;font-size:clamp(16px,2vw,22px);font-weight:400;color:#0D0D0D;padding:0 28px;font-style:italic;">Dentistas</span><span style="color:#ccc;font-size:18px;">◆</span>
+      <span style="font-family:'Fraunces',serif;font-size:clamp(16px,2vw,22px);font-weight:400;color:#0D0D0D;padding:0 28px;font-style:italic;">Enfermeras</span><span style="color:#ccc;font-size:18px;">◆</span>
+      <span style="font-family:'Fraunces',serif;font-size:clamp(16px,2vw,22px);font-weight:400;color:#0D0D0D;padding:0 28px;font-style:italic;">Dueños de Negocios del Área de la Salud</span><span style="color:#ccc;font-size:18px;">◆</span>
+    </div>
+    <div style="display:flex;align-items:center;">
+      <span style="font-family:'Fraunces',serif;font-size:clamp(16px,2vw,22px);font-weight:400;color:#0D0D0D;padding:0 28px;font-style:italic;">Programas Presenciales</span><span style="color:#ccc;font-size:18px;">◆</span>
+      <span style="font-family:'Fraunces',serif;font-size:clamp(16px,2vw,22px);font-weight:400;color:#0D0D0D;padding:0 28px;font-style:italic;">Programas Online</span><span style="color:#ccc;font-size:18px;">◆</span>
+      <span style="font-family:'Fraunces',serif;font-size:clamp(16px,2vw,22px);font-weight:400;color:#0D0D0D;padding:0 28px;font-style:italic;">Programas Internacionales</span><span style="color:#ccc;font-size:18px;">◆</span>
+      <span style="font-family:'Fraunces',serif;font-size:clamp(16px,2vw,22px);font-weight:400;color:#0D0D0D;padding:0 28px;font-style:italic;">Medicina Estética</span><span style="color:#ccc;font-size:18px;">◆</span>
+      <span style="font-family:'Fraunces',serif;font-size:clamp(16px,2vw,22px);font-weight:400;color:#0D0D0D;padding:0 28px;font-style:italic;">Dermoestética</span><span style="color:#ccc;font-size:18px;">◆</span>
+      <span style="font-family:'Fraunces',serif;font-size:clamp(16px,2vw,22px);font-weight:400;color:#0D0D0D;padding:0 28px;font-style:italic;">Odontología</span><span style="color:#ccc;font-size:18px;">◆</span>
+      <span style="font-family:'Fraunces',serif;font-size:clamp(16px,2vw,22px);font-weight:400;color:#0D0D0D;padding:0 28px;font-style:italic;">Armonización Orofacial</span><span style="color:#ccc;font-size:18px;">◆</span>
+      <span style="font-family:'Fraunces',serif;font-size:clamp(16px,2vw,22px);font-weight:400;color:#0D0D0D;padding:0 28px;font-style:italic;">Eventos</span><span style="color:#ccc;font-size:18px;">◆</span>
+      <span style="font-family:'Fraunces',serif;font-size:clamp(16px,2vw,22px);font-weight:400;color:#0D0D0D;padding:0 28px;font-style:italic;">Médicos</span><span style="color:#ccc;font-size:18px;">◆</span>
+      <span style="font-family:'Fraunces',serif;font-size:clamp(16px,2vw,22px);font-weight:400;color:#0D0D0D;padding:0 28px;font-style:italic;">Dentistas</span><span style="color:#ccc;font-size:18px;">◆</span>
+      <span style="font-family:'Fraunces',serif;font-size:clamp(16px,2vw,22px);font-weight:400;color:#0D0D0D;padding:0 28px;font-style:italic;">Enfermeras</span><span style="color:#ccc;font-size:18px;">◆</span>
+      <span style="font-family:'Fraunces',serif;font-size:clamp(16px,2vw,22px);font-weight:400;color:#0D0D0D;padding:0 28px;font-style:italic;">Dueños de Negocios del Área de la Salud</span><span style="color:#ccc;font-size:18px;">◆</span>
+    </div>
+  </div>
+</div>
+
+<!-- QUIÉNES SOMOS -->
+<section id="quienes-somos" class="sa-section" style="background:#fff;padding:120px 0;">
+  <div class="sa-pad" style="max-width:1200px;margin:0 auto;padding:0 64px;">
+    <div style="text-align:center;margin-bottom:56px;">
+      <p class="reveal" style="font-size: 32px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: #888; margin-bottom: 16px">Quiénes somos</p>
+      <h2 class="reveal d1 sa-h2" style="font-family:'Fraunces',serif;font-weight:600;font-size:clamp(28px,3.5vw,46px);line-height:1.1;letter-spacing:-.025em;color:#0D0D0D;text-wrap:balance;margin-bottom:24px;">Un ecosistema educativo para la salud</h2>
+      <p class="reveal d2" style="font-size:16px;line-height:1.65;color:#555;font-weight:300;max-width:680px;margin:0 auto;">Grupo Educacional San Amaro es una institución privada dedicada a la formación continua en el área de la salud. Ofrecemos programas presenciales, e-learning y de modalidad mixta (blended learning), tanto en Chile como en el extranjero, comprometidos en proveer una educación integral y de alta calidad para profesionales que buscan desarrollar y perfeccionar sus habilidades en este campo.</p>
+    </div>
+    <div class="sa-tilted-grid">
+      <div class="reveal reveal-left sa-tilt-card" style="background:#1A1A1A;border-radius:28px;padding:40px 36px;transform:rotate(-3deg);">
+        <div style="width:40px;height:40px;background:rgba(150,150,150,.12);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:28px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.5" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg></div>
+        <h3 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:#fff;margin-bottom:16px;line-height:1.2;">Rigor académico sin concesiones</h3>
+        <p style="font-size:14px;line-height:1.7;color:rgba(255,255,255,.45);font-weight:300;">Cada programa se diseña con los más altos estándares de evidencia clínica y metodología educativa.</p>
+      </div>
+      <div class="reveal d2" style="border-radius:28px;overflow:hidden;background:#F0F0F0;min-height:280px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;">
+        <img loading="lazy" decoding="async" src="uploads/Diseño sin título (30).webp" alt="San Amaro Grupo Educacional" style="width:90%;max-width:340px;object-fit:contain;">
+      </div>
+      <div class="reveal reveal-right sa-tilt-card" style="background:#1A1A1A;border-radius:28px;padding:40px 36px;transform:rotate(3deg);">
+        <div style="width:40px;height:40px;background:rgba(150,150,150,.12);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:28px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.5" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+        <h3 style="font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:#fff;margin-bottom:16px;line-height:1.2;">Comunidad de profesionales</h3>
+        <p style="font-size:14px;line-height:1.7;color:rgba(255,255,255,.45);font-weight:300;">Redes de pares que trascienden el aula y fortalecen la práctica clínica a largo plazo.</p>
+      </div>
+    </div>
+    <div class="reveal sa-stats-grid" style="display:grid;grid-template-columns:repeat(6,1fr);border:1px solid #E0E0E0;border-radius:20px;overflow:hidden;margin-top:48px;">
+      <div style="padding:20px 16px;border-right:1px solid #E0E0E0;text-align:center;"><p id="cnt-institutos" style="font-family:'Fraunces',serif;font-size:34px;font-weight:600;color:#333;line-height:1;">0</p><p style="font-size:12px;color:#666;margin-top:8px;">Institutos</p></div>
+      <div style="padding:20px 16px;border-right:1px solid #E0E0E0;text-align:center;"><p id="cnt-anos" style="font-family:'Fraunces',serif;font-size:34px;font-weight:600;color:#333;line-height:1;">0</p><p style="font-size:12px;color:#666;margin-top:8px;">Años de experiencia</p></div>
+      <div style="padding:20px 16px;text-align:center;"><p id="cnt-iniciales" style="font-family:'Fraunces',serif;font-size:34px;font-weight:600;color:#333;line-height:1;">0</p><p style="font-size:12px;color:#666;margin-top:8px;">Egresados programas iniciales</p></div>
+      <div style="padding:20px 16px;border-right:1px solid #E0E0E0;text-align:center;"><p id="cnt-focalizados" style="font-family:'Fraunces',serif;font-size:34px;font-weight:600;color:#333;line-height:1;">0</p><p style="font-size:12px;color:#666;margin-top:8px;">Egresados programas focalizados</p></div>
+      <div style="padding:20px 16px;border-right:1px solid #E0E0E0;text-align:center;"><p id="cnt-diplomados" style="font-family:'Fraunces',serif;font-size:34px;font-weight:600;color:#333;line-height:1;">0</p><p style="font-size:12px;color:#666;margin-top:8px;">Egresados diplomados</p></div>
+      <div style="padding:20px 16px;text-align:center;"><p id="cnt-postgrados" style="font-family:'Fraunces',serif;font-size:34px;font-weight:600;color:#333;line-height:1;">0</p><p style="font-size:12px;color:#666;margin-top:8px;">Egresados postgrados</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ALIANZAS INTERNACIONALES -->
+<div style="background:#fff;padding:0 0 100px;">
+  <div class="sa-pad sa-alliances-row" style="max-width:1200px;margin:0 auto;padding:0 64px;display:flex;align-items:center;gap:56px;">
+    <div class="sa-alliances-marquee" style="flex:1;min-width:0;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;right:0;bottom:0;width:100px;background:linear-gradient(to right, rgba(255,255,255,0), #fff);z-index:2;pointer-events:none;"></div>
+      <div style="display:flex;width:max-content;white-space:nowrap;animation:marqueeScroll 24s linear infinite;">
+        <div style="display:flex;align-items:center;">
+          <span class="sa-alliance-logo"><img loading="lazy" decoding="async" src="uploads/Andrea Tedesco.webp" alt="Andrea Tedesco Instituto" style="max-height:100%;max-width:100%;object-fit:contain;"></span>
+          <span class="sa-alliance-logo"><img loading="lazy" decoding="async" src="uploads/Dr Patrick Peloso.webp" alt="Dr. Patrick Peloso" style="max-height:100%;max-width:100%;object-fit:contain;"></span>
+          <span class="sa-alliance-logo"><img loading="lazy" decoding="async" src="uploads/FACOP.webp" alt="FACOP - Faculdade do Centro Oeste Paulista" style="max-height:100%;max-width:100%;object-fit:contain;"></span>
+          <span class="sa-alliance-logo"><img loading="lazy" decoding="async" src="uploads/Cledson Azevedo.webp" alt="Cledson Azevedo Institute" style="max-height:100%;max-width:100%;object-fit:contain;"></span>
+          <span class="sa-alliance-logo"><img loading="lazy" decoding="async" src="uploads/USP Bauru.webp" alt="USP - Faculdade de Odontologia de Bauru" style="max-height:100%;max-width:100%;object-fit:contain;"></span>
+        </div>
+        <div style="display:flex;align-items:center;">
+          <span class="sa-alliance-logo"><img loading="lazy" decoding="async" src="uploads/Andrea Tedesco.webp" alt="Andrea Tedesco Instituto" style="max-height:100%;max-width:100%;object-fit:contain;"></span>
+          <span class="sa-alliance-logo"><img loading="lazy" decoding="async" src="uploads/Dr Patrick Peloso.webp" alt="Dr. Patrick Peloso" style="max-height:100%;max-width:100%;object-fit:contain;"></span>
+          <span class="sa-alliance-logo"><img loading="lazy" decoding="async" src="uploads/FACOP.webp" alt="FACOP - Faculdade do Centro Oeste Paulista" style="max-height:100%;max-width:100%;object-fit:contain;"></span>
+          <span class="sa-alliance-logo"><img loading="lazy" decoding="async" src="uploads/Cledson Azevedo.webp" alt="Cledson Azevedo Institute" style="max-height:100%;max-width:100%;object-fit:contain;"></span>
+          <span class="sa-alliance-logo"><img loading="lazy" decoding="async" src="uploads/USP Bauru.webp" alt="USP - Faculdade de Odontologia de Bauru" style="max-height:100%;max-width:100%;object-fit:contain;"></span>
+        </div>
+      </div>
+    </div>
+    <div class="reveal" style="flex-shrink:0;text-align:left;">
+      <h3 style="font-family:'Inter',sans-serif;font-size:clamp(22px,2.4vw,30px);font-weight:700;color:#222;white-space:nowrap;margin-bottom:14px;">Alianzas Internacionales</h3>
+      <div style="width:64px;height:4px;background:#0D0D0D;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- PROPÓSITO -->
+<section id="proposito" class="sa-section" style="padding: 120px 0; background-color: #F5F5F3">
+  <div class="sa-pad" style="max-width:1200px;margin:0 auto;padding:0 64px;">
+    <div class="sa-two-col">
+      <div class="reveal reveal-left" style="flex:1;min-width:0;border-radius:32px;overflow:hidden;aspect-ratio:4/5;">
+        <img loading="lazy" decoding="async" src="uploads/Titulados.webp" alt="Titulados San Amaro" style="width:100%;height:100%;object-fit:cover;object-position:top;">
+      </div>
+      <div class="reveal reveal-right" style="flex:1;min-width:0;">
+        <p style="font-size: 32px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: #888; margin-bottom: 24px">Nuestro propósito</p>
+        <h2 class="sa-h2" style="font-family: 'Fraunces',serif; font-weight: 400; font-size: clamp(24px,3.5vw,42px); line-height: 1.1; letter-spacing: -.02em; color: #0D0D0D; margin-bottom: 28px; font-style: italic; text-wrap: balance">"Transformar la manera en que los profesionales de la salud se desarrollan"</h2>
+        <div style="width:40px;height:2px;background:#CCC;margin-bottom:24px;"></div>
+        <p style="font-size: 20px; line-height: 1.35; color: #5A5A5A; font-weight: 300; margin-bottom: 32px">Combinamos rigor académico con experiencias clínicas reales, para que cada egresado deje una huella distinta en sus pacientes.</p>
+        <div class="sa-form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;padding-top:32px;border-top:1px solid #E0E0E0;">
+          <div><h4 style="font-family: 'Fraunces',serif; font-size: 25px; font-weight: 600; color: #0D0D0D; margin-bottom: 8px">Aprendizaje clínico</h4><p style="font-size: 18px; line-height: 1.65; color: #888; font-weight: 300">Programas diseñados desde la práctica real, no solo desde el aula.</p></div>
+          <div><h4 style="font-family: 'Fraunces',serif; font-size: 25px; font-weight: 600; color: #0D0D0D; margin-bottom: 8px">Docentes activos</h4><p style="font-size: 18px; line-height: 1.65; color: #888; font-weight: 300">Profesionales en ejercicio que enseñan desde la experiencia vigente.</p></div>
+        </div>
+        <a href="#contacto" style="display:inline-flex;align-items:center;gap:10px;margin-top:36px;background:#0D0D0D;color:#fff;font-weight:600;font-size:14px;padding:14px 28px;border-radius:100px;transition:background .2s;" style-hover="background:#333;">Conoce nuestros programas →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISIÓN / MISIÓN -->
+<section id="vision-mision" class="sa-section" style="background:#111;padding:120px 0;">
+  <div class="sa-pad" style="max-width:1200px;margin:0 auto;padding:0 64px;">
+    <p class="reveal" style="font-size: 35px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: #888; margin-bottom: 56px; text-align: center">Nuestra brújula</p>
+    <div class="sa-vm-grid">
+      <div class="reveal reveal-left" style="background:#1E1E1E;border:1px solid rgba(255,255,255,.06);border-radius:32px;padding:56px 48px;position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;border:1px solid rgba(180,180,180,.08);pointer-events:none;"></div>
+        <p style="font-size: 22px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: 24px">Visión</p>
+        <h3 style="font-family:'Fraunces',serif;font-weight:600;font-size:clamp(20px,2.5vw,28px);line-height:1.2;color:#fff;margin-bottom:24px;">Referente latinoamericano en formación continua para la salud</h3>
+        <p style="font-size:15px;line-height:1.75;color:rgba(255,255,255,.4);font-weight:300;">Ser reconocidos por la profundidad de nuestros programas, la excelencia de nuestros docentes y el impacto clínico de nuestros egresados.</p>
+      </div>
+      <div class="reveal reveal-right" style="background:#fff;border-radius:32px;padding:56px 48px;position:relative;overflow:hidden;">
+        
+        <p style="font-size: 22px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: #888; margin-bottom: 24px">Misión</p>
+        <h3 style="font-family:'Fraunces',serif;font-weight:600;font-size:clamp(20px,2.5vw,28px);line-height:1.2;color:#0D0D0D;margin-bottom:24px;">Diseñar experiencias educativas que transformen la práctica clínica</h3>
+        <p style="font-size:15px;line-height:1.75;color:#777;font-weight:300;">Integramos excelencia académica, innovación metodológica y comunidad de pares para que cada profesional alcance su máximo potencial.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALORES -->
+<section id="valores" class="sa-section" style="padding: 120px 0; background-color: #F5F5F3">
+  <div class="sa-pad" style="max-width:1200px;margin:0 auto;padding:0 64px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;margin-bottom:48px;">
+      <div>
+        <p class="reveal" style="font-size: 32px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: #888; margin-bottom: 16px">Lo que nos define</p>
+        <h2 class="reveal d1 sa-h2" style="font-family:'Fraunces',serif;font-weight:600;font-size:clamp(28px,3.5vw,46px);line-height:1.1;letter-spacing:-.025em;color:#0D0D0D;">Nuestros valores</h2>
+      </div>
+      <p class="reveal d2" style="font-size:15px;color:#888;max-width:300px;line-height:1.65;font-weight:300;">Cinco principios que guían cada decisión, programa y experiencia que diseñamos.</p>
+    </div>
+    <!-- Expanding cards -->
+    <ul id="vc-grid" style="list-style:none;padding:0;margin:0;width:100%;display:grid;grid-template-columns:5fr 1fr 1fr 1fr 1fr;gap:8px;height:520px;transition:grid-template-columns .5s ease-out,grid-template-rows .5s ease-out;">
+      <!-- Excelencia -->
+      <li data-vc-idx="0" style="position:relative;overflow:hidden;border-radius:20px;cursor:pointer;min-width:56px;outline:none;" tabindex="0">
+        <img loading="lazy" decoding="async" data-vc-img="" src="uploads/Excelencia.webp" alt="Excelencia" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .45s ease-out,filter .45s ease-out;filter:grayscale(1);transform:scale(1.08);">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.35) 55%,transparent 100%);"></div>
+        <span data-vc-inactive="" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-90deg);transform-origin:center;white-space:nowrap;font-size:28px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.9);transition:opacity .25s;pointer-events:none;text-align:center;width:460px;">Excelencia</span>
+        <div data-vc-active="" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:28px 28px;opacity:0;transition:opacity .3s .12s;pointer-events:none;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="1.5" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <h3 style="font-family: 'Fraunces',serif; font-size: 42px; font-weight: 600; color: #fff; margin: 0">Excelencia</h3>
+          <p style="font-size: 18px; color: rgba(255,255,255,.75); max-width: 300px; line-height: 1.25; font-weight: 300; margin: 0">Cada programa, detalle e interacción se diseña para el más alto estándar posible.</p>
+        </div>
+      </li>
+      <!-- Innovación -->
+      <li data-vc-idx="1" style="position:relative;overflow:hidden;border-radius:20px;cursor:pointer;min-width:56px;outline:none;" tabindex="0">
+        <img loading="lazy" decoding="async" data-vc-img="" src="uploads/Innovación.webp" alt="Innovación" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .45s ease-out,filter .45s ease-out;filter:grayscale(1);transform:scale(1.08);">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.35) 55%,transparent 100%);"></div>
+        <span data-vc-inactive="" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-90deg);transform-origin:center;white-space:nowrap;font-size:28px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.9);transition:opacity .25s;pointer-events:none;text-align:center;width:460px;">Innovación</span>
+        <div data-vc-active="" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:28px;opacity:0;transition:opacity .3s .12s;pointer-events:none;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="1.5" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
+          <h3 style="font-family: 'Fraunces',serif; font-size: 42px; font-weight: 600; color: #fff; margin: 0">Innovación</h3>
+          <p style="font-size: 18px; color: rgba(255,255,255,.75); max-width: 300px; line-height: 1.25; font-weight: 300; margin: 0">Nuevas metodologías y tecnologías al servicio del aprendizaje clínico.</p>
+        </div>
+      </li>
+      <!-- Comunidad -->
+      <li data-vc-idx="2" style="position:relative;overflow:hidden;border-radius:20px;cursor:pointer;min-width:56px;outline:none;" tabindex="0">
+        <img loading="lazy" decoding="async" data-vc-img="" src="uploads/Comunidad.webp" alt="Comunidad" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .45s ease-out,filter .45s ease-out;filter:grayscale(1);transform:scale(1.08);">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.35) 55%,transparent 100%);"></div>
+        <span data-vc-inactive="" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-90deg);transform-origin:center;white-space:nowrap;font-size:28px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.9);transition:opacity .25s;pointer-events:none;text-align:center;width:460px;">Comunidad</span>
+        <div data-vc-active="" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:28px;opacity:0;transition:opacity .3s .12s;pointer-events:none;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="1.5" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          <h3 style="font-family: 'Fraunces',serif; font-size: 42px; font-weight: 600; color: #fff; margin: 0">Comunidad</h3>
+          <p style="font-size: 18px; color: rgba(255,255,255,.75); max-width: 300px; line-height: 1.25; font-weight: 300; margin: 0">Vínculos duraderos entre profesionales que comparten el mismo propósito.</p>
+        </div>
+      </li>
+      <!-- Evolución -->
+      <li data-vc-idx="3" style="position:relative;overflow:hidden;border-radius:20px;cursor:pointer;min-width:56px;outline:none;" tabindex="0">
+        <img loading="lazy" decoding="async" data-vc-img="" src="uploads/Evolución.webp" alt="Evolución" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .45s ease-out,filter .45s ease-out;filter:grayscale(1);transform:scale(1.08);">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.35) 55%,transparent 100%);"></div>
+        <span data-vc-inactive="" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-90deg);transform-origin:center;white-space:nowrap;font-size:28px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.9);transition:opacity .25s;pointer-events:none;text-align:center;width:460px;">Evolución</span>
+        <div data-vc-active="" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:28px;opacity:0;transition:opacity .3s .12s;pointer-events:none;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="1.5" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+          <h3 style="font-family: 'Fraunces',serif; font-size: 42px; font-weight: 600; color: #fff; margin: 0">Evolución</h3>
+          <p style="font-size: 18px; color: rgba(255,255,255,.75); max-width: 300px; line-height: 1.25; font-weight: 300; margin: 0">Nos actualizamos constantemente porque la medicina y la ciencia no se detienen.</p>
+        </div>
+      </li>
+      <!-- Compromiso -->
+      <li data-vc-idx="4" style="position:relative;overflow:hidden;border-radius:20px;cursor:pointer;min-width:56px;outline:none;" tabindex="0">
+        <img loading="lazy" decoding="async" data-vc-img="" src="uploads/Compromiso.webp" alt="Compromiso" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .45s ease-out,filter .45s ease-out;filter:grayscale(1);transform:scale(1.08);">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.35) 55%,transparent 100%);"></div>
+        <span data-vc-inactive="" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-90deg);transform-origin:center;white-space:nowrap;font-size:28px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.9);transition:opacity .25s;pointer-events:none;text-align:center;width:460px;">Compromiso</span>
+        <div data-vc-active="" style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:28px;opacity:0;transition:opacity .3s .12s;pointer-events:none;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="1.5" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+          <h3 style="font-family: 'Fraunces',serif; font-size: 42px; font-weight: 600; color: #fff; margin: 0">Compromiso</h3>
+          <p style="font-size: 18px; color: rgba(255,255,255,.75); max-width: 300px; line-height: 1.25; font-weight: 300; margin: 0">Asumimos la responsabilidad de impactar en la salud de las personas a través de quienes formamos.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ESPACIOS -->
+<section id="espacios" class="sa-section" style="background:#fff;padding:120px 0;">
+  <div class="sa-pad sa-espacios-grid" style="max-width:1200px;margin:0 auto;padding:0 64px;display:grid;grid-template-columns:1fr 1.6fr;gap:80px;align-items:center;">
+    <!-- Left -->
+    <div>
+      <p class="reveal" style="font-size: 25px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: #888; margin-bottom: 16px">Infraestructura</p>
+      <h2 class="reveal d1 sa-h2" style="font-family:'Fraunces',serif;font-weight:600;font-size:clamp(28px,3.5vw,46px);line-height:1.1;letter-spacing:-.025em;color:#0D0D0D;margin-bottom:24px;">Nuestros espacios</h2>
+      <p class="reveal d2" style="font-size:16px;line-height:1.7;color:#555;font-weight:300;margin-bottom:32px;">Contamos con instalaciones académicas y clínicas diseñadas para el aprendizaje intensivo y la comodidad de los alumnos. Nuestros espacios combinan equipamiento de última generación con un ambiente que potencia la concentración, la práctica y la excelencia profesional.</p>
+
+    </div>
+    <!-- Right: carousel -->
+    <div id="espacios-carousel" style="display:flex;flex-direction:column;gap:12px;min-width:0;overflow:hidden;">
+      <!-- Main image -->
+      <div class="sa-esp-main" style="position:relative;border-radius:20px;overflow:hidden;height:380px;background:#0D0D0D;">
+        <div id="esp-track" style="position:relative;width:100%;height:100%;">
+          <img loading="lazy" decoding="async" id="esp-img-cur" src="uploads/2026-04-14 14.30.07.webp" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .55s ease;">
+          <img loading="lazy" decoding="async" id="esp-img-next" src="uploads/2026-04-14 14.30.07.webp" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .55s ease;">
+        </div>
+        <button id="esp-prev" style="position:absolute;left:16px;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.85);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:background .2s;" style-hover="background:#fff;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D0D0D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>
+        </button>
+        <button id="esp-next" style="position:absolute;right:16px;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.85);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:background .2s;" style-hover="background:#fff;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D0D0D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
+        </button>
+        <div id="esp-counter" style="position:absolute;bottom:14px;right:16px;background:rgba(0,0,0,.5);color:#fff;font-size:12px;font-weight:500;padding:4px 10px;border-radius:100px;z-index:10;">1 / 10</div>
+      </div>
+      <!-- Thumbnails: single-line infinite scroll -->
+      <div style="position:relative;">
+        <button id="esp-tprev" style="position:absolute;left:0;top:0;bottom:0;width:36px;background:linear-gradient(to right,rgba(255,255,255,1),rgba(255,255,255,0));border:none;cursor:pointer;z-index:2;display:flex;align-items:center;justify-content:flex-start;padding-left:4px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D0D0D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>
+        </button>
+        <div id="esp-thumb-strip" style="overflow:hidden;margin:0 36px;">
+          <div id="esp-thumb-inner" style="display:flex;gap:8px;transition:transform .5s cubic-bezier(.25,.46,.45,.94);">
+            <div id="esp-thumb-0" style="border-radius:10px;overflow:hidden;height:64px;min-width:100px;cursor:pointer;flex-shrink:0;outline:2px solid #0D0D0D;outline-offset:2px;"><img loading="lazy" decoding="async" src="uploads/2026-04-14 14.30.07.webp" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+            <div id="esp-thumb-1" style="border-radius:10px;overflow:hidden;height:64px;min-width:100px;cursor:pointer;flex-shrink:0;"><img loading="lazy" decoding="async" src="uploads/2025-02-25 09.42.27.webp" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+            <div id="esp-thumb-2" style="border-radius:10px;overflow:hidden;height:64px;min-width:100px;cursor:pointer;flex-shrink:0;"><img loading="lazy" decoding="async" src="uploads/2025-02-25 09.43.14.webp" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+            <div id="esp-thumb-3" style="border-radius:10px;overflow:hidden;height:64px;min-width:100px;cursor:pointer;flex-shrink:0;"><img loading="lazy" decoding="async" src="uploads/2025-02-25 09.45.05.webp" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+            <div id="esp-thumb-4" style="border-radius:10px;overflow:hidden;height:64px;min-width:100px;cursor:pointer;flex-shrink:0;"><img loading="lazy" decoding="async" src="uploads/2025-02-25 09.46.41.webp" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+            <div id="esp-thumb-5" style="border-radius:10px;overflow:hidden;height:64px;min-width:100px;cursor:pointer;flex-shrink:0;"><img loading="lazy" decoding="async" src="uploads/2025-02-25 09.47.15.webp" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+            <div id="esp-thumb-6" style="border-radius:10px;overflow:hidden;height:64px;min-width:100px;cursor:pointer;flex-shrink:0;"><img loading="lazy" decoding="async" src="uploads/2025-02-25 09.48.12.webp" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+            <div id="esp-thumb-7" style="border-radius:10px;overflow:hidden;height:64px;min-width:100px;cursor:pointer;flex-shrink:0;"><img loading="lazy" decoding="async" src="uploads/2025-02-25 09.48.52.webp" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+            <div id="esp-thumb-8" style="border-radius:10px;overflow:hidden;height:64px;min-width:100px;cursor:pointer;flex-shrink:0;"><img loading="lazy" decoding="async" src="uploads/2025-02-25 09.49.08.webp" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+            <div id="esp-thumb-9" style="border-radius:10px;overflow:hidden;height:64px;min-width:100px;cursor:pointer;flex-shrink:0;"><img loading="lazy" decoding="async" src="uploads/2025-02-25 09.57.27.webp" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          </div>
+        </div>
+        <button id="esp-tnext" style="position:absolute;right:0;top:0;bottom:0;width:36px;background:linear-gradient(to left,rgba(255,255,255,1),rgba(255,255,255,0));border:none;cursor:pointer;z-index:2;display:flex;align-items:center;justify-content:flex-end;padding-right:4px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0D0D0D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTITUTOS -->
+<section id="verticales" class="sa-section" style="background:#0D0D0D;padding:120px 0;">
+  <div class="sa-pad" style="max-width:1400px;margin:0 auto;padding:0 64px;">
+    <div style="text-align:center;margin-bottom:20px;">
+      <p class="reveal" style="font-size: 32px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: #aaa; margin-bottom: 16px">El ecosistema</p>
+      <h2 class="reveal d1 sa-h2" style="font-family:'Fraunces',serif;font-weight:600;font-size:clamp(28px,3.5vw,46px);line-height:1.1;letter-spacing:-.025em;color:#FAF9F5;">Nuestros institutos</h2>
+    </div>
+    <div class="reveal" style="display:flex;flex-wrap:wrap;justify-content:center;padding:0 0 40px;">
+      <div class="skew-card" style="position:relative;width:320px;height:420px;margin:40px 24px;flex-shrink:0;">
+        <span class="skew-panel" style="position:absolute;top:0;left:50px;width:50%;height:100%;border-radius:12px;transform:skewX(15deg);transition:all .5s;background:linear-gradient(315deg,#f20000,#f2000099);"></span>
+        <span class="skew-panel-blur" style="position:absolute;top:0;left:50px;width:50%;height:100%;border-radius:12px;transform:skewX(15deg);transition:all .5s;background:linear-gradient(315deg,#f20000,#f2000099);filter:blur(30px);opacity:.85;"></span>
+        <span class="skew-blob-tl" style="position:absolute;top:0;left:0;width:0;height:0;border-radius:12px;opacity:0;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);transition:all .4s;z-index:10;pointer-events:none;"></span>
+        <span class="skew-blob-br" style="position:absolute;bottom:0;right:0;width:0;height:0;border-radius:12px;opacity:0;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);transition:all .5s;z-index:10;pointer-events:none;"></span>
+        <div class="skew-content" style="position:relative;z-index:20;left:0;padding:24px 32px;background:rgba(0,0,0,.45);backdrop-filter:blur(10px);box-shadow:0 8px 32px rgba(0,0,0,.25);border-radius:12px;color:#fff;transition:all .5s;height:100%;display:flex;flex-direction:column;justify-content:center;gap:8px;overflow:hidden;">
+          <img loading="lazy" decoding="async" src="uploads/Harmoy Institute.webp" alt="HARMONY logo" style="width:105px;height:105px;object-fit:contain;border-radius:50%;margin-bottom:4px;align-self:center;">
+          
+          <h3 style="font-family:'Fraunces',serif;font-size:26px;font-weight:600;color:#fff;letter-spacing:-.02em;margin:0;">HARMONY</h3>
+          <p style="font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin:0;">Formación en Armonización Orofacial</p>
+          <p style="font-size:14px;line-height:1.65;color:rgba(255,255,255,.75);font-weight:300;margin:0;">Instituto internacional en armonización orofacial y tratamientos mínimamente invasivos. Más de 6 años de trayectoria y 1.000 profesionales formados en Chile y Latinoamérica.</p>
+          <a href="#contacto" style="display:inline-block;margin-top:4px;font-size:13px;font-weight:600;color:#0D0D0D;background:#fff;padding:8px 20px;border-radius:100px;text-decoration:none;transition:background .2s;width:fit-content;">Ir al instituto</a>
+        </div>
+      </div>
+      <div class="skew-card" style="position:relative;width:320px;height:420px;margin:40px 24px;flex-shrink:0;">
+        <span class="skew-panel" style="position:absolute;top:0;left:50px;width:50%;height:100%;border-radius:12px;transform:skewX(15deg);transition:all .5s;background:linear-gradient(315deg,#a52635,#a5263599);"></span>
+        <span class="skew-panel-blur" style="position:absolute;top:0;left:50px;width:50%;height:100%;border-radius:12px;transform:skewX(15deg);transition:all .5s;background:linear-gradient(315deg,#a52635,#a5263599);filter:blur(30px);opacity:.85;"></span>
+        <span class="skew-blob-tl" style="position:absolute;top:0;left:0;width:0;height:0;border-radius:12px;opacity:0;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);transition:all .4s;z-index:10;pointer-events:none;"></span>
+        <span class="skew-blob-br" style="position:absolute;bottom:0;right:0;width:0;height:0;border-radius:12px;opacity:0;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);transition:all .5s;z-index:10;pointer-events:none;"></span>
+        <div class="skew-content" style="position:relative;z-index:20;left:0;padding:24px 32px;background:rgba(0,0,0,.45);backdrop-filter:blur(10px);box-shadow:0 8px 32px rgba(0,0,0,.25);border-radius:12px;color:#fff;transition:all .5s;height:100%;display:flex;flex-direction:column;justify-content:center;gap:8px;overflow:hidden;">
+          <img loading="lazy" decoding="async" src="uploads/AGC Institute.webp" alt="AGC logo" style="width:105px;height:105px;object-fit:contain;border-radius:50%;margin-bottom:4px;align-self:center;">
+          
+          <h3 style="font-family:'Fraunces',serif;font-size:26px;font-weight:600;color:#fff;letter-spacing:-.02em;margin:0;">AGC</h3>
+          <p style="font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin:0;">Formación en Odontología</p>
+          <p style="font-size:14px;line-height:1.65;color:rgba(255,255,255,.75);font-weight:300;margin:0;">Referente en formación de odontólogos en cirugía y procedimientos avanzados. Desde 2016, programas de alta intensidad clínica para especialistas.</p>
+          <a href="#contacto" style="display:inline-block;margin-top:4px;font-size:13px;font-weight:600;color:#0D0D0D;background:#fff;padding:8px 20px;border-radius:100px;text-decoration:none;transition:background .2s;width:fit-content;">Ir al instituto</a>
+        </div>
+      </div>
+      <div class="skew-card" style="position:relative;width:320px;height:420px;margin:40px 24px;flex-shrink:0;">
+        <span class="skew-panel" style="position:absolute;top:0;left:50px;width:50%;height:100%;border-radius:12px;transform:skewX(15deg);transition:all .5s;background:linear-gradient(315deg,#003fc5,#003fc599);"></span>
+        <span class="skew-panel-blur" style="position:absolute;top:0;left:50px;width:50%;height:100%;border-radius:12px;transform:skewX(15deg);transition:all .5s;background:linear-gradient(315deg,#003fc5,#003fc599);filter:blur(30px);opacity:.85;"></span>
+        <span class="skew-blob-tl" style="position:absolute;top:0;left:0;width:0;height:0;border-radius:12px;opacity:0;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);transition:all .4s;z-index:10;pointer-events:none;"></span>
+        <span class="skew-blob-br" style="position:absolute;bottom:0;right:0;width:0;height:0;border-radius:12px;opacity:0;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);transition:all .5s;z-index:10;pointer-events:none;"></span>
+        <div class="skew-content" style="position:relative;z-index:20;left:0;padding:24px 32px;background:rgba(0,0,0,.45);backdrop-filter:blur(10px);box-shadow:0 8px 32px rgba(0,0,0,.25);border-radius:12px;color:#fff;transition:all .5s;height:100%;display:flex;flex-direction:column;justify-content:center;gap:8px;overflow:hidden;">
+          <img loading="lazy" decoding="async" src="uploads/Simetria Institute.webp" alt="Simetría logo" style="width:105px;height:105px;object-fit:contain;border-radius:50%;margin-bottom:4px;align-self:center;">
+          
+          <h3 style="font-family:'Fraunces',serif;font-size:26px;font-weight:600;color:#fff;letter-spacing:-.02em;margin:0;">Simetría</h3>
+          <p style="font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin:0;">Formación Para Enfermeras</p>
+          <p style="font-size:14px;line-height:1.65;color:rgba(255,255,255,.75);font-weight:300;margin:0;">Formación especializada para enfermeras en medicina estética. Programas basados en evidencia, práctica supervisada y altos estándares clínicos desde 2022.</p>
+          <a href="#contacto" style="display:inline-block;margin-top:4px;font-size:13px;font-weight:600;color:#0D0D0D;background:#fff;padding:8px 20px;border-radius:100px;text-decoration:none;transition:background .2s;width:fit-content;">Ir al instituto</a>
+        </div>
+      </div>
+      <div class="skew-card" style="position:relative;width:320px;height:420px;margin:40px 24px;flex-shrink:0;">
+        <span class="skew-panel" style="position:absolute;top:0;left:50px;width:50%;height:100%;border-radius:12px;transform:skewX(15deg);transition:all .5s;background:linear-gradient(315deg,#b5b5b5,#b5b5b599);"></span>
+        <span class="skew-panel-blur" style="position:absolute;top:0;left:50px;width:50%;height:100%;border-radius:12px;transform:skewX(15deg);transition:all .5s;background:linear-gradient(315deg,#b5b5b5,#b5b5b599);filter:blur(30px);opacity:.85;"></span>
+        <span class="skew-blob-tl" style="position:absolute;top:0;left:0;width:0;height:0;border-radius:12px;opacity:0;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);transition:all .4s;z-index:10;pointer-events:none;"></span>
+        <span class="skew-blob-br" style="position:absolute;bottom:0;right:0;width:0;height:0;border-radius:12px;opacity:0;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);transition:all .5s;z-index:10;pointer-events:none;"></span>
+        <div class="skew-content" style="position:relative;z-index:20;left:0;padding:24px 32px;background:rgba(0,0,0,.45);backdrop-filter:blur(10px);box-shadow:0 8px 32px rgba(0,0,0,.25);border-radius:12px;color:#fff;transition:all .5s;height:100%;display:flex;flex-direction:column;justify-content:center;gap:8px;overflow:hidden;">
+          <img loading="lazy" decoding="async" src="uploads/Premier Institute.webp" alt="Premier Medical logo" style="width:105px;height:105px;object-fit:contain;border-radius:50%;margin-bottom:4px;align-self:center;">
+          
+          <h3 style="font-family:'Fraunces',serif;font-size:26px;font-weight:600;color:#fff;letter-spacing:-.02em;margin:0;">Premier Medical</h3>
+          <p style="font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin:0;">Formación Exclusiva para Médicos</p>
+          <p style="font-size:14px;line-height:1.65;color:rgba(255,255,255,.75);font-weight:300;margin:0;">Formación avanzada para médicos en medicina estética. Ciencia, entrenamiento intensivo y práctica supervisada para ejercer con criterio clínico y excelencia.</p>
+          <a href="#contacto" style="display:inline-block;margin-top:4px;font-size:13px;font-weight:600;color:#0D0D0D;background:#fff;padding:8px 20px;border-radius:100px;text-decoration:none;transition:background .2s;width:fit-content;">Ir al instituto</a>
+        </div>
+      </div>
+      <div class="skew-card" style="position:relative;width:320px;height:420px;margin:40px 24px;flex-shrink:0;">
+        <span class="skew-panel" style="position:absolute;top:0;left:50px;width:50%;height:100%;border-radius:12px;transform:skewX(15deg);transition:all .5s;background:linear-gradient(315deg,#b99102,#b9910299);"></span>
+        <span class="skew-panel-blur" style="position:absolute;top:0;left:50px;width:50%;height:100%;border-radius:12px;transform:skewX(15deg);transition:all .5s;background:linear-gradient(315deg,#b99102,#b9910299);filter:blur(30px);opacity:.85;"></span>
+        <span class="skew-blob-tl" style="position:absolute;top:0;left:0;width:0;height:0;border-radius:12px;opacity:0;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);transition:all .4s;z-index:10;pointer-events:none;"></span>
+        <span class="skew-blob-br" style="position:absolute;bottom:0;right:0;width:0;height:0;border-radius:12px;opacity:0;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);transition:all .5s;z-index:10;pointer-events:none;"></span>
+        <div class="skew-content" style="position:relative;z-index:20;left:0;padding:24px 32px;background:rgba(0,0,0,.45);backdrop-filter:blur(10px);box-shadow:0 8px 32px rgba(0,0,0,.25);border-radius:12px;color:#fff;transition:all .5s;height:100%;display:flex;flex-direction:column;justify-content:center;gap:8px;overflow:hidden;">
+          <img loading="lazy" decoding="async" src="uploads/Koncepto Institute.webp" alt="Koncepto logo" style="width:105px;height:105px;object-fit:contain;border-radius:50%;margin-bottom:4px;align-self:center;">
+          
+          <h3 style="font-family:'Fraunces',serif;font-size:26px;font-weight:600;color:#fff;letter-spacing:-.02em;margin:0;">Koncepto</h3>
+          <p style="font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin:0;">Formación en Armonización Orofacial en el Sur de Chile</p>
+          <p style="font-size:14px;line-height:1.65;color:rgba(255,255,255,.75);font-weight:300;margin:0;">Armonización orofacial para odontólogos. Práctica clínica, protocolos actualizados y aplicación inmediata, con pacientes incluidos e insumos provistos.</p>
+          <a href="#contacto" style="display:inline-block;margin-top:4px;font-size:13px;font-weight:600;color:#0D0D0D;background:#fff;padding:8px 20px;border-radius:100px;text-decoration:none;transition:background .2s;width:fit-content;">Ir al instituto</a>
+        </div>
+      </div>
+      <div class="skew-card" style="position:relative;width:320px;height:420px;margin:40px 24px;flex-shrink:0;">
+        <span class="skew-panel" style="position:absolute;top:0;left:50px;width:50%;height:100%;border-radius:12px;transform:skewX(15deg);transition:all .5s;background:linear-gradient(315deg,#29ac8d,#29ac8d99);"></span>
+        <span class="skew-panel-blur" style="position:absolute;top:0;left:50px;width:50%;height:100%;border-radius:12px;transform:skewX(15deg);transition:all .5s;background:linear-gradient(315deg,#29ac8d,#29ac8d99);filter:blur(30px);opacity:.85;"></span>
+        <span class="skew-blob-tl" style="position:absolute;top:0;left:0;width:0;height:0;border-radius:12px;opacity:0;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);transition:all .4s;z-index:10;pointer-events:none;"></span>
+        <span class="skew-blob-br" style="position:absolute;bottom:0;right:0;width:0;height:0;border-radius:12px;opacity:0;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);transition:all .5s;z-index:10;pointer-events:none;"></span>
+        <div class="skew-content" style="position:relative;z-index:20;left:0;padding:24px 32px;background:rgba(0,0,0,.45);backdrop-filter:blur(10px);box-shadow:0 8px 32px rgba(0,0,0,.25);border-radius:12px;color:#fff;transition:all .5s;height:100%;display:flex;flex-direction:column;justify-content:center;gap:8px;overflow:hidden;">
+          <img loading="lazy" decoding="async" src="uploads/Kinexia Institute.webp" alt="Kinexia logo" style="width:105px;height:105px;object-fit:contain;border-radius:50%;margin-bottom:4px;align-self:center;">
+          
+          <h3 style="font-family:'Fraunces',serif;font-size:26px;font-weight:600;color:#fff;letter-spacing:-.02em;margin:0;">Kinexia</h3>
+          <p style="font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin:0;">Formación Exclusiva para Kinesiólogos</p>
+          <p style="font-size:14px;line-height:1.65;color:rgba(255,255,255,.75);font-weight:300;margin:0;">Formación para kinesiólogos en rehabilitación y terapias avanzadas. Evidencia científica, entrenamiento práctico y enfoque clínico de alto impacto.</p>
+          <a href="#contacto" style="display:inline-block;margin-top:4px;font-size:13px;font-weight:600;color:#0D0D0D;background:#fff;padding:8px 20px;border-radius:100px;text-decoration:none;transition:background .2s;width:fit-content;">Ir al instituto</a>
+        </div>
+      </div>
+    </div>
+    </div>
+  
+</section>
+
+<!-- COLABORADORES -->
+<section id="colaboradores" class="sa-section" style="background:#F5F5F3;padding:120px 0;">
+  <div class="sa-pad" style="max-width:1200px;margin:0 auto;padding:0 64px;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:24px;margin-bottom:48px;">
+      <div>
+        <p class="reveal" style="font-size: 28px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: #888; margin-bottom: 12px">NUESTROS</p>
+        <h2 class="reveal d1 sa-h2" style="font-family:'Fraunces',serif;font-weight:600;font-size:clamp(28px,3.5vw,46px);line-height:1.1;letter-spacing:-.025em;color:#0D0D0D;margin-bottom:12px;">Colaboradores</h2>
+        <p class="reveal d2" style="font-size: 18px; color: #8A867C; font-weight: 300; max-width: 420px; line-height: 1.6">Este es el equipo que impulsa la excelencia de nuestras operaciones.</p>
+      </div>
+      <div class="reveal d2" style="display:flex;gap:8px;flex-wrap:wrap;align-items:flex-start;padding-top:4px;">
+        <button data-colab-filter="Todos" style="background:#0D0D0D;color:#fff;font-size:13px;font-weight:500;padding:9px 20px;border-radius:100px;border:none;cursor:pointer;transition:background .2s,color .2s;font-family:'Inter',sans-serif;">Todos</button>
+        <button data-colab-filter="Dirección" style="background:#E0E0E0;color:#555;font-size:13px;font-weight:500;padding:9px 20px;border-radius:100px;border:none;cursor:pointer;transition:background .2s,color .2s;font-family:'Inter',sans-serif;">Dirección</button>
+        <button data-colab-filter="Coordinación" style="background:#E0E0E0;color:#555;font-size:13px;font-weight:500;padding:9px 20px;border-radius:100px;border:none;cursor:pointer;transition:background .2s,color .2s;font-family:'Inter',sans-serif;">Coordinación</button>
+        <button data-colab-filter="Relaciones Públicas" style="background:#E0E0E0;color:#555;font-size:13px;font-weight:500;padding:9px 20px;border-radius:100px;border:none;cursor:pointer;transition:background .2s,color .2s;font-family:'Inter',sans-serif;">Relaciones Públicas</button>
+        <button data-colab-filter="Gestión" style="background:#E0E0E0;color:#555;font-size:13px;font-weight:500;padding:9px 20px;border-radius:100px;border:none;cursor:pointer;transition:background .2s,color .2s;font-family:'Inter',sans-serif;">Gestión</button>
+        <button data-colab-filter="Operaciones" style="background:#E0E0E0;color:#555;font-size:13px;font-weight:500;padding:9px 20px;border-radius:100px;border:none;cursor:pointer;transition:background .2s,color .2s;font-family:'Inter',sans-serif;">Operaciones</button>
+        <button data-colab-filter="Marketing" style="background:#E0E0E0;color:#555;font-size:13px;font-weight:500;padding:9px 20px;border-radius:100px;border:none;cursor:pointer;transition:background .2s,color .2s;font-family:'Inter',sans-serif;">Marketing</button>
+      </div>
+    </div>
+    <div id="colab-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;">
+      <div data-colab-category="Dirección|Coordinación" style="background:#1A1A1A;border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:20px;display:flex;flex-direction:column;transition:opacity .3s,transform .3s,box-shadow .25s;" style-hover="box-shadow:0 12px 32px rgba(0,0,0,.25);">
+        <div style="border-radius:12px;overflow:hidden;aspect-ratio:4/3;margin-bottom:16px;">
+          <img loading="lazy" decoding="async" src="uploads/Alexis González.webp" alt="Alexis González" style="width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .3s;" style-hover="transform:scale(1.05);">
+        </div>
+        <h3 style="font-family:'Fraunces',serif;font-size:17px;font-weight:600;color:#FAF9F5;margin-bottom:4px;">Alexis González</h3>
+        <p style="font-size:12px;color:#8A867C;margin-bottom:10px;font-weight:500;letter-spacing:.04em;">Director General / CVO</p>
+        <p style="font-size:13px;color:#8A867C;line-height:1.6;font-weight:300;">Encargado de la estrategia y visión del grupo, creador de la cultura organizacional y responsable de expandir las operaciones. K.A.M. del instituto AGC.</p>
+      </div>
+      <div data-colab-category="Dirección" style="background:#1A1A1A;border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:20px;display:flex;flex-direction:column;transition:opacity .3s,transform .3s,box-shadow .25s;" style-hover="box-shadow:0 12px 32px rgba(0,0,0,.25);">
+        <div style="border-radius:12px;overflow:hidden;aspect-ratio:4/3;margin-bottom:16px;">
+          <img loading="lazy" decoding="async" src="uploads/Mariluz Pérez.webp" alt="Mariluz Pérez" style="width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .3s;" style-hover="transform:scale(1.05);">
+        </div>
+        <h3 style="font-family:'Fraunces',serif;font-size:17px;font-weight:600;color:#FAF9F5;margin-bottom:4px;">Mariluz Pérez</h3>
+        <p style="font-size:12px;color:#8A867C;margin-bottom:10px;font-weight:500;letter-spacing:.04em;">Directora de Control y Gestión</p>
+        <p style="font-size:13px;color:#8A867C;line-height:1.6;font-weight:300;">Responsable de toda la parte administrativa y de gestión del grupo.</p>
+      </div>
+      <div data-colab-category="Coordinación" style="background:#1A1A1A;border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:20px;display:flex;flex-direction:column;transition:opacity .3s,transform .3s,box-shadow .25s;" style-hover="box-shadow:0 12px 32px rgba(0,0,0,.25);">
+        <div style="border-radius:12px;overflow:hidden;aspect-ratio:4/3;margin-bottom:16px;">
+          <img loading="lazy" decoding="async" src="uploads/Zequelly Blanco.webp" alt="Zequelly Blanco" style="width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .3s;" style-hover="transform:scale(1.05);">
+        </div>
+        <h3 style="font-family:'Fraunces',serif;font-size:17px;font-weight:600;color:#FAF9F5;margin-bottom:4px;">Zequelly Blanco</h3>
+        <p style="font-size:12px;color:#8A867C;margin-bottom:10px;font-weight:500;letter-spacing:.04em;">K.A.M. — Instituto Harmony &amp; Premier</p>
+        <p style="font-size:13px;color:#8A867C;line-height:1.6;font-weight:300;">Coordinadora académica y comercial de los institutos Harmony y Premier.</p>
+      </div>
+      <div data-colab-category="Coordinación" style="background:#1A1A1A;border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:20px;display:flex;flex-direction:column;transition:opacity .3s,transform .3s,box-shadow .25s;" style-hover="box-shadow:0 12px 32px rgba(0,0,0,.25);">
+        <div style="border-radius:12px;overflow:hidden;aspect-ratio:4/3;margin-bottom:16px;">
+          <img loading="lazy" decoding="async" src="uploads/Carla Ulloa.webp" alt="Carla Ulloa" style="width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .3s;" style-hover="transform:scale(1.05);">
+        </div>
+        <h3 style="font-family:'Fraunces',serif;font-size:17px;font-weight:600;color:#FAF9F5;margin-bottom:4px;">Carla Ulloa</h3>
+        <p style="font-size:12px;color:#8A867C;margin-bottom:10px;font-weight:500;letter-spacing:.04em;">K.A.M. — Simetría &amp; Koncepto</p>
+        <p style="font-size:13px;color:#8A867C;line-height:1.6;font-weight:300;">Coordinadora académica y comercial de los institutos Simetría y Koncepto en Concepción.</p>
+      </div>
+      <div data-colab-category="Gestión" style="background:#1A1A1A;border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:20px;display:flex;flex-direction:column;transition:opacity .3s,transform .3s,box-shadow .25s;" style-hover="box-shadow:0 12px 32px rgba(0,0,0,.25);">
+        <div style="border-radius:12px;overflow:hidden;aspect-ratio:4/3;margin-bottom:16px;">
+          <img loading="lazy" decoding="async" src="uploads/Tamara Villagra.webp" alt="Tamara Villagra" style="width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .3s;" style-hover="transform:scale(1.05);">
+        </div>
+        <h3 style="font-family:'Fraunces',serif;font-size:17px;font-weight:600;color:#FAF9F5;margin-bottom:4px;">Tamara Villagra</h3>
+        <p style="font-size:12px;color:#8A867C;margin-bottom:10px;font-weight:500;letter-spacing:.04em;">Gestión de Pacientes</p>
+        <p style="font-size:13px;color:#8A867C;line-height:1.6;font-weight:300;">Encargada de la agenda y experiencia de los pacientes modelos en todos los programas de los institutos.</p>
+      </div>
+      <div data-colab-category="Operaciones" style="background:#1A1A1A;border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:20px;display:flex;flex-direction:column;transition:opacity .3s,transform .3s,box-shadow .25s;" style-hover="box-shadow:0 12px 32px rgba(0,0,0,.25);">
+        <div style="border-radius:12px;overflow:hidden;aspect-ratio:4/3;margin-bottom:16px;">
+          <img loading="lazy" decoding="async" src="uploads/Valeria Muñoz.webp" alt="Valeria Catalán" style="width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .3s;" style-hover="transform:scale(1.05);">
+        </div>
+        <h3 style="font-family:'Fraunces',serif;font-size:17px;font-weight:600;color:#FAF9F5;margin-bottom:4px;">Valeria Catalán</h3>
+        <p style="font-size:12px;color:#8A867C;margin-bottom:10px;font-weight:500;letter-spacing:.04em;">Gestión de Operaciones</p>
+        <p style="font-size:13px;color:#8A867C;line-height:1.6;font-weight:300;">Responsable de la parte operativa del grupo: insumos, operaciones y resguardo de espacios e instalaciones.</p>
+      </div>
+      <div data-colab-category="Relaciones Públicas" style="background:#1A1A1A;border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:20px;display:flex;flex-direction:column;transition:opacity .3s,transform .3s,box-shadow .25s;" style-hover="box-shadow:0 12px 32px rgba(0,0,0,.25);">
+        <div style="border-radius:12px;overflow:hidden;aspect-ratio:4/3;margin-bottom:16px;">
+          <img loading="lazy" decoding="async" src="uploads/Carla Fuenmayor.webp" alt="Carla Fuenmayor" style="width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .3s;" style-hover="transform:scale(1.05);">
+        </div>
+        <h3 style="font-family:'Fraunces',serif;font-size:17px;font-weight:600;color:#FAF9F5;margin-bottom:4px;">Carla Fuenmayor</h3>
+        <p style="font-size:12px;color:#8A867C;margin-bottom:10px;font-weight:500;letter-spacing:.04em;">Relacionista Público</p>
+        <p style="font-size:13px;color:#8A867C;line-height:1.6;font-weight:300;">Gestiona la relación comercial con externos, proveedores y marcas colaboradoras. Directora editorial de Oro Magazine By Grupo San Amaro.</p>
+      </div>
+      <div data-colab-category="Marketing" style="background:#1A1A1A;border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:20px;display:flex;flex-direction:column;transition:opacity .3s,transform .3s,box-shadow .25s;" style-hover="box-shadow:0 12px 32px rgba(0,0,0,.25);">
+        <div style="border-radius:12px;overflow:hidden;aspect-ratio:4/3;margin-bottom:16px;">
+          <img loading="lazy" decoding="async" src="uploads/Dania Candia.webp" alt="Dania Candia" style="width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .3s;" style-hover="transform:scale(1.05);">
+        </div>
+        <h3 style="font-family:'Fraunces',serif;font-size:17px;font-weight:600;color:#FAF9F5;margin-bottom:4px;">Dania Candia</h3>
+        <p style="font-size:12px;color:#8A867C;margin-bottom:10px;font-weight:500;letter-spacing:.04em;">Diseñadora Gráfica</p>
+        <p style="font-size:13px;color:#8A867C;line-height:1.6;font-weight:300;">Responsable de la comunicación visual de todo el ecosistema y gestión de redes sociales del grupo.</p>
+      </div>
+      <div data-colab-category="Marketing" style="background:#1A1A1A;border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:20px;display:flex;flex-direction:column;transition:opacity .3s,transform .3s,box-shadow .25s;" style-hover="box-shadow:0 12px 32px rgba(0,0,0,.25);">
+        <div style="border-radius:12px;overflow:hidden;aspect-ratio:4/3;margin-bottom:16px;">
+          <img loading="lazy" decoding="async" src="uploads/Elio Rincón.webp" alt="Elio Rincón" style="width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .3s;" style-hover="transform:scale(1.05);">
+        </div>
+        <h3 style="font-family:'Fraunces',serif;font-size:17px;font-weight:600;color:#FAF9F5;margin-bottom:4px;">Elio Rincón</h3>
+        <p style="font-size:12px;color:#8A867C;margin-bottom:10px;font-weight:500;letter-spacing:.04em;">Coordinador de Marketing</p>
+        <p style="font-size:13px;color:#8A867C;line-height:1.6;font-weight:300;">Responsable de la comunicación audiovisual y filmmaking del ecosistema, grabación de videos, campañas de ADS y apoyo técnico en eventos.</p>
+      </div>
+    </div>
+    </div>
+  
+</section>
+
+<!-- CTA BANNER -->
+<section class="sa-cta-section" style="background:#fff;padding:80px 0;">
+  <div class="sa-pad" style="max-width:1200px;margin:0 auto;padding:0 64px;">
+    <div class="reveal sa-cta-card" style="background:#111;border-radius:40px;padding:80px 72px;text-align:center;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(201,162,39,.08) 0%,transparent 70%);pointer-events:none;"></div>
+      <div style="position:absolute;bottom:-40px;right:-40px;width:180px;height:180px;border-radius:50%;border:1px solid rgba(180,180,180,.1);pointer-events:none;"></div>
+      <div style="position:relative;z-index:1;">
+        <p style="font-size: 32px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: #888; margin-bottom: 20px">¿Listo para evolucionar?</p>
+        <h2 style="font-family:'Fraunces',serif;font-weight:600;font-size:clamp(28px,4vw,52px);line-height:1.1;letter-spacing:-.025em;color:#fff;margin-bottom:20px;text-wrap:balance;">Encuentra tu próxima especialización</h2>
+        <p style="font-size: 18px; line-height: 1.7; color: rgba(255,255,255,.45); font-weight: 300; max-width: 480px; margin: 0 auto 40px">Nuestros asesores académicos te guiarán para elegir el programa que transformará tu práctica clínica.</p>
+        <a href="#contacto" style="display:inline-block;background:#fff;color:#0D0D0D;font-weight:600;font-size:15px;padding:16px 44px;border-radius:100px;transition:opacity .2s,transform .2s;" style-hover="opacity:.87;transform:translateY(-2px);">Habla con un asesor</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="sa-section" style="background:#F5F5F3;padding:120px 0;">
+  <div class="sa-pad" style="max-width:1200px;margin:0 auto;padding:0 64px;">
+    <div style="margin-bottom:60px;">
+      <p class="reveal" style="font-size: 30px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: #888; margin-bottom: 16px">Contacto</p>
+      <h2 class="reveal d1 sa-h2" style="font-family:'Fraunces',serif;font-weight:600;font-size:clamp(28px,3.5vw,46px);line-height:1.1;letter-spacing:-.025em;color:#0D0D0D;">Comienza tu evolución</h2>
+    </div>
+    <div class="sa-two-col" style="align-items:flex-start;">
+      <div class="reveal" style="flex:1;min-width:0;">
+        <form id="sa-contact-form" style="display:flex;flex-direction:column;gap:28px;" novalidate="novalidate">
+          <div class="sa-form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;"><div style="display:flex;flex-direction:column;gap:8px;"><label style="font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#888;">Nombre</label><input id="sa-name" type="text" placeholder="Tu nombre completo" required="required" style="background:transparent;border:none;border-bottom:1px solid #D0D0D0;color:#0D0D0D;font-size:15px;padding:12px 0;outline:none;transition:border-color .2s;font-family:inherit;font-weight:300;"></div><div style="display:flex;flex-direction:column;gap:8px;"><label style="font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#888;">Teléfono</label><input id="sa-phone" type="tel" placeholder="+56 9 XXXX XXXX" style="background:transparent;border:none;border-bottom:1px solid #D0D0D0;color:#0D0D0D;font-size:15px;padding:12px 0;outline:none;transition:border-color .2s;font-family:inherit;font-weight:300;"></div></div>
+          <div style="display:flex;flex-direction:column;gap:8px;"><label style="font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#888;">Email</label><input id="sa-email" type="email" placeholder="tu@email.com" required="required" style="background:transparent;border:none;border-bottom:1px solid #D0D0D0;color:#0D0D0D;font-size:15px;padding:12px 0;outline:none;transition:border-color .2s;font-family:inherit;font-weight:300;"></div>
+          <div style="display:flex;flex-direction:column;gap:8px;"><label style="font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#888;">Instituto de interés</label><select id="sa-institute" style="background:transparent;border:none;border-bottom:1px solid #D0D0D0;color:#0D0D0D;font-size:15px;padding:12px 0;outline:none;transition:border-color .2s;font-family:inherit;font-weight:300;cursor:pointer;"><option value="">Selecciona un instituto</option><option value="HARMONY">HARMONY</option><option value="AGC">AGC</option><option value="Simetría">Simetría</option><option value="Premier Medical">Premier Medical</option><option value="Koncepto">Koncepto</option><option value="Kinexia">Kinexia</option></select></div>
+          <div style="display:flex;flex-direction:column;gap:8px;"><label style="font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#888;">Mensaje</label><textarea id="sa-message" rows="3" placeholder="Cuéntanos sobre tus objetivos..." style="background:transparent;border:none;border-bottom:1px solid #D0D0D0;color:#0D0D0D;font-size:15px;padding:12px 0;outline:none;resize:none;transition:border-color .2s;font-family:inherit;font-weight:300;"></textarea></div>
+          <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+            <button type="submit" style="background:#0D0D0D;color:#fff;font-weight:600;font-size:14px;padding:14px 36px;border-radius:100px;border:none;cursor:pointer;transition:background .2s;font-family:inherit;" style-hover="background:#333;">Enviar mensaje</button>
+            <p id="sa-form-msg" style="font-size:13px;color:#aaa;display:none;"></p>
+          </div>
+        </form>
+      </div>
+      <div class="reveal d1" style="flex:1;min-width:0;border-radius:24px;overflow:hidden;border:1px solid #E0E0E0;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d425863.4689398098!2d-70.97672386891327!3d-33.499858950683276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662cf5548b63821%3A0x6b4b45ae5513d1f1!2sGrupo%20Educacional%20San%20Amaro!5e0!3m2!1ses!2scl!4v1785964839640!5m2!1ses!2scl" width="100%" height="360" style="border:0;display:block;filter:grayscale(1);" allowfullscreen="allowfullscreen" loading="lazy" title="Ubicación"></iframe>
+        <div style="padding:24px 28px;background:#fff;border-top:1px solid #E8E8E8;display:flex;flex-direction:column;gap:6px;"><a href="mailto:administracion@sanamaro.cl" style="font-size:16px;color:#0D0D0D;font-weight:700;text-decoration:none;transition:color .2s;" style-hover="color:#555;">administracion@sanamaro.cl</a><a href="https://wa.me/56959777238" target="_blank" style="font-size:16px;color:#0D0D0D;font-weight:700;text-decoration:none;transition:color .2s;" style-hover="color:#555;">+56 9 5977 7238 · WhatsApp</a><p style="font-size:14px;color:#888;font-weight:400;">Santiago, Chile</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#0D0D0D;padding:20px 24px 0;">
+  <svg style="position:absolute;width:0;height:0;" aria-hidden="true">
+    <defs>
+      <filter id="glass-effect" x="-50%" y="-50%" width="200%" height="200%">
+        <feDropShadow dx="0" dy="4" stdDeviation="6" floodColor="#000000" floodOpacity="0.25" result="outer-shadow"></feDropShadow>
+        <feComponentTransfer in="SourceAlpha" result="alpha"><feFuncA type="linear" slope="1"></feFuncA></feComponentTransfer>
+        <feOffset in="alpha" dx="0" dy="4" result="offset-white"></feOffset>
+        <feGaussianBlur in="offset-white" stdDeviation="4" result="blur-white"></feGaussianBlur>
+        <feComposite in="alpha" in2="blur-white" operator="out" result="inner-white-mask"></feComposite>
+        <feFlood floodColor="#ffffff" floodOpacity="0.25" result="white-fill"></feFlood>
+        <feComposite in="white-fill" in2="inner-white-mask" operator="in" result="inner-white-final"></feComposite>
+        <feGaussianBlur in="alpha" stdDeviation="6" result="blur-black"></feGaussianBlur>
+        <feComposite in="alpha" in2="blur-black" operator="out" result="inner-black-mask"></feComposite>
+        <feFlood floodColor="#000000" floodOpacity="0.25" result="black-fill"></feFlood>
+        <feComposite in="black-fill" in2="inner-black-mask" operator="in" result="inner-black-final"></feComposite>
+        <feMerge><feMergeNode in="outer-shadow"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode><feMergeNode in="inner-white-final"></feMergeNode><feMergeNode in="inner-black-final"></feMergeNode></feMerge>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Layered card -->
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="background:#1A1A1A;border-radius:48px;border:1px solid rgba(255,255,255,.08);box-shadow:0 1px 3px rgba(0,0,0,.06);">
+      <!-- White inner card -->
+      <div style="background:#111;border-radius:40px;margin:8px;">
+        <div class="sa-footer-grid" style="padding:28px 56px 20px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 40px; flex-wrap: wrap;">
+          <!-- Brand -->
+          <div style="display:flex;flex-direction:column;gap:0;align-items:center;text-align:center;">
+            <a href="#hero" style="display:flex;justify-content:center;"><img loading="lazy" decoding="async" src="uploads/LOGOS -  VARIANTES-03 (1).webp" alt="San Amaro" style="height:210px;width:auto;object-fit:contain;margin-bottom:-24px;filter:brightness(0) invert(1);"></a>
+            <p style="font-size: 16px; line-height: 1.2; color: #8A867C; font-weight: 400; max-width: 300px; width: 281px; height: 81px">Holding educacional especializado en formación continua para profesionales de la salud.</p>
+            <div style="display:flex;gap:10px;">
+              <a href="#" aria-label="LinkedIn" style="width:44px;height:44px;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;color:#fff;transition:background .2s;" style-hover="background:rgba(255,255,255,.12);"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"></path><circle cx="4" cy="4" r="2"></circle></svg></a>
+              <a href="#" aria-label="Instagram" style="width:44px;height:44px;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;color:#fff;transition:background .2s;" style-hover="background:rgba(255,255,255,.12);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+              <a href="#" aria-label="YouTube" style="width:44px;height:44px;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;color:#fff;transition:background .2s;" style-hover="background:rgba(255,255,255,.12);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.45A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.97A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"></path><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon></svg></a>
+            </div>
+          </div>
+          <!-- Nav -->
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <h4 style="font-size:13px;font-weight:500;color:rgba(255,255,255,.25);letter-spacing:.08em;text-transform:uppercase;">Navegación</h4>
+            <ul style="display:flex;flex-direction:column;gap:14px;list-style:none;padding:0;margin:0;">
+              <li><a href="#quienes-somos" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Quiénes somos</a></li>
+              <li><a href="#proposito" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Propósito</a></li>
+              <li><a href="#vision-mision" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Visión y misión</a></li>
+              <li><a href="#valores" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Valores</a></li>
+              <li><a href="#contacto" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Contacto</a></li>
+            </ul>
+          </div>
+          <!-- Institutos -->
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <h4 style="font-size:13px;font-weight:500;color:rgba(255,255,255,.25);letter-spacing:.08em;text-transform:uppercase;">Institutos</h4>
+            <ul style="display:flex;flex-direction:column;gap:14px;list-style:none;padding:0;margin:0;">
+              <li><a href="#verticales" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">HARMONY</a></li>
+              <li><a href="#verticales" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">AGC</a></li>
+              <li><a href="#verticales" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Simetría</a></li>
+              <li><a href="#verticales" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Premier Medical</a></li>
+              <li><a href="#verticales" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Koncepto</a></li>
+              <li><a href="#verticales" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Kinexia</a></li>
+            </ul>
+          </div>
+          <!-- Enlaces -->
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <h4 style="font-size:13px;font-weight:500;color:rgba(255,255,255,.25);letter-spacing:.08em;text-transform:uppercase;">Enlaces</h4>
+            <ul style="display:flex;flex-direction:column;gap:14px;list-style:none;padding:0;margin:0;">
+              <li><a href="Aula Virtual.dc.html" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Aula Virtual</a></li>
+              <li><a href="Politicas Comerciales.dc.html" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Políticas Comerciales</a></li>
+              <li><a href="Certificados.dc.html" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Certificados</a></li>
+              <li><a href="Suscripciones.dc.html" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Suscripciones</a></li>
+              <li><a href="Inscripciones.dc.html" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Inscripciones</a></li>
+            </ul>
+          </div>
+          <!-- Contacto -->
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <h4 style="font-size:13px;font-weight:500;color:rgba(255,255,255,.25);letter-spacing:.08em;text-transform:uppercase;">Contacto</h4>
+            <ul style="display:flex;flex-direction:column;gap:14px;list-style:none;padding:0;margin:0;">
+              <li><a href="mailto:administracion@sanamaro.cl" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">administracion@sanamaro.cl</a></li>
+              <li><a href="https://wa.me/56959777238" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">+56 9 5977 7238</a></li>
+              <li><span style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);">Santiago, Chile</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Legal bar -->
+      <div class="sa-footer-legal" style="padding:20px 56px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+        <p style="font-size:14px;color:rgba(255,255,255,.3);font-weight:500;">© 2025 Grupo Educacional San Amaro. Todos los derechos reservados.</p>
+        <div style="display:flex;gap:24px;align-items:center;">
+          <a href="#" style="font-size:14px;color:rgba(255,255,255,.3);font-weight:500;transition:color .2s;" style-hover="color:rgba(255,255,255,.7);">Política de privacidad</a>
+          <div style="width:1px;height:16px;background:rgba(255,255,255,.15);"></div>
+          <a href="#" style="font-size:14px;color:rgba(255,255,255,.3);font-weight:500;transition:color .2s;" style-hover="color:rgba(255,255,255,.7);">Términos de uso</a>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  initCarousel() {
+    const photos = [
+      'uploads/2026-04-14 14.30.07.webp',
+      'uploads/2025-02-25 09.42.27.webp',
+      'uploads/2025-02-25 09.43.14.webp',
+      'uploads/2025-02-25 09.45.05.webp',
+      'uploads/2025-02-25 09.46.41.webp',
+      'uploads/2025-02-25 09.47.15.webp',
+      'uploads/2025-02-25 09.48.12.webp',
+      'uploads/2025-02-25 09.48.52.webp',
+      'uploads/2025-02-25 09.49.08.webp',
+      'uploads/2025-02-25 09.57.27.webp',
+    ];
+    let current = 0;
+    let transitioning = false;
+    const imgCur = document.getElementById('esp-img-cur');
+    const imgNext = document.getElementById('esp-img-next');
+    const counter = document.getElementById('esp-counter');
+
+    const goTo = (n) => {
+      if (transitioning) return;
+      const next = ((n % photos.length) + photos.length) % photos.length;
+      if (next === current) return;
+      transitioning = true;
+      imgNext.src = photos[next];
+      imgNext.style.opacity = '0';
+      imgNext.style.transition = 'none';
+      void imgNext.offsetHeight;
+      imgNext.style.transition = 'opacity .55s ease';
+      imgNext.style.opacity = '1';
+      imgCur.style.opacity = '0';
+      setTimeout(() => {
+        imgCur.src = photos[next];
+        imgCur.style.transition = 'none';
+        imgCur.style.opacity = '1';
+        imgNext.style.opacity = '0';
+        current = next;
+        transitioning = false;
+        updateThumbs();
+        if (counter) counter.textContent = (current + 1) + ' / ' + photos.length;
+      }, 580);
+      updateThumbs(next);
+    };
+
+    const updateThumbs = (active = current) => {
+      for (let i = 0; i < photos.length; i++) {
+        const el = document.getElementById('esp-thumb-' + i);
+        if (el) el.style.outline = i === active ? '2px solid #0D0D0D' : 'none';
+      }
+    };
+
+    // Thumb strip scroll
+    const inner = document.getElementById('esp-thumb-inner');
+    let thumbOffset = 0;
+    const THUMB_STEP = 108; // 100px + 8px gap
+    const scrollThumbs = (dir) => {
+      const max = -(photos.length * THUMB_STEP - (inner?.parentElement?.offsetWidth || 400));
+      thumbOffset = Math.min(0, Math.max(max, thumbOffset + dir * -THUMB_STEP));
+      if (inner) inner.style.transform = `translateX(${thumbOffset}px)`;
+    };
+    document.getElementById('esp-tprev')?.addEventListener('click', () => scrollThumbs(-1));
+    document.getElementById('esp-tnext')?.addEventListener('click', () => scrollThumbs(1));
+
+    document.getElementById('esp-prev')?.addEventListener('click', () => goTo(current - 1));
+    document.getElementById('esp-next')?.addEventListener('click', () => goTo(current + 1));
+    for (let i = 0; i < photos.length; i++) {
+      document.getElementById('esp-thumb-' + i)?.addEventListener('click', ((_i) => () => goTo(_i))(i));
+    }
+
+    // Auto-advance every 4s
+    let autoTimer = setInterval(() => goTo(current + 1), 4000);
+    document.getElementById('espacios-carousel')?.addEventListener('mouseenter', () => clearInterval(autoTimer));
+    document.getElementById('espacios-carousel')?.addEventListener('mouseleave', () => {
+      autoTimer = setInterval(() => goTo(current + 1), 4000);
+    });
+  }
+  componentDidMount() {
+    this.initCarousel();
+    this.setupNavbar();
+    this.setupVideo();
+    this.setupReveal();
+    this.setupCounters();
+    this.setupForm();
+    this.setupInputFocus();
+    this.setupValores();
+    this.setupColaboradores();
+  }
+
+  setupNavbar() {
+    const hamburger = document.getElementById('sa-hamburger');
+    const mobileMenu = document.getElementById('sa-mobile-menu');
+    const hb1 = document.getElementById('sa-hb-1');
+    const hb2 = document.getElementById('sa-hb-2');
+    const hb3 = document.getElementById('sa-hb-3');
+    let menuOpen = false;
+
+    const toggleMenu = () => {
+      menuOpen = !menuOpen;
+      mobileMenu.style.display = menuOpen ? 'flex' : 'none';
+      hb1.style.transform = menuOpen ? 'rotate(45deg) translate(4px,4px)' : '';
+      hb2.style.opacity = menuOpen ? '0' : '1';
+      hb3.style.transform = menuOpen ? 'rotate(-45deg) translate(4px,-4px)' : '';
+    };
+
+    if (hamburger) hamburger.addEventListener('click', toggleMenu);
+    if (mobileMenu) mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { if (menuOpen) toggleMenu(); }));
+    document.addEventListener('click', e => { if (menuOpen && !mobileMenu.contains(e.target) && !hamburger.contains(e.target)) toggleMenu(); });
+  }
+
+  setupVideo() {
+    const video = document.getElementById('hero-video');
+    if (!video) return;
+    let reversing = false, rafId = null;
+
+    const reverseStep = () => {
+      if (!reversing) return;
+      video.currentTime = Math.max(0, video.currentTime - 0.033);
+      if (video.currentTime <= 0.04) {
+        reversing = false;
+        video.play().catch(() => {});
+      } else {
+        rafId = requestAnimationFrame(reverseStep);
+      }
+    };
+
+    video.addEventListener('ended', () => {
+      video.pause();
+      reversing = true;
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(reverseStep);
+    });
+
+    video.play().catch(() => {});
+  }
+
+  setupReveal() {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+  }
+
+  setupCounters() {
+    const counters = [
+      { id: 'cnt-institutos', target: 6, suffix: '', display: null },
+      { id: 'cnt-anos', target: 10, suffix: '', display: null },
+      { id: 'cnt-iniciales', target: 800, suffix: '+', display: null },
+      { id: 'cnt-focalizados', target: 300, suffix: '+', display: null },
+      { id: 'cnt-diplomados', target: 200, suffix: '+', display: null },
+      { id: 'cnt-postgrados', target: 100, suffix: '+', display: null }
+    ];
+
+    const animate = (el, target, suffix, display) => {
+      if (display) { el.textContent = display; return; }
+      let start = 0;
+      const step = target / 40;
+      const timer = setInterval(() => {
+        start = Math.min(start + step, target);
+        el.textContent = Math.ceil(start) + suffix;
+        if (start >= target) clearInterval(timer);
+      }, 30);
+    };
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          counters.forEach(c => { const el = document.getElementById(c.id); if (el) animate(el, c.target, c.suffix, c.display); });
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+
+    const statsEl = document.getElementById('quienes-somos');
+    if (statsEl) observer.observe(statsEl);
+  }
+
+  setupInputFocus() {
+    document.querySelectorAll('input, textarea, select').forEach(el => {
+      el.addEventListener('focus', () => { el.style.borderBottomColor = '#aaa'; });
+      el.addEventListener('blur', () => { el.style.borderBottomColor = '#D0D0D0'; });
+    });
+  }
+
+  setupValores() {
+    const grid = document.getElementById('vc-grid');
+    if (!grid) return;
+    const cards = Array.from(grid.querySelectorAll('[data-vc-idx]'));
+    let activeIdx = 0;
+
+    const isDesktop = () => window.innerWidth >= 768;
+
+    const update = (idx) => {
+      activeIdx = idx;
+      const n = cards.length;
+      const desktop = isDesktop();
+
+      if (desktop) {
+        grid.style.gridTemplateColumns = cards.map((_, i) => i === idx ? '5fr' : '1fr').join(' ');
+        grid.style.gridTemplateRows = '1fr';
+        grid.style.height = '520px';
+      } else {
+        grid.style.gridTemplateRows = cards.map((_, i) => i === idx ? '5fr' : '1fr').join(' ');
+        grid.style.gridTemplateColumns = '1fr';
+        grid.style.height = '680px';
+      }
+
+      cards.forEach((card, i) => {
+        const img = card.querySelector('[data-vc-img]');
+        const inactive = card.querySelector('[data-vc-inactive]');
+        const active = card.querySelector('[data-vc-active]');
+        const on = i === idx;
+        if (img) { img.style.filter = on ? 'grayscale(0)' : 'grayscale(1) brightness(0.55)'; img.style.transform = on ? 'scale(1)' : 'scale(1.08)'; }
+        if (inactive) inactive.style.opacity = on ? '0' : desktop ? '1' : '0';
+        if (active) { active.style.opacity = on ? '1' : '0'; active.style.transitionDelay = on ? '.15s' : '0s'; }
+      });
+    };
+
+    cards.forEach((card, i) => {
+      card.addEventListener('mouseenter', () => update(i));
+      card.addEventListener('click', () => update(i));
+      card.addEventListener('focus', () => update(i));
+    });
+
+    window.addEventListener('resize', () => update(activeIdx), { passive: true });
+    update(0);
+  }
+
+  setupColaboradores() {
+    const buttons = document.querySelectorAll('[data-colab-filter]');
+    const cards = document.querySelectorAll('[data-colab-category]');
+
+    const inactiveStyle = (b) => { b.style.background = '#E0E0E0'; b.style.color = '#555'; };
+    const activeStyle = (b) => { b.style.background = '#0D0D0D'; b.style.color = '#fff'; };
+
+    // Set initial states
+    buttons.forEach((b, i) => { b.dataset.colabActive = i === 0 ? 'true' : 'false'; i === 0 ? activeStyle(b) : inactiveStyle(b); });
+
+    buttons.forEach(btn => {
+      btn.addEventListener('mouseenter', () => { if (btn.dataset.colabActive !== 'true') { btn.style.background = '#CCC'; btn.style.color = '#0D0D0D'; } });
+      btn.addEventListener('mouseleave', () => { if (btn.dataset.colabActive !== 'true') inactiveStyle(btn); });
+
+      btn.addEventListener('click', () => {
+        const cat = btn.dataset.colabFilter;
+
+        buttons.forEach(b => { b.dataset.colabActive = 'false'; inactiveStyle(b); });
+        btn.dataset.colabActive = 'true';
+        activeStyle(btn);
+
+        cards.forEach(card => {
+          const cardCats = (card.dataset.colabCategory || '').split('|');
+          const match = cat === 'Todos' || cardCats.includes(cat);
+          if (match) {
+            card.style.display = 'flex';
+            requestAnimationFrame(() => { card.style.opacity = '1'; card.style.transform = 'scale(1)'; });
+          } else {
+            card.style.opacity = '0';
+            card.style.transform = 'scale(0.92)';
+            setTimeout(() => { if (card.style.opacity === '0') card.style.display = 'none'; }, 280);
+          }
+        });
+      });
+    });
+  }
+
+  setupForm() {
+    const form = document.getElementById('sa-contact-form');
+    const msg = document.getElementById('sa-form-msg');
+    if (!form || !msg) return;
+    const submitBtn = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const name = document.getElementById('sa-name').value.trim();
+      const email = document.getElementById('sa-email').value.trim();
+      const phone = document.getElementById('sa-phone').value.trim();
+      const institute = document.getElementById('sa-institute').value;
+      const message = document.getElementById('sa-message').value.trim();
+
+      if (!name || !email) {
+        msg.textContent = 'Por favor completa nombre y email.';
+        msg.style.color = '#888';
+        msg.style.display = 'block';
+        return;
+      }
+
+      const originalBtnText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando...';
+      msg.style.display = 'none';
+
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, phone, institute, message }),
+        });
+        const data = await res.json().catch(() => ({}));
+
+        if (res.ok && data.ok) {
+          msg.textContent = '¡Mensaje enviado! Te contactaremos pronto.';
+          msg.style.color = '#555';
+          form.reset();
+        } else {
+          msg.textContent = data.error || 'No se pudo enviar el mensaje. Intenta nuevamente o escríbenos por WhatsApp.';
+          msg.style.color = '#c0392b';
+        }
+      } catch (err) {
+        msg.textContent = 'No se pudo enviar el mensaje. Revisa tu conexión e intenta nuevamente.';
+        msg.style.color = '#c0392b';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalBtnText;
+        msg.style.display = 'block';
+        setTimeout(() => { msg.style.display = 'none'; }, 6000);
+      }
+    });
+  }
+}
+</script>
+</body>
+</html>

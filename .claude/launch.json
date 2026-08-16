@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "san-amaro-static",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["-y", "serve", "-l", "8123", "grupo-educacional-san-amaro/project"],
+      "port": 8123
+    }
+  ]
+}

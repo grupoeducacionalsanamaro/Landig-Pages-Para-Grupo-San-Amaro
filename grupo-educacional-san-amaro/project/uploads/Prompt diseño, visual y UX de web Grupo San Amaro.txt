@@ -1,0 +1,1199 @@
+Below is the component for your context <!DOCTYPE html><html lang="en"><head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>BrightPath Home Tuition - Personalized Learning for Every Student</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Nunito+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+  
+  <style>
+    .animate-on-scroll-hidden { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+    .animate-from-left { opacity: 0; transform: translateX(-100px); transition: all 1s ease-out; }
+    .animate-from-right { opacity: 0; transform: translateX(100px); opacity: 0; transition: all 1s ease-out; }
+    .animate-on-scroll-visible { opacity: 1; transform: translate(0,0); }
+    @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .animation-spin-slow { animation: spin-slow 12s linear infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-15px); } }
+    .animation-float { animation: float 4s ease-in-out infinite; }
+  </style>
+<style type="text/tailwindcss">@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn-hover-slide {
+    @apply relative overflow-hidden transition-all duration-300;
+  }
+  
+  .btn-hover-slide .button-text-wrap {
+    @apply relative h-6 overflow-hidden;
+  }
+  
+  .btn-hover-slide .button-text {
+    @apply transition-transform duration-300;
+  }
+  
+  .btn-hover-slide:hover .button-text {
+    @apply -translate-y-6;
+  }
+
+  .sticky-card {
+    @apply sticky top-10;
+  }
+
+  .text-outline {
+    -webkit-text-stroke: 1px black;
+    color: transparent;
+  }
+}
+
+.gsap-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+}</style><script src="https://cdn.tailwindcss.com"></script><script>tailwind.config = {
+  important: '#app-root',
+  theme: {
+    extend: {
+      colors: {
+        'brand-purple': 'rgb(82, 0, 128)',
+        'brand-green': 'rgb(9, 216, 154)',
+        'brand-green-light': 'rgb(215, 253, 207)',
+        'brand-yellow': 'rgb(252, 181, 32)',
+        'brand-yellow-light': 'rgb(254, 238, 205)',
+        'brand-gamboge': '#E49B0F',
+        'brand-lavender': 'rgb(235, 225, 253)',
+        'brand-dark-accent': 'rgb(15, 23, 42)',
+        'neutral-background': 'rgb(252, 250, 237)',
+        'text-primary': 'rgb(0, 0, 0)',
+        'text-secondary': 'rgb(87, 87, 87)',
+      },
+      fontFamily: {
+        'primary': ['Plus Jakarta Sans', 'sans-serif'],
+        'secondary': ['Nunito Sans', 'sans-serif'],
+      },
+      borderRadius: {
+        'xl': '20px',
+        '2xl': '40px',
+        'full': '100px',
+      },
+      animation: {
+        'spin-slow': 'spin 10s linear infinite',
+        'marquee': 'marquee 30s linear infinite',
+      },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        }
+      }
+    }
+  }
+}</script></head>
+<body id="app-root">
+  <div class="font-secondary bg-neutral-background text-text-primary min-h-screen flex flex-col w-full relative overflow-x-hidden">
+    
+    <!-- Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-[100] px-6 py-4">
+      <nav class="max-w-7xl mx-auto bg-white/80 backdrop-blur-md rounded-full px-6 py-3 flex items-center justify-between border border-neutral-200 shadow-sm">
+        <a href="/" class="flex items-center gap-2 md:gap-3">
+          <div class="w-8 h-8 md:w-10 md:h-10 bg-brand-purple rounded-full flex items-center justify-center">
+            <span class="text-white font-bold text-lg md:text-xl">B</span>
+          </div>
+          <span class="font-primary font-bold text-xl md:text-2xl tracking-tight">BrightPath</span>
+        </a>
+        
+        <div class="hidden lg:flex items-center gap-8 font-medium">
+          <a href="#" class="hover:text-brand-purple transition-colors">Home</a>
+          <a href="#about" class="hover:text-brand-purple transition-colors">About</a>
+          <a href="#subjects" class="hover:text-brand-purple transition-colors">Subjects</a>
+          <a href="#programs" class="hover:text-brand-purple transition-colors">Classes</a>
+          <a href="#pricing" class="hover:text-brand-purple transition-colors">Pricing</a>
+        </div>
+
+        <div class="flex items-center gap-2 md:gap-4">
+          <a href="#contact" class="hidden md:flex bg-brand-purple text-white px-6 py-2.5 rounded-full font-semibold hover:bg-black transition-all">
+            Book Consultation
+          </a>
+          <button id="mobile-menu-toggle" class="lg:hidden p-2 text-text-primary">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Mobile Menu Overlay -->
+      <div id="mobile-menu" class="hidden absolute top-20 left-6 right-6 bg-white rounded-2xl shadow-2xl border border-neutral-100 p-6 lg:hidden z-[101]">
+        <div class="flex flex-col gap-4 font-medium text-lg text-center">
+          <a href="#" class="mobile-link py-3 border-b border-neutral-50 hover:text-brand-purple">Home</a>
+          <a href="#about" class="mobile-link py-3 border-b border-neutral-50 hover:text-brand-purple">About</a>
+          <a href="#subjects" class="mobile-link py-3 border-b border-neutral-50 hover:text-brand-purple">Subjects</a>
+          <a href="#programs" class="mobile-link py-3 border-b border-neutral-50 hover:text-brand-purple">Classes</a>
+          <a href="#pricing" class="mobile-link py-3 border-b border-neutral-50 hover:text-brand-purple">Pricing</a>
+          <div class="pt-2">
+            <a href="#contact" class="mobile-link block bg-brand-purple text-white py-4 rounded-full font-bold shadow-lg">Book Consultation</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-grow overflow-x-hidden"><section class="relative min-h-[85vh] lg:min-h-screen flex items-center pt-28 pb-16 lg:py-32 overflow-hidden bg-neutral-background">
+  <!-- Decorative elements -->
+  <div class="absolute top-0 right-0 w-1/2 h-full bg-brand-gamboge/15 -skew-x-12 translate-x-32 z-0 hidden lg:block"></div>
+
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <!-- Left: Content -->
+      <div class="space-y-8 text-center lg:text-left" data-animation-on-scroll="left">
+        <div class="space-y-6">
+          <h1 class="font-primary text-text-primary text-4xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] break-words">
+            Personalized Learning for Every Student
+          </h1>
+          <p class="text-text-secondary text-lg md:text-2xl font-medium max-w-xl mx-auto lg:mx-0">
+            Quality learning support from experienced tutors, delivered in a comfortable and focused environment to build strong academic foundations.
+          </p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6">
+          <a href="#contact" class="inline-flex items-center gap-4 bg-brand-purple text-white pl-8 pr-2 py-2 rounded-full font-bold text-lg hover:bg-black transition-all group w-full sm:w-fit justify-between sm:justify-start shadow-xl shadow-brand-purple/20">
+            <span>Book a Consultation</span>
+            <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center transition-colors">
+              <img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/69f87b2a45bedd0ee848facf_cbc5a83e31c4a7e307610aeb4d648234_Vector.svg" alt="" class="w-6 h-6 invert">
+            </div>
+          </a>
+          
+          <!-- Trust badge mobile refined -->
+          <div class="flex items-center gap-3">
+             <div class="flex -space-x-3">
+                <img src="https://images.pexels.com/photos/22915923/pexels-photo-22915923.jpeg?w=60&amp;h=60&amp;fit=crop" class="w-10 h-10 rounded-full border-2 border-white shadow-sm" alt="Student avatar">
+                <img src="https://images.pexels.com/photos/22915923/pexels-photo-22915923.jpeg?w=60&amp;h=60&amp;fit=crop" class="w-10 h-10 rounded-full border-2 border-white shadow-sm" alt="Student avatar">
+                <img src="https://images.pexels.com/photos/22915923/pexels-photo-22915923.jpeg?w=60&amp;h=60&amp;fit=crop" class="w-10 h-10 rounded-full border-2 border-white shadow-sm" alt="Student avatar">
+             </div>
+             <p class="text-xs sm:text-sm font-bold text-text-secondary">Join 500+ happy students</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: 2 Card Grid (Mobile Responsive) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 items-start relative mt-8 lg:mt-0">
+        <!-- Card 1: Content -->
+        <div class="bg-white p-6 md:p-10 rounded-2xl shadow-xl flex flex-col justify-between min-h-[320px] md:h-[420px] transform lg:translate-y-12 transition-transform duration-500 hover:-translate-y-2 border border-neutral-100" data-animation-on-scroll="">
+          <div class="space-y-4 md:space-y-6">
+            <div class="w-12 h-12 bg-brand-purple/10 rounded-full flex items-center justify-center">
+              <span class="material-symbols-outlined text-brand-purple">school</span>
+            </div>
+            <h3 class="font-primary text-2xl md:text-3xl font-bold text-text-primary">Expert Tutors</h3>
+            <p class="text-text-secondary text-base md:text-lg leading-relaxed">
+              Our educators are subject specialists with years of experience in individual mentoring.
+            </p>
+          </div>
+          <div class="pt-6 border-t border-neutral-100 flex items-center justify-between">
+            <span class="text-xs font-bold text-brand-purple uppercase tracking-widest">Learn More</span>
+            <div class="w-10 h-10 rounded-full bg-neutral-background flex items-center justify-center">
+               <img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/69fcae8a7fc6cfe022ae990f_arrow%20(2)%201%20(1).svg" class="w-5" alt="arrow icon">
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Image -->
+        <div class="rounded-2xl overflow-hidden shadow-2xl aspect-[4/5] sm:h-[300px] md:h-[380px] group relative" data-animation-on-scroll="">
+          <img src="https://images.pexels.com/photos/3807755/pexels-photo-3807755.jpeg?w=800&amp;h=1200&amp;fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Smiling student focusing on studies">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+          <div class="absolute bottom-6 left-6 text-white">
+            <p class="font-bold text-lg">Prisha S.</p>
+            <p class="text-xs opacity-80">Class 10 | 98% Score</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Marquee Loop -->
+<div class="bg-brand-green-light py-6 overflow-hidden">
+  <div class="flex whitespace-nowrap animate-marquee">
+    <div class="flex items-center gap-12 px-6">
+      <span class="font-primary text-xl md:text-3xl font-semibold">Concept clarity</span>
+      <img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/69f88de0b19c30b5d488c63f_shape%20(1)%202.svg" class="w-8 h-8 md:w-10 md:h-10 animation-spin-slow" alt="">
+      <span class="font-primary text-xl md:text-3xl font-semibold">Better exam preparation</span>
+      <img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/69f88de0b19c30b5d488c63f_shape%20(1)%202.svg" class="w-8 h-8 md:w-10 md:h-10 animation-spin-slow" alt="">
+      <span class="font-primary text-xl md:text-3xl font-semibold">Consistent learning habits</span>
+      <img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/69f88de0b19c30b5d488c63f_shape%20(1)%202.svg" class="w-8 h-8 md:w-10 md:h-10 animation-spin-slow" alt="">
+      <span class="font-primary text-xl md:text-3xl font-semibold">Increased confidence</span>
+      <img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/69f88de0b19c30b5d488c63f_shape%20(1)%202.svg" class="w-10 h-10 animation-spin-slow" alt="">
+    </div>
+    <div class="flex items-center gap-12 px-6">
+      <span class="font-primary text-3xl font-semibold">Concept clarity</span>
+      <img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/69f88de0b19c30b5d488c63f_shape%20(1)%202.svg" class="w-10 h-10 animation-spin-slow" alt="">
+      <span class="font-primary text-3xl font-semibold">Better exam preparation</span>
+      <img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/69f88de0b19c30b5d488c63f_shape%20(1)%202.svg" class="w-10 h-10 animation-spin-slow" alt="">
+      <span class="font-primary text-3xl font-semibold">Consistent learning habits</span>
+      <img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/69f88de0b19c30b5d488c63f_shape%20(1)%202.svg" class="w-10 h-10 animation-spin-slow" alt="">
+      <span class="font-primary text-3xl font-semibold">Increased confidence</span>
+      <img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/69f88de0b19c30b5d488c63f_shape%20(1)%202.svg" class="w-10 h-10 animation-spin-slow" alt="">
+    </div>
+  </div>
+</div>
+
+<!-- About Section -->
+<section id="about" class="py-32 px-6">
+  <div class="container mx-auto max-w-7xl">
+    <div class="flex flex-col lg:flex-row justify-between items-start gap-12 mb-24">
+      <div data-animation-on-scroll="" class="space-y-4 w-full">
+        <span class="text-brand-purple font-bold tracking-widest uppercase text-sm md:text-base">ABOUT BRIGHTPATH</span>
+        <h2 class="font-primary text-3xl sm:text-4xl md:text-6xl font-bold leading-tight max-w-xl break-words">
+          One-on-one learning support for students of all levels
+        </h2>
+      </div>
+      <div class="flex -space-x-4 pt-12" data-animation-on-scroll="">
+        <div class="w-16 h-16 rounded-full bg-brand-green flex items-center justify-center border-4 border-neutral-background">
+          <img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/69f896ca35fc799d16193e63_heart%201.svg" class="w-8" alt="">
+        </div>
+        <div class="w-16 h-16 rounded-full bg-brand-purple flex items-center justify-center border-4 border-neutral-background">
+          <img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/69f896d6c41249778cf89546_insurance%201.svg" class="w-8" alt="">
+        </div>
+        <div class="w-16 h-16 rounded-full bg-brand-yellow flex items-center justify-center border-4 border-neutral-background">
+          <img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/69f896ca66ca1bef23813d10_extension%201.svg" class="w-8" alt="">
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-8 md:gap-y-12 mb-16 md:mb-24 px-2" data-animation-on-scroll="">
+      <div class="space-y-2 text-center lg:text-left">
+        <div class="text-3xl md:text-5xl font-bold font-primary flex items-baseline justify-center lg:justify-start">
+          <span class="counter" data-target="500">0</span>
+          <span>+</span>
+        </div>
+        <p class="text-text-secondary text-sm md:text-base">Students supported till date</p>
+      </div>
+      <div class="space-y-2 text-center lg:text-left">
+        <div class="text-3xl md:text-5xl font-bold font-primary flex items-baseline justify-center lg:justify-start">
+          <span class="counter" data-target="15">0</span>
+          <span>+</span>
+        </div>
+        <p class="text-text-secondary text-sm md:text-base">Academic subjects covered</p>
+      </div>
+      <div class="space-y-2 text-center lg:text-left">
+        <div class="text-3xl md:text-5xl font-bold font-primary flex items-baseline justify-center lg:justify-start">
+          <span class="counter" data-target="98">0</span>
+          <span>%</span>
+        </div>
+        <p class="text-text-secondary text-sm md:text-base">Improvement in student grades</p>
+      </div>
+      <div class="space-y-2 text-center lg:text-left">
+        <div class="text-3xl md:text-5xl font-bold font-primary flex items-baseline justify-center lg:justify-start">
+          <span class="counter" data-target="50">0</span>
+          <span>+</span>
+        </div>
+        <p class="text-text-secondary text-sm md:text-base">Experienced subject experts</p>
+      </div>
+    </div>
+
+    <!-- Tilted Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-brand-green-light p-10 rounded-xl space-y-12 rotate-0 md:rotate-[-4deg] hover:rotate-0 transition-transform duration-500" data-animation-on-scroll="">
+        <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-sm">
+          <img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/69f8a165bfe5a5beb28f1c8b_user%201.svg" class="w-8" alt="">
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-primary text-2xl font-bold">Individual attention</h3>
+          <p class="text-text-secondary">Every student gets a tailored learning path focused on their specific strengths and areas for improvement.</p>
+        </div>
+      </div>
+
+      <div class="rounded-xl overflow-hidden shadow-lg transform translate-y-4" data-animation-on-scroll="">
+        <img src="https://images.pexels.com/photos/18870250/pexels-photo-18870250.jpeg?w=600&amp;h=800&amp;fit=crop" class="w-full h-full object-cover" alt="Indian student learning">
+      </div>
+
+      <div class="bg-brand-lavender p-10 rounded-xl space-y-12 rotate-0 md:rotate-[4deg] hover:rotate-0 transition-transform duration-500" data-animation-on-scroll="">
+        <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-sm">
+          <img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/69f8a1654e45232d0dd6ccc7_chart-bars%201.svg" class="w-8" alt="">
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-primary text-2xl font-bold">Concept clarity</h3>
+          <p class="text-text-secondary">We focus on building a deep understanding of core subjects rather than just rote memorization.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Us -->
+<section class="py-32 px-6 bg-white relative">
+  <img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/69fb6fa75296b9b102678c29_Vector%20(13).svg" class="absolute inset-0 w-full h-full object-cover opacity-50" alt="">
+  <div class="container mx-auto max-w-7xl relative z-10">
+    <div class="flex flex-col lg:flex-row items-center gap-16">
+      <div class="lg:w-1/2" data-animation-on-scroll="">
+        <img src="https://images.pexels.com/photos/5311406/pexels-photo-5311406.jpeg?w=800&amp;h=600&amp;fit=crop" class="rounded-xl shadow-2xl w-full" alt="Indian tutor helping a student">
+      </div>
+      <div class="lg:w-1/2 space-y-10" data-animation-on-scroll="">
+        <div class="space-y-4">
+          <span class="text-brand-purple font-bold tracking-widest uppercase text-sm md:text-base">WHY CHOOSE US</span>
+          <h2 class="font-primary text-3xl sm:text-4xl md:text-6xl font-bold leading-tight break-words">What makes us the right choice</h2>
+          <p class="text-text-secondary text-lg max-w-xl">
+            We create a nurturing and inspiring space where children feel safe, explore freely, build confidence, and grow through joyful everyday learning experiences.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-gray-200 pt-10">
+          <div class="space-y-4">
+            <h3 class="font-primary text-2xl font-bold">Structured Learning</h3>
+            <p class="text-text-secondary">Personalized plans that cover the entire syllabus with time for revisions.</p>
+          </div>
+          <div class="space-y-4">
+            <h3 class="font-primary text-2xl font-bold">Doubt Solving</h3>
+            <p class="text-text-secondary">Immediate attention to students' questions to ensure continuous progress.</p>
+          </div>
+        </div>
+
+        <a href="#contact" class="inline-flex items-center gap-4 bg-brand-purple text-white pl-8 pr-2 py-2 rounded-full font-bold text-lg hover:bg-black transition-all group">
+          <span>Contact us</span>
+          <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center transition-colors">
+            <img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/69f87b2a45bedd0ee848facf_cbc5a83e31c4a7e307610aeb4d648234_Vector.svg" alt="" class="w-6 h-6 invert">
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Subjects Offered (New Section based on design) -->
+<section id="subjects" class="py-20 md:py-32 px-6 bg-brand-lavender/30 overflow-hidden">
+  <div class="container mx-auto max-w-7xl">
+    <div class="text-center space-y-4 mb-12 md:mb-20" data-animation-on-scroll="">
+      <span class="text-brand-purple font-bold tracking-widest uppercase text-sm md:text-base">SUBJECTS OFFERED</span>
+      <h2 class="font-primary text-3xl sm:text-4xl md:text-6xl font-bold break-words">Comprehensive coverage for all goals</h2>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm space-y-4 group hover:shadow-lg hover:-translate-y-2 transition-all duration-300 cursor-default" data-animation-on-scroll="" style="transition-delay: 0.1s">
+        <h4 class="font-primary text-2xl font-bold text-brand-purple group-hover:scale-105 transition-transform origin-left inline-block">Mathematics</h4>
+        <p class="text-text-secondary">Basic to advanced techniques, problem-solving, and board exam preparation.</p>
+      </div>
+      <div class="bg-white p-8 rounded-xl shadow-sm space-y-4 group hover:shadow-lg hover:-translate-y-2 transition-all duration-300 cursor-default" data-animation-on-scroll="" style="transition-delay: 0.2s">
+        <h4 class="font-primary text-2xl font-bold text-brand-green group-hover:scale-105 transition-transform origin-left inline-block">Science</h4>
+        <p class="text-text-secondary">In-depth Physics, Chemistry, Biology, and General Science for all levels.</p>
+      </div>
+      <div class="bg-white p-8 rounded-xl shadow-sm space-y-4 group hover:shadow-lg hover:-translate-y-2 transition-all duration-300 cursor-default" data-animation-on-scroll="" style="transition-delay: 0.3s">
+        <h4 class="font-primary text-2xl font-bold text-brand-yellow group-hover:scale-105 transition-transform origin-left inline-block">English</h4>
+        <p class="text-text-secondary">Grammar, reading comprehension, writing skills, and spoken English support.</p>
+      </div>
+      <div class="bg-white p-8 rounded-xl shadow-sm space-y-4 group hover:shadow-lg hover:-translate-y-2 transition-all duration-300 cursor-default" data-animation-on-scroll="" style="transition-delay: 0.4s">
+        <h4 class="font-primary text-2xl font-bold text-brand-purple group-hover:scale-105 transition-transform origin-left inline-block">Social Studies</h4>
+        <p class="text-text-secondary">History, Geography, Civics, and Economics taught through storytelling.</p>
+      </div>
+      <div class="bg-white p-8 rounded-xl shadow-sm space-y-4 group hover:shadow-lg hover:-translate-y-2 transition-all duration-300 cursor-default" data-animation-on-scroll="" style="transition-delay: 0.5s">
+        <h4 class="font-primary text-2xl font-bold text-brand-green group-hover:scale-105 transition-transform origin-left inline-block">Commerce</h4>
+        <p class="text-text-secondary">Specialized support for Accountancy, Business Studies, and Economics.</p>
+      </div>
+      <div class="bg-white p-8 rounded-xl shadow-sm space-y-4 group hover:shadow-lg hover:-translate-y-2 transition-all duration-300 cursor-default" data-animation-on-scroll="" style="transition-delay: 0.6s">
+        <h4 class="font-primary text-2xl font-bold text-brand-yellow group-hover:scale-105 transition-transform origin-left inline-block">Foundation</h4>
+        <p class="text-text-secondary">Early learning, homework assistance, and reading/writing development.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Programs Section -->
+<section id="programs" class="py-32 px-6">
+  <div class="container mx-auto max-w-7xl">
+    <div class="flex flex-col md:flex-row justify-between items-center md:items-end gap-6 md:gap-8 mb-12 md:mb-20 text-center md:text-left">
+      <div data-animation-on-scroll="" class="space-y-4 w-full">
+        <span class="text-brand-purple font-bold tracking-widest uppercase text-sm md:text-base">OUR CLASSES</span>
+        <h2 class="font-primary text-3xl sm:text-4xl md:text-6xl font-bold leading-tight break-words">Support for every grade</h2>
+      </div>
+      <a href="#contact" class="bg-brand-purple text-white px-8 py-4 rounded-full font-bold hover:bg-black transition-all whitespace-nowrap" data-animation-on-scroll="">
+        Enquire for your grade
+      </a>
+    </div>
+
+    <div class="space-y-12">
+      <!-- Program 1 -->
+      <div class="bg-brand-green-light rounded-xl overflow-hidden group" data-animation-on-scroll="">
+        <div class="flex flex-col lg:flex-row">
+          <div class="p-8 md:p-12 lg:w-1/2 flex flex-col justify-between">
+            <div class="w-12 h-12 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center font-primary text-xl md:text-2xl font-bold mb-8 md:mb-12">01</div>
+            <div class="space-y-6">
+              <h3 class="font-primary text-2xl sm:text-3xl md:text-4xl font-bold">Primary &amp; Middle School</h3>
+              <p class="text-text-secondary text-base md:text-lg">Foundation learning support, concept building, and homework assistance for students from Class 1 to 8 across all boards.</p>
+              <div class="inline-block bg-white px-6 py-2 rounded-full font-bold text-sm">Class 1 – 8 (CBSE/ICSE/State)</div>
+            </div>
+            <a href="#contact" class="inline-flex items-center gap-2 mt-12 font-bold border-b border-black pb-1 hover:gap-4 transition-all">
+              Discuss academic goals
+              <img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/69fcae8a7fc6cfe022ae990f_arrow%20(2)%201%20(1).svg" class="w-5" alt="">
+            </a>
+          </div>
+          <div class="lg:w-1/2 h-[400px] lg:h-auto">
+            <img src="https://images.pexels.com/photos/35558791/pexels-photo-35558791.jpeg?w=800&amp;h=600&amp;fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Indian primary school students">
+          </div>
+        </div>
+      </div>
+
+      <!-- Program 2 -->
+      <div class="bg-brand-lavender rounded-xl overflow-hidden group" data-animation-on-scroll="">
+        <div class="flex flex-col lg:flex-row-reverse">
+          <div class="p-8 md:p-12 lg:w-1/2 flex flex-col justify-between">
+            <div class="w-12 h-12 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center font-primary text-xl md:text-2xl font-bold mb-8 md:mb-12">02</div>
+            <div class="space-y-6">
+              <h3 class="font-primary text-2xl sm:text-3xl md:text-4xl font-bold">Secondary &amp; Senior Secondary</h3>
+              <p class="text-text-secondary text-base md:text-lg">Intensive board exam preparation, advanced subject coaching, and performance-focused learning strategies.</p>
+              <div class="inline-block bg-white px-6 py-2 rounded-full font-bold text-sm">Class 9 – 12 (All Boards)</div>
+            </div>
+            <a href="#contact" class="inline-flex items-center gap-2 mt-12 font-bold border-b border-black pb-1 hover:gap-4 transition-all">
+              Start board prep
+              <img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/69fcae8a7fc6cfe022ae990f_arrow%20(2)%201%20(1).svg" class="w-5" alt="">
+            </a>
+          </div>
+          <div class="lg:w-1/2 h-[400px] lg:h-auto">
+            <img src="https://images.pexels.com/photos/8500290/pexels-photo-8500290.jpeg?w=800&amp;h=600&amp;fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Indian high school student studying">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Offset Section -->
+<section class="py-32 px-6 bg-white overflow-hidden">
+  <div class="container mx-auto max-w-7xl">
+    <div class="flex flex-col lg:flex-row gap-16">
+      <div class="lg:w-1/2 space-y-8 md:space-y-12" data-animation-on-scroll="">
+        <div class="space-y-4 md:space-y-6">
+          <span class="text-brand-purple font-bold tracking-widest uppercase text-sm md:text-base">OUR APPROACH</span>
+          <h2 class="font-primary text-3xl sm:text-4xl md:text-6xl font-bold leading-tight break-words">Learning moments that shine</h2>
+          <p class="text-text-secondary text-lg">A closer look at what makes our tutoring environment special, where every session is designed to inspire curiosity and confidence.</p>
+          <a href="#contact" class="inline-block bg-brand-purple text-white px-8 py-4 rounded-full font-bold hover:bg-black transition-all">Book Assessment</a>
+        </div>
+        <img src="https://images.pexels.com/photos/16504588/pexels-photo-16504588.jpeg?w=800&amp;h=600&amp;fit=crop" class="rounded-xl w-full h-[400px] object-cover" alt="Indian student reading">
+      </div>
+      
+      <div class="lg:w-1/2 flex flex-col sm:flex-row gap-6 md:gap-8">
+        <div class="flex flex-col gap-6 md:gap-8 lg:mt-24">
+          <div class="bg-neutral-background p-6 md:p-10 rounded-xl space-y-6 md:space-y-8" data-animation-on-scroll="">
+            <img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/69fe082dd8cfa1cdc138a1b4_shape%20(1)%204.svg" class="w-10 h-10 md:w-12 md:h-12 animation-spin-slow" alt="">
+            <div class="space-y-3 md:space-y-4">
+              <h4 class="font-primary text-xl md:text-2xl font-bold">Assessment</h4>
+              <p class="text-text-secondary text-sm md:text-base">Understanding the student's current level and learning requirements first.</p>
+            </div>
+          </div>
+          <div class="bg-neutral-background p-6 md:p-10 rounded-xl space-y-6 md:space-y-8" data-animation-on-scroll="">
+            <img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/69fe082dd8cfa1cdc138a1b4_shape%20(1)%204.svg" class="w-10 h-10 md:w-12 md:h-12 animation-spin-slow" alt="">
+            <div class="space-y-3 md:space-y-4">
+              <h4 class="font-primary text-xl md:text-2xl font-bold">Personalized Plan</h4>
+              <p class="text-text-secondary text-sm md:text-base">Creating a strategy based on individual strengths and improvement areas.</p>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col gap-6 md:gap-8 lg:-mt-12">
+          <div class="bg-neutral-background p-6 md:p-10 rounded-xl space-y-6 md:space-y-8" data-animation-on-scroll="">
+            <img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/69fe082dd8cfa1cdc138a1b4_shape%20(1)%204.svg" class="w-10 h-10 md:w-12 md:h-12 animation-spin-slow" alt="">
+            <div class="space-y-3 md:space-y-4">
+              <h4 class="font-primary text-xl md:text-2xl font-bold">Regular Teaching</h4>
+              <p class="text-text-secondary text-sm md:text-base">Consistent sessions focused on deep understanding and regular practice.</p>
+            </div>
+          </div>
+          <div class="bg-neutral-background p-6 md:p-10 rounded-xl space-y-6 md:space-y-8" data-animation-on-scroll="">
+            <img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/69fe082dd8cfa1cdc138a1b4_shape%20(1)%204.svg" class="w-10 h-10 md:w-12 md:h-12 animation-spin-slow" alt="">
+            <div class="space-y-3 md:space-y-4">
+              <h4 class="font-primary text-xl md:text-2xl font-bold">Monitoring</h4>
+              <p class="text-text-secondary text-sm md:text-base">Regular feedback and academic performance reviews with parents.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing Section -->
+<section id="pricing" class="py-20 md:py-32 px-6">
+  <div class="container mx-auto max-w-7xl">
+    <div class="text-center space-y-4 mb-12 md:mb-20" data-animation-on-scroll="">
+      <span class="text-brand-purple font-bold tracking-widest uppercase text-sm md:text-base">FEE PLANS</span>
+      <h2 class="font-primary text-3xl sm:text-4xl md:text-6xl font-bold break-words">Simple plans for serious growth</h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 overflow-hidden">
+      <!-- Basic -->
+      <div class="bg-brand-green-light p-10 rounded-xl flex flex-col justify-between" data-animation-on-scroll="left">
+        <div class="space-y-8">
+          <h3 class="font-primary text-2xl font-bold">Basic Care</h3>
+          <p class="text-text-secondary">A standard plan for regular subjects and consistent homework assistance.</p>
+          <div class="text-4xl font-bold font-primary">₹3,000<span class="text-lg font-normal">/Month</span></div>
+          <ul class="space-y-4 pt-8">
+            <li class="flex items-center gap-3"><img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/69fe24efc5f235ae419d7f61_Vector%20(14).svg" class="w-5" alt=""> 3 sessions per week</li>
+            <li class="flex items-center gap-3"><img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/69fe24efc5f235ae419d7f61_Vector%20(14).svg" class="w-5" alt=""> Core subject support</li>
+            <li class="flex items-center gap-3"><img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/69fe24efc5f235ae419d7f61_Vector%20(14).svg" class="w-5" alt=""> Homework help</li>
+          </ul>
+        </div>
+        <a href="#contact" class="mt-12 bg-brand-purple text-white py-4 rounded-full text-center font-bold hover:bg-black transition-all">Select Basic</a>
+      </div>
+
+      <!-- Smart Start -->
+      <div class="bg-brand-yellow-light p-10 rounded-xl flex flex-col lg:col-span-2 lg:flex-row gap-12" data-animation-on-scroll="right">
+        <div class="lg:w-1/2 flex flex-col justify-between">
+          <div class="space-y-8">
+            <h3 class="font-primary text-2xl font-bold">Academic Excellence</h3>
+            <p class="text-text-secondary">A complete plan for total academic development and board exam mastery.</p>
+            <div class="text-4xl font-bold font-primary">₹6,000<span class="text-lg font-normal">/Month</span></div>
+            <ul class="space-y-4 pt-8">
+              <li class="flex items-center gap-3"><img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/69fe24efc5f235ae419d7f61_Vector%20(14).svg" class="w-5" alt=""> Daily sessions (Mon-Fri)</li>
+              <li class="flex items-center gap-3"><img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/69fe24efc5f235ae419d7f61_Vector%20(14).svg" class="w-5" alt=""> Board exam mock tests</li>
+              <li class="flex items-center gap-3"><img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/69fe24efc5f235ae419d7f61_Vector%20(14).svg" class="w-5" alt=""> Weekend doubt clearing</li>
+            </ul>
+          </div>
+          <a href="#contact" class="mt-12 bg-white text-black py-4 rounded-full text-center font-bold hover:bg-brand-purple hover:text-white transition-all">Select Excellence</a>
+        </div>
+        <div class="lg:w-1/2">
+          <img src="https://images.pexels.com/photos/31968829/pexels-photo-31968829.jpeg?w=800&amp;h=600&amp;fit=crop" class="rounded-xl h-full object-cover" alt="Indian student excellence results">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-32 px-6">
+  <div class="container mx-auto max-w-4xl">
+    <div class="bg-white border-4 border-brand-purple rounded-3xl p-8 md:p-20 text-center relative overflow-hidden shadow-sm group" data-animation-on-scroll="">
+      <!-- Background Image -->
+      <div class="absolute inset-0 z-0 opacity-60 transition-transform duration-700 group-hover:scale-105">
+        <img src="https://images.pexels.com/photos/20746513/pexels-photo-20746513.jpeg?w=1200&amp;h=600&amp;fit=crop" alt="Study environment" class="w-full h-full object-cover">
+      </div>
+      <!-- Gradient Overlay -->
+      <div class="absolute inset-0 bg-white/60 z-[1]"></div>
+
+      <div class="relative z-10 space-y-6 max-w-2xl mx-auto">
+        <h2 class="font-primary text-3xl md:text-5xl font-bold leading-tight text-text-primary">
+          Ready to see your child excel?
+        </h2>
+        <p class="text-text-primary text-lg md:text-xl font-bold leading-relaxed">
+          Schedule a free assessment session today and start the path to academic confidence.
+        </p>
+        <div class="pt-6">
+          <a href="#contact" class="inline-block bg-brand-purple text-white px-12 py-5 rounded-full font-bold text-lg hover:bg-black transition-all shadow-lg hover:shadow-xl active:scale-95">
+            Book Free Assessment
+          </a>
+        </div>
+      </div>
+      
+      <!-- Subtle Minimal Background Detail -->
+      <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-48 h-48 bg-brand-purple/5 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-48 h-48 bg-brand-green/5 rounded-full blur-3xl"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Stats counter animation
+  const counters = document.querySelectorAll('.counter');
+  const speed = 100;
+
+  const startCounters = () => {
+    counters.forEach(counter => {
+      const updateCount = () => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        const inc = target / speed;
+
+        if (count < target) {
+          counter.innerText = Math.ceil(count + inc);
+          setTimeout(updateCount, 20);
+        } else {
+          counter.innerText = target;
+        }
+      };
+      updateCount();
+    });
+  };
+
+  // Trigger counters when in view
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        startCounters();
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 }); // Lower threshold for mobile devices
+
+  const statsSection = document.querySelector('#about');
+  if(statsSection) observer.observe(statsSection);
+});
+</script></main>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white pt-24 pb-12 overflow-hidden relative" id="contact">
+      <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 relative z-10">
+        <!-- Brand Info -->
+        <div class="lg:col-span-4 space-y-8 text-center lg:text-left" data-animation-on-scroll="">
+          <div class="flex items-center justify-center lg:justify-start gap-3">
+            <div class="w-10 h-10 bg-brand-purple rounded-full flex items-center justify-center">
+              <span class="text-white font-bold text-xl">B</span>
+            </div>
+            <span class="font-primary font-bold text-4xl">BrightPath</span>
+          </div>
+          <p class="text-gray-400 text-lg max-w-sm">
+            Quality learning support from experienced tutors, delivered in a comfortable and focused environment. Helping students build strong foundations.
+          </p>
+          <div class="space-y-2 text-gray-300">
+            <p><strong>Phone:</strong> +91 XXXXX XXXXX</p>
+            <p><strong>WhatsApp:</strong> +91 XXXXX XXXXX</p>
+          </div>
+        </div>
+
+        <!-- Links -->
+        <div class="lg:col-span-2 space-y-6" data-animation-on-scroll="">
+          <h4 class="font-bold text-xl">Quick Links</h4>
+          <ul class="space-y-3 text-gray-400">
+            <li><a href="#" class="hover:text-white transition-colors">Home</a></li>
+            <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
+            <li><a href="#subjects" class="hover:text-white transition-colors">Subjects</a></li>
+            <li><a href="#programs" class="hover:text-white transition-colors">Classes</a></li>
+            <li><a href="#pricing" class="hover:text-white transition-colors">Pricing</a></li>
+          </ul>
+        </div>
+
+        <div class="lg:col-span-2 space-y-6" data-animation-on-scroll="">
+          <h4 class="font-bold text-xl">Subjects</h4>
+          <ul class="space-y-3 text-gray-400">
+            <li><a href="#" class="hover:text-white transition-colors">Mathematics</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Science</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">English</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Commerce</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Foundation</a></li>
+          </ul>
+        </div>
+
+        <!-- Social -->
+        <div class="lg:col-span-4 space-y-6" data-animation-on-scroll="">
+          <h4 class="font-bold text-xl">Follow Us</h4>
+          <div class="flex gap-4">
+            <a href="#" class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white transition-all group">
+              <img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/6a05de8903ea23be9e4b8813_Group%20(3).svg" alt="FB" class="w-5 group-hover:invert">
+            </a>
+            <a href="#" class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white transition-all group">
+              <img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/6a05de891e11debb0048a915_twitter%201%20(1).svg" alt="TW" class="w-5 group-hover:invert">
+            </a>
+            <a href="#" class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white transition-all group">
+              <img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/6a05de89f459c1fc667f4758_linkedin%201%20(1).svg" alt="LI" class="w-5 group-hover:invert">
+            </a>
+          </div>
+          <div class="pt-6 flex flex-col items-center lg:items-start">
+            <h4 class="font-bold text-lg mb-4">Enrollment Query</h4>
+            <a href="https://wa.me/91XXXXXXXXXX" class="bg-brand-green text-black px-6 py-3 rounded-full font-bold flex items-center gap-2 w-fit hover:scale-105 transition-transform">
+              <img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/69f87b2a45bedd0ee848facf_cbc5a83e31c4a7e307610aeb4d648234_Vector.svg" class="w-5 invert" alt="">
+              WhatsApp Us
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-6 mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 relative z-10">
+        <p>Copyright © 2024 BrightPath Home Tuition | All Rights Reserved</p>
+        <p>Your Path to Academic Excellence</p>
+        <img src="https://cdn.prod.website-files.com/69f77a3a099cc36471987a2c/69f78ea43240816e1e42a6a6_6c1e597c209a2cdfb1bf8098bf2d54db_Vector%20%288%29.svg" class="absolute -bottom-24 -right-12 w-64 h-64 animation-spin-slow opacity-20 pointer-events-none" alt="">
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Mobile Menu Logic
+        const menuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        if (menuToggle && mobileMenu) {
+          menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileMenu.classList.toggle('hidden');
+          });
+
+          // Close menu when clicking links
+          mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+              mobileMenu.classList.add('hidden');
+            });
+          });
+
+          // Close menu when clicking outside
+          document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+              mobileMenu.classList.add('hidden');
+            }
+          });
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animate-on-scroll-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('[data-animation-on-scroll]').forEach(el => {
+          if (el.dataset.animationOnScroll === 'left') {
+            el.classList.add('animate-from-left');
+          } else if (el.dataset.animationOnScroll === 'right') {
+            el.classList.add('animate-from-right');
+          } else {
+            el.classList.add('animate-on-scroll-hidden');
+          }
+          observer.observe(el);
+        });
+
+        document.querySelectorAll('[data-animation-loop]').forEach(el => {
+          if (el.dataset.animationLoop === 'float') {
+            el.classList.add('animation-float');
+          }
+        });
+      });
+    </script>
+  </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <script id="lh-website-form-handler" data-lh-form-handler="true">
+    (function() {
+      if (window.__lhWebsiteFormHandlerInitialized) return;
+      window.__lhWebsiteFormHandlerInitialized = true;
+
+      var PROJECT_ID = "OgyhFHaSRiC0pwpS42ub";
+      var DEFAULT_SUCCESS_MESSAGE = 'Thanks. Your message has been sent.';
+      var DEFAULT_ERROR_MESSAGE = 'Could not submit the form. Please try again.';
+
+      function isLocalHostname(hostname) {
+        var normalized = String(hostname || '').trim().toLowerCase();
+        return normalized === 'localhost' || normalized === '127.0.0.1';
+      }
+
+      function readHostnameFromUrl(url) {
+        if (!url) return '';
+
+        try {
+          return String(new URL(url).hostname || '').trim().toLowerCase();
+        } catch (_) {
+          return '';
+        }
+      }
+
+      function detectApiBaseUrl() {
+        try {
+          var hostname = window.location.hostname || '';
+          if (isLocalHostname(hostname)) {
+            return 'http://localhost:8080/api';
+          }
+        } catch (_) {}
+
+        try {
+          var baseHostname = readHostnameFromUrl(document.baseURI || '');
+          if (isLocalHostname(baseHostname)) {
+            return 'http://localhost:8080/api';
+          }
+        } catch (_) {}
+
+        try {
+          var parentHostname =
+            window.parent && window.parent !== window && window.parent.location
+              ? String(window.parent.location.hostname || '').trim().toLowerCase()
+              : '';
+          if (isLocalHostname(parentHostname)) {
+            return 'http://localhost:8080/api';
+          }
+        } catch (_) {}
+
+        return 'https://api.landinghero.ai/api';
+      }
+
+      var API_BASE_URL = detectApiBaseUrl();
+
+      function getFeedbackNode(form) {
+        var feedback = form.nextElementSibling;
+        if (
+          feedback &&
+          feedback.nodeType === 1 &&
+          feedback.getAttribute('data-lh-form-feedback') === 'true'
+        ) {
+          return feedback;
+        }
+
+        feedback = document.createElement('div');
+        feedback.setAttribute('data-lh-form-feedback', 'true');
+        feedback.setAttribute('aria-live', 'polite');
+        feedback.style.marginTop = '12px';
+        feedback.style.padding = '12px 14px';
+        feedback.style.borderRadius = '10px';
+        feedback.style.fontSize = '14px';
+        feedback.style.lineHeight = '1.5';
+        feedback.style.display = 'none';
+        form.insertAdjacentElement('afterend', feedback);
+        return feedback;
+      }
+
+      function setFeedback(form, kind, message) {
+        var feedback = getFeedbackNode(form);
+        feedback.textContent = message || '';
+        feedback.style.display = message ? 'block' : 'none';
+        feedback.style.border = kind === 'success'
+          ? '1px solid rgba(16, 185, 129, 0.25)'
+          : '1px solid rgba(239, 68, 68, 0.25)';
+        feedback.style.background = kind === 'success'
+          ? 'rgba(16, 185, 129, 0.08)'
+          : 'rgba(239, 68, 68, 0.08)';
+        feedback.style.color = kind === 'success' ? '#065f46' : '#991b1b';
+      }
+
+      function isElementVisible(element) {
+        if (!element) return false;
+        if (element.type === 'hidden') return false;
+
+        try {
+          var style = window.getComputedStyle(element);
+          if (
+            style.display === 'none' ||
+            style.visibility === 'hidden' ||
+            Number(style.opacity || '1') === 0
+          ) {
+            return false;
+          }
+        } catch (_) {}
+
+        if (typeof element.getClientRects === 'function') {
+          return element.getClientRects().length > 0;
+        }
+
+        return true;
+      }
+
+      function getFieldLabel(form, element) {
+        var ariaLabel = String(element.getAttribute('aria-label') || '').trim();
+        if (ariaLabel) return ariaLabel;
+
+        var labels = element.labels;
+        if (labels && labels.length > 0) {
+          var joined = Array.prototype.map.call(labels, function(label) {
+            return String(label.textContent || '').trim();
+          }).filter(Boolean).join(' ');
+          if (joined) return joined;
+        }
+
+        var id = String(element.id || '').trim();
+        if (id) {
+          try {
+            var escapedId =
+              typeof CSS !== 'undefined' && typeof CSS.escape === 'function'
+                ? CSS.escape(id)
+                : id.replace(/"/g, '\"');
+            var explicitLabel = form.querySelector('label[for="' + escapedId + '"]');
+            if (explicitLabel) {
+              var explicitText = String(explicitLabel.textContent || '').trim();
+              if (explicitText) return explicitText;
+            }
+          } catch (_) {}
+        }
+
+        var parentLabel = typeof element.closest === 'function'
+          ? element.closest('label')
+          : null;
+        if (parentLabel) {
+          var parentText = String(parentLabel.textContent || '').trim();
+          if (parentText) return parentText;
+        }
+
+        var parentElement = element.parentElement;
+        if (parentElement) {
+          var siblingLabel = parentElement.querySelector('label');
+          if (siblingLabel) {
+            var siblingLabelText = String(siblingLabel.textContent || '').trim();
+            if (siblingLabelText) return siblingLabelText;
+          }
+        }
+
+        var previousSibling = element.previousElementSibling;
+        while (previousSibling) {
+          if (String(previousSibling.tagName || '').toLowerCase() === 'label') {
+            var previousSiblingText = String(previousSibling.textContent || '').trim();
+            if (previousSiblingText) return previousSiblingText;
+          }
+          previousSibling = previousSibling.previousElementSibling;
+        }
+
+        var placeholder = String(element.getAttribute('placeholder') || '').trim();
+        if (placeholder) return placeholder;
+
+        return String(element.name || element.id || element.type || 'field').trim();
+      }
+
+      function addDataValue(data, name, value) {
+        if (!name) return;
+
+        if (Object.prototype.hasOwnProperty.call(data, name)) {
+          if (Array.isArray(data[name])) {
+            data[name].push(value);
+          } else {
+            data[name] = [data[name], value];
+          }
+          return;
+        }
+
+        data[name] = value;
+      }
+
+      function normalizeFieldType(element) {
+        var tagName = String(element.tagName || '').toLowerCase();
+        if (tagName === 'textarea') return 'textarea';
+        if (tagName === 'select') return 'select';
+        return String(element.type || tagName || 'text').toLowerCase();
+      }
+
+      function getFieldValue(element) {
+        var type = normalizeFieldType(element);
+
+        if (type === 'checkbox' || type === 'radio') {
+          return element.checked ? 'true' : '';
+        }
+
+        if (type === 'file') {
+          if (!element.files || !element.files.length) return '';
+          return Array.prototype.map.call(element.files, function(file) {
+            return file && file.name ? file.name : '';
+          }).filter(Boolean).join(', ');
+        }
+
+        if (element.tagName && String(element.tagName).toLowerCase() === 'select' && element.multiple) {
+          return Array.prototype.map.call(element.selectedOptions || [], function(option) {
+            return option && option.value ? option.value : '';
+          }).filter(Boolean).join(', ');
+        }
+
+        return String(element.value || '').trim();
+      }
+
+      function collectFormPayload(form) {
+        var fields = [];
+        var data = {};
+        var elements = form.querySelectorAll('input, textarea, select');
+
+        Array.prototype.forEach.call(elements, function(element, index) {
+          if (!element || element.disabled) return;
+          if (!isElementVisible(element)) return;
+
+          var type = normalizeFieldType(element);
+          if (
+            type === 'submit' ||
+            type === 'button' ||
+            type === 'reset' ||
+            type === 'image'
+          ) {
+            return;
+          }
+
+          if ((type === 'checkbox' || type === 'radio') && !element.checked) {
+            return;
+          }
+
+          var value = getFieldValue(element);
+          if (!value) return;
+
+          var name = String(element.name || element.id || ('field_' + index)).trim();
+          if (!name) return;
+
+          fields.push({
+            name: name,
+            label: getFieldLabel(form, element),
+            type: type,
+            value: value
+          });
+          addDataValue(data, name, value);
+        });
+
+        return { fields: fields, data: data };
+      }
+
+      function getPageUrl() {
+        try {
+          if (window.location.href && window.location.href !== 'about:srcdoc') {
+            return window.location.href;
+          }
+        } catch (_) {}
+
+        try {
+          return String(document.baseURI || '').trim();
+        } catch (_) {
+          return '';
+        }
+      }
+
+      function setSubmittingState(form, isSubmitting) {
+        var submitControls = form.querySelectorAll(
+          'button[type="submit"], input[type="submit"], input[type="image"], [data-pixel-form-submit="true"]'
+        );
+
+        Array.prototype.forEach.call(submitControls, function(control) {
+          if (!(control instanceof HTMLElement)) return;
+
+          if (isSubmitting) {
+            if (!control.hasAttribute('data-lh-original-disabled')) {
+              control.setAttribute(
+                'data-lh-original-disabled',
+                control.hasAttribute('disabled') ? 'true' : 'false'
+              );
+            }
+            control.setAttribute('disabled', 'disabled');
+          } else if (control.getAttribute('data-lh-original-disabled') === 'false') {
+            control.removeAttribute('disabled');
+          }
+
+          if (control.tagName.toLowerCase() === 'button') {
+            if (isSubmitting) {
+              if (!control.hasAttribute('data-lh-original-label')) {
+                control.setAttribute(
+                  'data-lh-original-label',
+                  String(control.textContent || '')
+                );
+              }
+              control.textContent = 'Sending...';
+            } else if (control.hasAttribute('data-lh-original-label')) {
+              control.textContent = control.getAttribute('data-lh-original-label') || '';
+              control.removeAttribute('data-lh-original-label');
+            }
+          } else if (control.tagName.toLowerCase() === 'input') {
+            if (isSubmitting) {
+              if (!control.hasAttribute('data-lh-original-label')) {
+                control.setAttribute(
+                  'data-lh-original-label',
+                  String(control.getAttribute('value') || '')
+                );
+              }
+              control.setAttribute('value', 'Sending...');
+            } else if (control.hasAttribute('data-lh-original-label')) {
+              control.setAttribute(
+                'value',
+                control.getAttribute('data-lh-original-label') || ''
+              );
+              control.removeAttribute('data-lh-original-label');
+            }
+          }
+
+          if (!isSubmitting) {
+            control.removeAttribute('data-lh-original-disabled');
+          }
+        });
+      }
+
+      async function handleLandingHeroSubmit(payload) {
+        return fetch(API_BASE_URL + '/projects/forms/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+      }
+
+      async function handleWebhookSubmit(url, payload) {
+        return fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+      }
+
+      document.addEventListener('submit', async function(event) {
+        var form = event.target;
+        if (!(form instanceof HTMLFormElement)) return;
+        if (!PROJECT_ID) return;
+        if (form.__lhFormSubmitting) return;
+
+        event.preventDefault();
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+
+        var payload = collectFormPayload(form);
+        if (!payload.fields.length) {
+          setFeedback(form, 'error', 'Please complete the form before submitting.');
+          return;
+        }
+
+        form.__lhFormSubmitting = true;
+        setSubmittingState(form, true);
+        setFeedback(form, 'success', '');
+
+        var mode = String(form.getAttribute('data-lh-form-mode') || 'landinghero')
+          .trim()
+          .toLowerCase() === 'webhook'
+          ? 'webhook'
+          : 'landinghero';
+
+        var requestPayload = {
+          project_id: PROJECT_ID,
+          projectId: PROJECT_ID,
+          submittedAt: new Date().toISOString(),
+          pageUrl: getPageUrl(),
+          form: {
+            pixelId: String(form.getAttribute('data-pixel-id') || '').trim()
+          },
+          fields: payload.fields,
+          data: payload.data
+        };
+
+        try {
+          var response;
+
+          if (mode === 'webhook') {
+            var webhookUrl = String(form.getAttribute('data-lh-form-webhook-url') || '').trim();
+            if (!webhookUrl) {
+              throw new Error('Webhook URL is not configured for this form.');
+            }
+            response = await handleWebhookSubmit(webhookUrl, requestPayload);
+          } else {
+            requestPayload.recipientEmail = String(
+              form.getAttribute('data-lh-form-recipient-email') || ''
+            ).trim();
+            response = await handleLandingHeroSubmit(requestPayload);
+          }
+
+          if (!response.ok) {
+            var errorMessage = DEFAULT_ERROR_MESSAGE;
+            try {
+              var errorBody = await response.json();
+              if (errorBody && errorBody.error) {
+                errorMessage = String(errorBody.error);
+              }
+            } catch (_) {}
+            throw new Error(errorMessage);
+          }
+
+          setFeedback(form, 'success', DEFAULT_SUCCESS_MESSAGE);
+          form.reset();
+        } catch (error) {
+          setFeedback(
+            form,
+            'error',
+            error && error.message ? error.message : DEFAULT_ERROR_MESSAGE
+          );
+        } finally {
+          form.__lhFormSubmitting = false;
+          setSubmittingState(form, false);
+        }
+      }, true);
+    })();
+  </script>
+</body></html>

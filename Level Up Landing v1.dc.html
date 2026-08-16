@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500&family=Inter:wght@400;500&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  html, body { background: #000000; color: #ffffff; overflow-x: hidden; -webkit-font-smoothing: antialiased; margin: 0; }
+  * { box-sizing: border-box; }
+  ::selection { background: #0A84FF; color: #fff; }
+</style>
+</helmet>
+
+<div ref="{{ setPage }}" style="background:#000000; color:#ffffff; font-family:'Inter',sans-serif; width:100%; position:relative;">
+
+  <nav style="position:fixed; top:0; left:0; right:0; height:80px; z-index:50; display:flex; align-items:center; justify-content:space-between; padding:0 24px;">
+    <div style="position:absolute; inset:0; z-index:-1; background:{{ navbarStyle.background }}; backdrop-filter:{{ navbarStyle.backdropFilter }}; transition:background 0.3s ease, backdrop-filter 0.3s ease;"></div>
+    <div style="max-width:1152px; margin:0 auto; width:100%; display:flex; align-items:center; justify-content:space-between; opacity:{{ navbarStyle.opacity }}; transform:{{ navbarStyle.transform }}; transition:{{ navbarStyle.transition }};">
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span style="width:6px; height:6px; border-radius:50%; background:{{ accent1 }}; display:inline-block;"></span>
+        <span style="font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:18px; letter-spacing:-0.02em; color:#ffffff;">LEVEL UP</span>
+      </div>
+      <a href="{{ REGISTRATION_URL }}" target="_blank" rel="noopener noreferrer" style="height:40px; padding:0 20px; background:#ffffff; color:#000000; border-radius:999px; font-size:13px; font-weight:500; display:flex; align-items:center; text-decoration:none; transition:background 0.2s ease, transform 0.2s ease;" style-hover="background:rgba(255,255,255,0.9); transform:scale(1.02);" style-focus="outline:2px solid #0A84FF; outline-offset:2px;">Reservar lugar</a>
+    </div>
+  </nav>
+
+  <section ref="{{ setHero }}" style="position:relative; height:100vh; min-height:640px; overflow:hidden; display:flex; flex-direction:column; align-items:center;">
+    <sc-if value="{{ showVideo }}" hint-placeholder-val="{{ true }}">
+      <video ref="{{ setVideo }}" muted="{{ true }}" playsInline="{{ true }}" autoPlay="{{ true }}" preload="auto" poster="assets/hero-poster.png" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+        <source src="assets/hero-transition.mp4" type="video/mp4"></source>
+      </video>
+    </sc-if>
+    <sc-if value="{{ showVideoFallback }}" hint-placeholder-val="{{ false }}">
+      <img src="assets/hero-poster.png" alt="" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;"></img>
+    </sc-if>
+
+    <img src="assets/logo-white.png" alt="" aria-hidden="true" style="position:absolute; top:14%; left:50%; transform:translateX(-50%); width:min(60vw,520px); opacity:{{ watermarkOpacity }}; pointer-events:none;"></img>
+
+    <div style="position:absolute; inset:0; background:{{ heroOverlayGradient }};"></div>
+    <div style="position:absolute; inset:0; background-image:radial-gradient(#ffffff 1px, transparent 1px); background-size:24px 24px; opacity:{{ dotGridOpacity }}; pointer-events:none;"></div>
+    <div ref="{{ setCursorEl }}" style="position:absolute; top:0; left:0; width:200px; height:200px; border-radius:50%; background:rgba(10,132,255,0.2); filter:blur(30px); mix-blend-mode:plus-lighter; pointer-events:none; transform:translate(-9999px,-9999px);"></div>
+
+    <div style="position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; text-align:center; max-width:768px; margin:0 auto; padding:128px 24px 0; width:100%;">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.5); opacity:{{ heroKickerStyle.opacity }}; transform:{{ heroKickerStyle.transform }}; transition:{{ heroKickerStyle.transition }};">05 · 09 · 2026 — Online</div>
+      <h1 style="font-family:'Space Grotesk',sans-serif; font-weight:300; font-size:clamp(56px,10vw,120px); line-height:0.95; letter-spacing:-0.03em; color:#ffffff; margin:24px 0 0;">
+        <span style="display:block; opacity:{{ heroLine1Style.opacity }}; transform:{{ heroLine1Style.transform }}; transition:{{ heroLine1Style.transition }};">Eleva tu práctica.</span>
+        <span style="display:block; opacity:{{ heroLine2Style.opacity }}; transform:{{ heroLine2Style.transform }}; transition:{{ heroLine2Style.transition }};">En <em style="font-family:'Instrument Serif',serif; font-style:italic; color:{{ accent2 }};">un solo día</em>.</span>
+      </h1>
+      <p style="font-family:'Inter',sans-serif; font-weight:400; font-size:clamp(15px,2vw,17px); color:rgba(255,255,255,0.7); max-width:448px; margin:32px auto 0; line-height:1.6; opacity:{{ heroSubStyle.opacity }}; transform:{{ heroSubStyle.transform }}; transition:{{ heroSubStyle.transition }};">LEVEL UP es el congreso online donde los profesionales de la salud aprenden a hacer crecer su consulta, marca y negocio. 100% online. 100% gratis.</p>
+      <div style="margin-top:40px; display:flex; flex-direction:column; align-items:center; gap:12px; width:100%; opacity:{{ heroCtaStyle.opacity }}; transform:{{ heroCtaStyle.transform }}; transition:{{ heroCtaStyle.transition }};">
+        <a href="{{ REGISTRATION_URL }}" target="_blank" rel="noopener noreferrer" style="height:48px; padding:0 28px; background:#ffffff; color:#000000; border-radius:999px; font-size:14px; font-weight:500; display:flex; align-items:center; justify-content:center; text-decoration:none; width:100%; max-width:320px; transition:background 0.2s ease, transform 0.2s ease;" style-hover="background:rgba(255,255,255,0.9); transform:scale(1.02);" style-focus="outline:2px solid #0A84FF; outline-offset:2px;">Reservar mi lugar gratis</a>
+        <span style="font-family:'Inter',sans-serif; font-size:13px; color:rgba(255,255,255,0.5);">Cupos limitados · Sin costo</span>
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal-section="problema" style="min-height:100vh; background:#000000; display:flex; align-items:center; padding:128px 24px;">
+    <div style="max-width:768px; margin:0 auto; text-align:center;">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:32px; opacity:{{ revealStyle.problemaKicker.opacity }}; transform:{{ revealStyle.problemaKicker.transform }}; transition:{{ revealStyle.problemaKicker.transition }};">El problema</div>
+      <h2 style="font-family:'Space Grotesk',sans-serif; font-weight:300; font-size:clamp(36px,6vw,64px); line-height:1.1; letter-spacing:-0.02em; margin:0 0 32px; opacity:{{ revealStyle.problemaHeadline.opacity }}; transform:{{ revealStyle.problemaHeadline.transform }}; transition:{{ revealStyle.problemaHeadline.transition }};">El conocimiento clínico ya no alcanza.</h2>
+      <p style="font-family:'Inter',sans-serif; font-size:clamp(17px,2vw,19px); color:rgba(255,255,255,0.5); line-height:1.7; max-width:576px; margin:0 auto; opacity:{{ revealStyle.problemaBody.opacity }}; transform:{{ revealStyle.problemaBody.transform }}; transition:{{ revealStyle.problemaBody.transition }};">Te formaste años para curar. Nadie te enseñó a comunicar lo que haces, a construir marca, a vender sin sentir que traicionas tu vocación, a liderar un equipo o a hacer crecer una consulta. Esa brecha decide quién crece y quién se queda dictando el mismo horario diez años seguidos.</p>
+    </div>
+  </section>
+
+  <section data-reveal-section="solucion" style="min-height:100vh; background:{{ solucionSectionBg }}; display:flex; align-items:center; padding:128px 24px;">
+    <div style="max-width:1152px; margin:0 auto; width:100%; display:grid; grid-template-columns:1fr; gap:64px;" class="solucion-grid">
+      <div style="opacity:{{ revealStyle.solucionLeft.opacity }}; transform:{{ revealStyle.solucionLeft.transform }}; transition:{{ revealStyle.solucionLeft.transition }};">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:24px;">La solución</div>
+        <h2 style="font-family:'Space Grotesk',sans-serif; font-weight:300; font-size:clamp(40px,7vw,80px); line-height:0.98; letter-spacing:-0.03em; margin:0;">Una jornada.<br></br>Los referentes<br></br>del ecosistema.</h2>
+      </div>
+      <div style="opacity:{{ revealStyle.solucionRight.opacity }}; transform:{{ revealStyle.solucionRight.transform }}; transition:{{ revealStyle.solucionRight.transition }};">
+        <p style="font-family:'Inter',sans-serif; font-size:16px; color:rgba(255,255,255,0.6); line-height:1.7; margin:0 0 8px;">LEVEL UP reúne por un día a expertos en liderazgo, marketing, ventas, marca personal y desarrollo de negocios — todos con foco específico en profesionales de la salud. Sin teoría de manual. Sin humo. Solo frameworks probados que puedes llevar a tu práctica desde la próxima consulta.</p>
+        <div style="margin-top:24px;">
+          <div style="border-top:none; padding:0 0 24px;">
+            <div style="font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:20px; color:#ffffff; margin-bottom:8px;">Aplicable el lunes.</div>
+            <div style="font-family:'Inter',sans-serif; font-size:14px; color:rgba(255,255,255,0.45); line-height:1.6;">Frameworks probados, sin teoría de manual ni relleno.</div>
+          </div>
+          <div style="border-top:1px solid rgba(255,255,255,0.1); padding:24px 0;">
+            <div style="font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:20px; color:#ffffff; margin-bottom:8px;">Desde tu consulta.</div>
+            <div style="font-family:'Inter',sans-serif; font-size:14px; color:rgba(255,255,255,0.45); line-height:1.6;">Pensado para profesionales de la salud, no para el mundo corporativo.</div>
+          </div>
+          <div style="border-top:1px solid rgba(255,255,255,0.1); padding:24px 0 0;">
+            <div style="font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:20px; color:#ffffff; margin-bottom:8px;">Cero costo.</div>
+            <div style="font-family:'Inter',sans-serif; font-size:14px; color:rgba(255,255,255,0.45); line-height:1.6;">Un día completo de contenido, sin pagar entrada.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-reveal-section="ejes" style="min-height:100vh; background:#000000; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:128px 24px;">
+    <div style="text-align:center; margin-bottom:80px;">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:24px; opacity:{{ revealStyle.ejesKicker.opacity }}; transform:{{ revealStyle.ejesKicker.transform }}; transition:{{ revealStyle.ejesKicker.transition }};">Ejes del congreso</div>
+      <h2 style="font-family:'Space Grotesk',sans-serif; font-weight:300; font-size:clamp(36px,6vw,56px); margin:0; opacity:{{ revealStyle.ejesHeadline.opacity }}; transform:{{ revealStyle.ejesHeadline.transform }}; transition:{{ revealStyle.ejesHeadline.transition }};">Seis frentes. Un solo objetivo: <em style="font-family:'Instrument Serif',serif; font-style:italic; color:{{ accent2 }};">crecer</em>.</h2>
+    </div>
+    <div style="max-width:1152px; width:100%; display:grid; grid-template-columns:1fr; gap:1px; background:rgba(255,255,255,0.05);" class="ejes-grid">
+      <sc-for list="{{ ejesItems }}" as="eje" hint-placeholder-count="6">
+        <div style="background:#000000; padding:40px; min-height:220px; display:flex; flex-direction:column; justify-content:space-between; opacity:{{ eje.style.opacity }}; transform:{{ eje.style.transform }}; transition:{{ eje.style.transition }};">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; color:{{ accent1 }};">{{ eje.num }}</div>
+          <div>
+            <div style="font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:22px; color:#ffffff; margin:24px 0 12px;">{{ eje.title }}</div>
+            <div style="font-family:'Inter',sans-serif; font-size:14px; color:rgba(255,255,255,0.45); line-height:1.6;">{{ eje.desc }}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section data-reveal-section="speakers" style="min-height:100vh; background:#000000; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:128px 24px;">
+    <div style="text-align:center; margin-bottom:80px;">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:24px; opacity:{{ revealStyle.speakersKicker.opacity }}; transform:{{ revealStyle.speakersKicker.transform }}; transition:{{ revealStyle.speakersKicker.transition }};">Expositores</div>
+      <h2 style="font-family:'Space Grotesk',sans-serif; font-weight:300; font-size:clamp(32px,5vw,48px); margin:0; max-width:640px; opacity:{{ revealStyle.speakersHeadline.opacity }}; transform:{{ revealStyle.speakersHeadline.transform }}; transition:{{ revealStyle.speakersHeadline.transition }};">Referentes que pronto vas a conocer.</h2>
+    </div>
+    <div style="max-width:1152px; width:100%; display:grid; grid-template-columns:1fr; gap:24px;" class="speakers-grid">
+      <sc-for list="{{ speakersItems }}" as="sp" hint-placeholder-count="4">
+        <div style="background:#0B0E17; border:1px solid rgba(255,255,255,0.05); border-radius:16px; padding:32px; display:flex; flex-direction:column; align-items:center; text-align:center; opacity:{{ sp.style.opacity }}; transform:{{ sp.style.transform }}; transition:{{ sp.style.transition }};">
+          <div style="width:72px; height:72px; border-radius:50%; background:rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:center; margin-bottom:20px;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="8" r="4" fill="rgba(255,255,255,0.35)"></circle>
+              <path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7" stroke="rgba(255,255,255,0.35)" stroke-width="2" fill="none" stroke-linecap="round"></path>
+            </svg>
+          </div>
+          <div style="font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:16px; color:#ffffff; margin-bottom:6px;">Speaker por confirmar</div>
+          <div style="font-family:'Inter',sans-serif; font-size:13px; color:rgba(255,255,255,0.4);">Por confirmar</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section data-reveal-section="pricing" style="min-height:100vh; background:{{ pricingSectionBg }}; display:flex; align-items:center; padding:128px 24px;" id="registro">
+    <div style="max-width:672px; margin:0 auto; text-align:center; opacity:{{ revealStyle.pricingBlock.opacity }}; transform:{{ revealStyle.pricingBlock.transform }}; transition:{{ revealStyle.pricingBlock.transition }};">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:24px;">Registro</div>
+      <h2 style="font-family:'Space Grotesk',sans-serif; font-weight:300; font-size:clamp(72px,14vw,160px); line-height:0.9; letter-spacing:-0.04em; margin:0;">Entrada <em style="font-family:'Instrument Serif',serif; font-style:italic; color:{{ accent2 }};">libre</em>.</h2>
+      <p style="font-family:'Inter',sans-serif; font-size:17px; color:rgba(255,255,255,0.5); max-width:448px; margin:32px auto 0; line-height:1.7;">Sin planes premium, sin upsells, sin letra chica. Reservas tu lugar, recibes el acceso por mail, y el 5 de septiembre te conectas. Eso es todo.</p>
+      <div style="margin-top:64px;">
+        <a href="{{ REGISTRATION_URL }}" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; justify-content:center; height:64px; padding:0 40px; background:#ffffff; color:#000000; border-radius:999px; font-size:18px; font-weight:500; text-decoration:none; transition:background 0.2s ease, transform 0.2s ease;" style-hover="background:rgba(255,255,255,0.95); transform:scale(1.03);" style-focus="outline:2px solid #0A84FF; outline-offset:2px;">Reservar mi lugar gratis</a>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-top:24px;">Cupos limitados · Google Forms</div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="min-height:300px; background:#000000; border-top:1px solid rgba(255,255,255,0.05); padding:80px 24px 32px;">
+    <div style="max-width:1152px; margin:0 auto; display:grid; grid-template-columns:1fr; gap:48px;" class="footer-grid">
+      <div>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="width:6px; height:6px; border-radius:50%; background:{{ accent1 }}; display:inline-block;"></span>
+          <span style="font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:24px; color:#ffffff;">LEVEL UP</span>
+        </div>
+        <p style="font-family:'Inter',sans-serif; font-size:14px; color:rgba(255,255,255,0.4); max-width:384px; margin-top:24px; line-height:1.6;">Congreso online para profesionales de la salud. 5 de septiembre de 2026. 100% online. 100% gratuito.</p>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:flex-start; gap:12px;" class="footer-links">
+        <span style="font-family:'Inter',sans-serif; font-size:14px; color:rgba(255,255,255,0.3);">Redes sociales próximamente</span>
+      </div>
+    </div>
+    <div style="max-width:1152px; margin:64px auto 0; border-top:1px solid rgba(255,255,255,0.05); padding-top:32px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+      <span style="font-family:'Inter',sans-serif; font-size:12px; color:rgba(255,255,255,0.25);">© 2026 LEVEL UP</span>
+      <span style="font-family:'Inter',sans-serif; font-size:12px; color:rgba(255,255,255,0.25);">Hecho para hacer crecer tu práctica.</span>
+    </div>
+  </footer>
+
+  <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+    <style>
+      .solucion-grid { grid-template-columns: 1fr 1fr !important; }
+      .ejes-grid { grid-template-columns: repeat(3, 1fr) !important; }
+      .speakers-grid { grid-template-columns: repeat(4, 1fr) !important; }
+      .footer-grid { grid-template-columns: 1fr auto !important; }
+      .footer-links { align-items: flex-end !important; }
+    </style>
+  </sc-if>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;accentPalette&quot;: {
+    &quot;editor&quot;: &quot;color&quot;,
+    &quot;default&quot;: [&quot;#0A84FF&quot;, &quot;#4DA6FF&quot;, &quot;#001F5C&quot;],
+    &quot;options&quot;: [
+      [&quot;#0A84FF&quot;, &quot;#4DA6FF&quot;, &quot;#001F5C&quot;],
+      [&quot;#7C5CFF&quot;, &quot;#A78BFA&quot;, &quot;#241B4D&quot;],
+      [&quot;#10B981&quot;, &quot;#6EE7B7&quot;, &quot;#052E2B&quot;],
+      [&quot;#FF6B4A&quot;, &quot;#FFA98C&quot;, &quot;#3D160B&quot;]
+    ],
+    &quot;tsType&quot;: &quot;string[]&quot;,
+    &quot;section&quot;: &quot;Tema&quot;
+  },
+  &quot;motionIntensity&quot;: {
+    &quot;editor&quot;: &quot;enum&quot;,
+    &quot;default&quot;: &quot;estandar&quot;,
+    &quot;options&quot;: [&quot;sutil&quot;, &quot;estandar&quot;, &quot;dramatico&quot;],
+    &quot;tsType&quot;: &quot;string&quot;,
+    &quot;section&quot;: &quot;Movimiento&quot;
+  },
+  &quot;heroAtmosphere&quot;: {
+    &quot;editor&quot;: &quot;enum&quot;,
+    &quot;default&quot;: &quot;estandar&quot;,
+    &quot;options&quot;: [&quot;minimal&quot;, &quot;estandar&quot;, &quot;inmersivo&quot;],
+    &quot;tsType&quot;: &quot;string&quot;,
+    &quot;section&quot;: &quot;Atmósfera del hero&quot;
+  }
+}">
+class Component extends DCLogic {
+  state = {
+    scrolled: false,
+    mounted: false,
+    heroVisible: false,
+    reducedMotion: false,
+    revealed: { problema: false, solucion: false, ejes: false, speakers: false, pricing: false }
+  };
+
+  setPage = (el) => { this.pageNode = el; };
+  setHero = (el) => { this.heroNode = el; };
+  setVideo = (el) => { this.videoEl = el; };
+  setCursorEl = (el) => { this.cursorEl = el; };
+
+  componentDidMount() {
+    this.handleScroll = () => {
+      const sc = window.scrollY > 20;
+      if (sc !== this.state.scrolled) this.setState({ scrolled: sc });
+    };
+    window.addEventListener('scroll', this.handleScroll, { passive: true });
+
+    let reduced = false;
+    try { reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+    this.setState({ reducedMotion: reduced });
+
+    setTimeout(() => this.setState({ mounted: true }), 50);
+    setTimeout(() => this.setState({ heroVisible: true }), 400);
+
+    if (this.pageNode) {
+      const targets = this.pageNode.querySelectorAll('[data-reveal-section]');
+      const reveal = (key) => {
+        if (!this.state.revealed[key]) {
+          this.setState((s) => ({ revealed: { ...s.revealed, [key]: true } }));
+        }
+      };
+      this.observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) reveal(entry.target.getAttribute('data-reveal-section'));
+        });
+      }, { threshold: 0.3 });
+      targets.forEach((t) => {
+        this.observer.observe(t);
+        const rect = t.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) reveal(t.getAttribute('data-reveal-section'));
+      });
+      this.revealFailsafe = setTimeout(() => {
+        targets.forEach((t) => reveal(t.getAttribute('data-reveal-section')));
+      }, 4000);
+    }
+
+    if (!reduced && this.videoEl) this.setupPingPong();
+
+    if (this.heroNode) {
+      this.cursorTarget = { x: -9999, y: -9999 };
+      this.cursorCurrent = { x: -9999, y: -9999 };
+      this.handleMouseMove = (e) => {
+        const rect = this.heroNode.getBoundingClientRect();
+        this.cursorTarget = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+      };
+      this.heroNode.addEventListener('mousemove', this.handleMouseMove);
+      const loop = () => {
+        this.cursorCurrent.x += (this.cursorTarget.x - this.cursorCurrent.x) * 0.12;
+        this.cursorCurrent.y += (this.cursorTarget.y - this.cursorCurrent.y) * 0.12;
+        if (this.cursorEl && this.cursorTarget.x > -9000) {
+          this.cursorEl.style.transform = `translate(${this.cursorCurrent.x - 100}px, ${this.cursorCurrent.y - 100}px)`;
+          if (this.currentAccent1) this.cursorEl.style.background = this.hexToRgba(this.currentAccent1, 0.2);
+        }
+        this.rafId = requestAnimationFrame(loop);
+      };
+      this.rafId = requestAnimationFrame(loop);
+    }
+  }
+
+  setupPingPong() {
+    const video = this.videoEl;
+    this.direction = 1;
+    let last = null;
+    const onLoaded = () => {
+      this.duration = video.duration || 7;
+      video.pause();
+      const step = (ts) => {
+        if (last == null) last = ts;
+        const dt = (ts - last) / 1000;
+        last = ts;
+        let t = video.currentTime + this.direction * dt;
+        if (t >= this.duration) { t = this.duration; this.direction = -1; }
+        else if (t <= 0) { t = 0; this.direction = 1; }
+        try { video.currentTime = t; } catch (e) {}
+        this.pingpongId = requestAnimationFrame(step);
+      };
+      this.pingpongId = requestAnimationFrame(step);
+    };
+    if (video.readyState >= 1) onLoaded();
+    else video.addEventListener('loadedmetadata', onLoaded, { once: true });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+    if (this.observer) this.observer.disconnect();
+    if (this.rafId) cancelAnimationFrame(this.rafId);
+    if (this.pingpongId) cancelAnimationFrame(this.pingpongId);
+    if (this.revealFailsafe) clearTimeout(this.revealFailsafe);
+    if (this.heroNode && this.handleMouseMove) this.heroNode.removeEventListener('mousemove', this.handleMouseMove);
+  }
+
+  hexToRgba(hex, alpha) {
+    const h = hex.replace('#', '');
+    const r = parseInt(h.substring(0, 2), 16);
+    const g = parseInt(h.substring(2, 4), 16);
+    const b = parseInt(h.substring(4, 6), 16);
+    return `rgba(${r},${g},${b},${alpha})`;
+  }
+
+  makeReveal(flag, delay, y) {
+    const cfg = this.motionCfg;
+    const finalY = (y != null ? y : 24) * (cfg.y / 24);
+    return {
+      opacity: flag ? 1 : 0,
+      transform: flag ? 'translateY(0px)' : `translateY(${finalY}px)`,
+      transition: `opacity ${cfg.dur}s cubic-bezier(0.215,0.610,0.355,1) ${delay * cfg.stagger}ms, transform ${cfg.dur}s cubic-bezier(0.215,0.610,0.355,1) ${delay * cfg.stagger}ms`
+    };
+  }
+
+  renderVals() {
+    const palette = this.props.accentPalette ?? ['#0A84FF', '#4DA6FF', '#001F5C'];
+    const [accent1, accent2, accent3] = palette;
+    this.currentAccent1 = accent1;
+
+    const motionCfgs = {
+      sutil: { y: 12, dur: 0.6, stagger: 0.6 },
+      estandar: { y: 24, dur: 0.9, stagger: 1 },
+      dramatico: { y: 48, dur: 1.3, stagger: 1.4 }
+    };
+    this.motionCfg = motionCfgs[this.props.motionIntensity] ?? motionCfgs.estandar;
+
+    const atmoCfgs = {
+      minimal: { dot: 0, overlay: 0.15, watermark: 0 },
+      estandar: { dot: 0.04, overlay: 0.25, watermark: 0.05 },
+      inmersivo: { dot: 0.08, overlay: 0.35, watermark: 0.12 }
+    };
+    const atmo = atmoCfgs[this.props.heroAtmosphere] ?? atmoCfgs.estandar;
+
+    const mk = this.makeReveal.bind(this);
+    const r = this.state.revealed;
+    const heroVisible = this.state.heroVisible;
+
+    const ejesData = [
+      ['01', 'Liderazgo', 'Dirige equipos y consultas con autoridad clínica y humana.'],
+      ['02', 'Marca Personal', 'Construye una reputación profesional que precede tu diagnóstico.'],
+      ['03', 'Marketing', 'Comunica tu valor sin perder tu ética profesional.'],
+      ['04', 'Ventas', 'Convierte consultas en confianza, sin sentir que vendes.'],
+      ['05', 'Crecimiento Profesional', 'Diseña una carrera con dirección, no solo con demanda.'],
+      ['06', 'Desarrollo de Negocios', 'Escala tu práctica más allá de tu propio tiempo.']
+    ];
+    const ejesItems = ejesData.map((e, i) => ({ num: e[0], title: e[1], desc: e[2], style: mk(r.ejes, 160 + i * 80) }));
+    const speakersItems = [0, 1, 2, 3].map((i) => ({ style: mk(r.speakers, 120 + i * 80) }));
+
+    return {
+      REGISTRATION_URL: 'https://docs.google.com/forms/d/e/1FAIpQLSfN0Jobb7pjcUqd6yvq8dtoXNfEIVEk7Acbk5NMpKqsV7wUZA/viewform',
+      showVideo: !this.state.reducedMotion,
+      showVideoFallback: this.state.reducedMotion,
+      isDesktop: true,
+      accent1, accent2, accent3,
+      dotGridOpacity: atmo.dot,
+      watermarkOpacity: atmo.watermark,
+      heroOverlayGradient: `radial-gradient(circle at 50% 40%, transparent 0%, transparent 40%, rgba(0,0,0,${atmo.overlay}) 100%)`,
+      solucionSectionBg: `radial-gradient(circle at 50% 20%, ${this.hexToRgba(accent3, 0.1)} 0%, transparent 60%), #000000`,
+      pricingSectionBg: `radial-gradient(circle at 50% 50%, ${this.hexToRgba(accent1, 0.12)} 0%, transparent 55%), #000000`,
+      setPage: this.setPage, setHero: this.setHero, setVideo: this.setVideo, setCursorEl: this.setCursorEl,
+      navbarStyle: {
+        background: this.state.scrolled ? 'rgba(0,0,0,0.2)' : 'transparent',
+        backdropFilter: this.state.scrolled ? 'blur(12px)' : 'none',
+        opacity: this.state.mounted ? 1 : 0,
+        transform: this.state.mounted ? 'translateY(0)' : 'translateY(-8px)',
+        transition: 'opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s'
+      },
+      heroKickerStyle: mk(heroVisible, 0, 20),
+      heroLine1Style: mk(heroVisible, 200, 20),
+      heroLine2Style: mk(heroVisible, 400, 20),
+      heroSubStyle: mk(heroVisible, 600, 20),
+      heroCtaStyle: mk(heroVisible, 800, 20),
+      ejesItems,
+      speakersItems,
+      revealStyle: {
+        problemaKicker: mk(r.problema, 0), problemaHeadline: mk(r.problema, 80), problemaBody: mk(r.problema, 160),
+        solucionLeft: mk(r.solucion, 0), solucionRight: mk(r.solucion, 100),
+        ejesKicker: mk(r.ejes, 0), ejesHeadline: mk(r.ejes, 80),
+        speakersKicker: mk(r.speakers, 0), speakersHeadline: mk(r.speakers, 80),
+        pricingBlock: mk(r.pricing, 0)
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

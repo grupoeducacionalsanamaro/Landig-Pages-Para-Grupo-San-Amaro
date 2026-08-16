@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400;1,600&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Inter',sans-serif;background:#fff;color:#0D0D0D;}
+    a{color:inherit;text-decoration:none;}
+    .sa-input{width:100%;padding:14px 18px;border:1px solid rgba(255,255,255,.15);border-radius:12px;font-size:15px;outline:none;transition:border-color .2s;background:rgba(255,255,255,.08);color:#FAF9F5;font-family:'Inter',sans-serif;}
+    .sa-input:focus{border-color:rgba(255,255,255,.4);}
+    .sa-input::placeholder{color:rgba(255,255,255,.3);}
+    select.sa-input{appearance:none;cursor:pointer;}
+    select.sa-input option{background:#1a1a1a;color:#FAF9F5;}
+    .acc-item{border-bottom:1px solid #E8E8E8;}
+    .acc-btn{width:100%;display:flex;justify-content:space-between;align-items:center;padding:20px 0;cursor:pointer;background:none;border:none;text-align:left;gap:16px;}
+    .acc-btn-title{font-family:'Fraunces',serif;font-size:18px;font-weight:600;color:#0D0D0D;}
+    .acc-icon{width:28px;height:28px;border-radius:50%;border:1.5px solid #0D0D0D;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s;}
+    .acc-icon svg{transition:transform .35s cubic-bezier(.22,1,.36,1);}
+    .acc-btn[aria-expanded="true"] .acc-icon{background:#0D0D0D;}
+    .acc-btn[aria-expanded="true"] .acc-icon svg{transform:rotate(45deg);}
+    .acc-btn[aria-expanded="true"] .acc-icon path{stroke:#fff;}
+    .acc-body{overflow:hidden;max-height:0;transition:max-height .4s cubic-bezier(.22,1,.36,1);}
+    .acc-body-inner{padding:0 0 24px;}
+
+    @media (max-width: 700px) {
+      .sa-sub-navlinks { display: none !important; }
+    }
+    @media (max-width: 900px) {
+      .sa-footer-grid { grid-template-columns: 1fr 1fr !important; padding: 40px 24px 20px !important; row-gap: 32px !important; }
+      .sa-footer-grid > div:first-child { grid-column: 1 / -1 !important; }
+      .sa-sub-grid-2 { grid-template-columns: 1fr !important; gap: 40px !important; }
+      .sa-sub-grid-3 { grid-template-columns: 1fr 1fr !important; }
+    }
+    @media (max-width: 640px) {
+      .sa-footer-grid { grid-template-columns: 1fr !important; text-align: center; padding: 32px 24px 16px !important; }
+      .sa-footer-grid > div { align-items: center !important; }
+      .sa-footer-legal { flex-direction: column !important; align-items: flex-start !important; padding: 20px 24px !important; text-align: left; }
+      .sa-sub-grid-3 { grid-template-columns: 1fr !important; }
+      .sa-form-row2 { grid-template-columns: 1fr !important; gap: 16px !important; }
+    }
+</style>
+</helmet>
+
+<!-- NAVBAR -->
+<div style="position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:100;width:min(1060px,calc(100vw - 32px));">
+  <nav style="background:rgba(255,255,255,0.85);backdrop-filter:blur(20px);border:1px solid rgba(0,0,0,0.06);border-radius:100px;padding:0 8px 0 20px;height:52px;display:flex;align-items:center;justify-content:space-between;gap:20px;">
+    <a href="index.html" style="flex-shrink:0;"><img src="uploads/GRUPO EDUCACIONAL SAN AMARO.webp" alt="San Amaro" style="height:32px;display:block;"></a>
+    <div class="sa-sub-navlinks" style="display:flex;align-items:center;gap:28px;font-size:13px;color:rgba(0,0,0,0.5);">
+      <a href="index.html#quienes-somos" style="transition:color .2s;" style-hover="color:#000">Quiénes somos</a>
+      <a href="index.html#verticales" style="transition:color .2s;" style-hover="color:#000">Institutos</a>
+      <a href="index.html#contacto" style="transition:color .2s;" style-hover="color:#000">Contacto</a>
+    </div>
+    <a href="index.html#contacto" style="background:#0D0D0D;color:#fff;font-weight:600;font-size:13px;padding:11px 22px;border-radius:100px;transition:opacity .2s;" style-hover="opacity:.8;">Especialízate</a>
+  </nav>
+</div>
+
+<!-- HERO -->
+<section style="background:#0D0D0D;padding:160px 0 80px;">
+  <div style="max-width:900px;margin:0 auto;padding:0 48px;text-align:center;">
+    <p style="font-size:25px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:20px;">Da el siguiente paso</p>
+    <h1 style="font-family:'Fraunces',serif;font-size:clamp(36px,5vw,64px);font-weight:600;color:#FAF9F5;line-height:1.1;letter-spacing:-.025em;margin-bottom:20px;">Inscripciones</h1>
+    <p style="font-size:17px;color:rgba(255,255,255,.5);font-weight:300;line-height:1.6;max-width:520px;margin:0 auto;">Completa el formulario y un coordinador académico te contactará en menos de 24 horas hábiles para guiarte en el proceso.</p>
+  </div>
+</section>
+
+<!-- FORM + ACCORDION -->
+<section style="background:#fff;padding:80px 0 120px;">
+  <div class="sa-sub-grid-2" style="max-width:1100px;margin:0 auto;padding:0 48px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
+
+    <!-- Form -->
+    <div style="display:flex;flex-direction:column;gap:20px;background:#0D0D0D;border-radius:28px;padding:48px 40px;text-align:center;align-items:center;justify-content:center;">
+      <div style="width:56px;height:56px;background:rgba(255,255,255,.08);border-radius:16px;display:flex;align-items:center;justify-content:center;">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+      </div>
+      <h2 style="font-family:'Fraunces',serif;font-size:28px;font-weight:600;color:#FAF9F5;">Formulario de inscripción</h2>
+      <p style="font-size:15px;color:rgba(255,255,255,.55);font-weight:300;line-height:1.6;max-width:360px;">Completa o rellena tus datos y elige el programa al que deseas inscribirte.</p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeXVT9YbkJyJp5KWvJhLPAficqPbMH0e-U2iDUweuIOpPe67Q/viewform" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:#fff;color:#0D0D0D;font-size:15px;font-weight:600;padding:16px 32px;border-radius:100px;transition:opacity .2s;margin-top:8px;" style-hover="opacity:.85;">Completar formulario de inscripción →</a>
+      <p style="font-size:12px;color:rgba(255,255,255,.3);font-weight:300;">Al enviar aceptas nuestras <a href="Politicas Comerciales.dc.html" style="text-decoration:underline;color:rgba(255,255,255,.5);">Políticas Comerciales</a>.</p>
+    </div>
+
+    <!-- Accordion -->
+    <div>
+      <p style="font-size: 20px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: #888; margin-bottom: 8px">Información útil</p>
+      <h2 style="font-family:'Fraunces',serif;font-size:28px;font-weight:600;color:#0D0D0D;margin-bottom:32px;">Todo lo que necesitas saber</h2>
+
+      <div class="acc-item" style="border-top:1px solid #E8E8E8;">
+        <button class="acc-btn" aria-expanded="true" data-acc="">
+          <span class="acc-btn-title">¿Cómo funciona el proceso?</span>
+          <span class="acc-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="#0D0D0D" stroke-width="1.5" stroke-linecap="round"></path></svg></span>
+        </button>
+        <div class="acc-body" style="max-height:400px;">
+          <div class="acc-body-inner" style="display:flex;flex-direction:column;gap:14px;">
+            <div style="display:flex;gap:14px;align-items:flex-start;"><span style="width:26px;height:26px;border-radius:50%;background:#0D0D0D;color:#fff;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</span><div><p style="font-size:14px;font-weight:500;color:#0D0D0D;margin-bottom:3px;">Acceso</p><p style="font-size:13px;color:#888;font-weight:300;">Haz clic en el enlace de inscripción.</p></div></div>
+            <div style="display:flex;gap:14px;align-items:flex-start;"><span style="width:26px;height:26px;border-radius:50%;background:#0D0D0D;color:#fff;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</span><div><p style="font-size:14px;font-weight:500;color:#0D0D0D;margin-bottom:3px;">Registro</p><p style="font-size:13px;color:#888;font-weight:300;">Completa la información solicitada en el formulario.</p></div></div>
+            <div style="display:flex;gap:14px;align-items:flex-start;"><span style="width:26px;height:26px;border-radius:50%;background:#0D0D0D;color:#fff;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</span><div><p style="font-size:14px;font-weight:500;color:#0D0D0D;margin-bottom:3px;">Programa</p><p style="font-size:13px;color:#888;font-weight:300;">Selecciona la formación de tu interés.</p></div></div>
+            <div style="display:flex;gap:14px;align-items:flex-start;"><span style="width:26px;height:26px;border-radius:50%;background:#0D0D0D;color:#fff;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">4</span><div><p style="font-size:14px;font-weight:500;color:#0D0D0D;margin-bottom:3px;">Documentación</p><p style="font-size:13px;color:#888;font-weight:300;">Adjunta tus archivos requeridos.</p></div></div>
+            <div style="display:flex;gap:14px;align-items:flex-start;"><span style="width:26px;height:26px;border-radius:50%;background:#0D0D0D;color:#fff;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">5</span><div><p style="font-size:14px;font-weight:500;color:#0D0D0D;margin-bottom:3px;">Contacto</p><p style="font-size:13px;color:#888;font-weight:300;">Comunícate con tu coordinador académico para confirmar tu cupo.</p></div></div>
+            <div style="display:flex;gap:14px;align-items:flex-start;"><span style="width:26px;height:26px;border-radius:50%;background:#0D0D0D;color:#fff;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;">6</span><div><p style="font-size:14px;font-weight:500;color:#0D0D0D;margin-bottom:3px;">Bienvenida</p><p style="font-size:13px;color:#888;font-weight:300;">Da inicio a tu nuevo camino profesional.</p></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false" data-acc="">
+          <span class="acc-btn-title">Documentos requeridos</span>
+          <span class="acc-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="#0D0D0D" stroke-width="1.5" stroke-linecap="round"></path></svg></span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner" style="display:flex;flex-direction:column;gap:10px;">
+            <p style="font-size:14px;color:#555;font-weight:300;line-height:1.7;">Para formalizar tu inscripción necesitarás:</p>
+            <ul style="display:flex;flex-direction:column;gap:8px;padding-left:16px;">
+              <li style="font-size:14px;color:#555;font-weight:300;">Registro de superintendencia de la salud</li>
+              <li style="font-size:14px;color:#555;font-weight:300;">Cédula de identidad o pasaporte vigente</li>
+              <li style="font-size:14px;color:#555;font-weight:300;">Comprobante de pago o abono</li>
+              <li style="font-size:14px;color:#555;font-weight:300;">Curriculum vitae (para programas de postgrado)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false" data-acc="">
+          <span class="acc-btn-title">Formas de pago aceptadas</span>
+          <span class="acc-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="#0D0D0D" stroke-width="1.5" stroke-linecap="round"></path></svg></span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner" style="display:flex;flex-direction:column;gap:10px;">
+            <ul style="display:flex;flex-direction:column;gap:8px;padding-left:16px;">
+              <li style="font-size:14px;color:#555;font-weight:300;">Transferencia bancaria (CLP)</li>
+              <li style="font-size:14px;color:#555;font-weight:300;">Tarjeta de crédito o débito</li>
+              <li style="font-size:14px;color:#555;font-weight:300;">Flow plataforma de pago electrónico</li>
+              <li style="font-size:14px;color:#555;font-weight:300;">Pago en cuotas (consultar disponibilidad)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false" data-acc="">
+          <span class="acc-btn-title">Política de cancelación</span>
+          <span class="acc-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="#0D0D0D" stroke-width="1.5" stroke-linecap="round"></path></svg></span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <p style="font-size:14px;color:#555;font-weight:300;line-height:1.75;">Ver <a href="Politicas Comerciales.dc.html" style="color:#0D0D0D;font-weight:500;border-bottom:1px solid #ccc;">Políticas Comerciales</a>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-btn" aria-expanded="false" data-acc="">
+          <span class="acc-btn-title">Contacto directo</span>
+          <span class="acc-icon"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="#0D0D0D" stroke-width="1.5" stroke-linecap="round"></path></svg></span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner" style="display:flex;flex-direction:column;gap:12px;">
+            <a href="https://wa.me/56959777238?text=Hola%2C%20quiero%20inscribirme%20en%20un%20programa" target="_blank" style="display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500;color:#0D0D0D;transition:opacity .2s;" style-hover="opacity:.7;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg>+56 9 5977 7238</a>
+            <a href="mailto:administracion@sanamaro.cl?subject=Consulta%20Inscripción" target="_blank" style="display:flex;align-items:center;gap:12px;font-size:14px;font-weight:500;color:#0D0D0D;transition:opacity .2s;" style-hover="opacity:.7;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>administracion@sanamaro.cl</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#0D0D0D;padding:20px 24px 0;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="background:#1A1A1A;border-radius:48px;border:1px solid rgba(255,255,255,.08);box-shadow:0 1px 3px rgba(0,0,0,.06);">
+      <div style="background:#111;border-radius:40px;margin:8px;">
+        <div class="sa-footer-grid" style="padding:28px 56px 20px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:40px;">
+          <div style="display:flex;flex-direction:column;gap:0;align-items:center;text-align:center;">
+            <a href="index.html" style="display:flex;justify-content:center;"><img loading="lazy" decoding="async" src="uploads/LOGOS -  VARIANTES-03 (1).webp" alt="San Amaro" style="height:210px;width:auto;object-fit:contain;margin-bottom:-24px;filter:brightness(0) invert(1);"></a>
+            <p style="font-size:16px;line-height:1.2;color:#8A867C;font-weight:400;max-width:300px;">Holding educacional especializado en formación continua para profesionales de la salud.</p>
+            <div style="display:flex;gap:10px;margin-top:16px;">
+              <a href="#" aria-label="LinkedIn" style="width:44px;height:44px;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;color:#fff;transition:background .2s;" style-hover="background:rgba(255,255,255,.12);"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"></path><circle cx="4" cy="4" r="2"></circle></svg></a>
+              <a href="#" aria-label="Instagram" style="width:44px;height:44px;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;color:#fff;transition:background .2s;" style-hover="background:rgba(255,255,255,.12);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+              <a href="#" aria-label="YouTube" style="width:44px;height:44px;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;color:#fff;transition:background .2s;" style-hover="background:rgba(255,255,255,.12);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.45A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.97A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"></path><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon></svg></a>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <h4 style="font-size:13px;font-weight:500;color:rgba(255,255,255,.25);letter-spacing:.08em;text-transform:uppercase;">Navegación</h4>
+            <ul style="display:flex;flex-direction:column;gap:14px;list-style:none;padding:0;margin:0;">
+              <li><a href="index.html#quienes-somos" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Quiénes somos</a></li>
+              <li><a href="index.html#proposito" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Propósito</a></li>
+              <li><a href="index.html#vision-mision" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Visión y misión</a></li>
+              <li><a href="index.html#valores" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Valores</a></li>
+              <li><a href="index.html#contacto" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Contacto</a></li>
+            </ul>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <h4 style="font-size:13px;font-weight:500;color:rgba(255,255,255,.25);letter-spacing:.08em;text-transform:uppercase;">Institutos</h4>
+            <ul style="display:flex;flex-direction:column;gap:14px;list-style:none;padding:0;margin:0;">
+              <li><a href="index.html#verticales" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">HARMONY</a></li>
+              <li><a href="index.html#verticales" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">AGC</a></li>
+              <li><a href="index.html#verticales" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Simetría</a></li>
+              <li><a href="index.html#verticales" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Premier Medical</a></li>
+              <li><a href="index.html#verticales" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Koncepto</a></li>
+              <li><a href="index.html#verticales" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Kinexia</a></li>
+            </ul>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <h4 style="font-size:13px;font-weight:500;color:rgba(255,255,255,.25);letter-spacing:.08em;text-transform:uppercase;">Enlaces</h4>
+            <ul style="display:flex;flex-direction:column;gap:14px;list-style:none;padding:0;margin:0;">
+              <li><a href="Aula Virtual.dc.html" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Aula Virtual</a></li>
+              <li><a href="Politicas Comerciales.dc.html" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Políticas Comerciales</a></li>
+              <li><a href="Certificados.dc.html" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Certificados</a></li>
+              <li><a href="Suscripciones.dc.html" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Suscripciones</a></li>
+              <li><a href="Inscripciones.dc.html" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Inscripciones</a></li>
+            </ul>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <h4 style="font-size:13px;font-weight:500;color:rgba(255,255,255,.25);letter-spacing:.08em;text-transform:uppercase;">Contacto</h4>
+            <ul style="display:flex;flex-direction:column;gap:14px;list-style:none;padding:0;margin:0;">
+              <li><a href="mailto:administracion@sanamaro.cl" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">administracion@sanamaro.cl</a></li>
+              <li><a href="https://wa.me/56959777238" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">+56 9 5977 7238</a></li>
+              <li><span style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);">Santiago, Chile</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="sa-footer-legal" style="padding:20px 56px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+        <p style="font-size:14px;color:rgba(255,255,255,.3);font-weight:500;">© 2025 Grupo Educacional San Amaro. Todos los derechos reservados.</p>
+        <div style="display:flex;gap:24px;align-items:center;">
+          <a href="Politicas Comerciales.dc.html" style="font-size:14px;color:rgba(255,255,255,.3);font-weight:500;transition:color .2s;" style-hover="color:rgba(255,255,255,.7);">Política de privacidad</a>
+          <div style="width:1px;height:16px;background:rgba(255,255,255,.15);"></div>
+          <a href="Politicas Comerciales.dc.html" style="font-size:14px;color:rgba(255,255,255,.3);font-weight:500;transition:color .2s;" style-hover="color:rgba(255,255,255,.7);">Términos de uso</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    document.querySelectorAll('[data-acc]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const body = btn.nextElementSibling;
+        const isOpen = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', !isOpen);
+        body.style.maxHeight = isOpen ? '0' : body.scrollHeight + 'px';
+      });
+    });
+  }
+}
+</script>
+</body>
+</html>
