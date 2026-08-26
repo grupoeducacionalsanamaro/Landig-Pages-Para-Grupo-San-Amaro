@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/verificaciondecertificado", "destination": "/Verificar%20Certificado.dc.html" }
+  ]
+}
