@@ -743,6 +743,17 @@ class Component extends DCLogic {
         this.registroConsentHidden.value = CONSENT_TEXT;
         this.registroSubmitBtn.disabled = true;
         this.registroSubmitBtn.textContent = 'Enviando...';
+
+        const formData = new FormData(this.registroForm);
+        fetch('/api/send-confirmation', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: formData.get('entry.1115672867'),
+            email: formData.get('entry.132554361')
+          })
+        }).catch((err) => { console.error('No se pudo enviar el correo de confirmación:', err); });
+
         this.registroSuccessTimer = setTimeout(() => {
           this.registroCard.classList.add('hide-form');
           this.registroSuccess.classList.add('show');
