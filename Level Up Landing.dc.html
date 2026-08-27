@@ -271,6 +271,38 @@
     </div>
   </section>
 
+  <section class="cronograma-section" data-reveal-section="cronograma" style="background:#000000; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:64px 24px;">
+    <div style="text-align:center; margin-bottom:56px; max-width:640px;">
+      <div style="display: inline-block; font-family: 'JetBrains Mono',monospace; font-size: 18px; letter-spacing: 0.15em; text-transform: uppercase; color: #FFFFFF; border: 1px solid rgba(255,255,255,0.1); border-radius: 999px; padding: 8px 16px; margin-bottom: 24px; opacity:{{ revealStyle.cronogramaKicker.opacity }}; transform:{{ revealStyle.cronogramaKicker.transform }}; filter:{{ revealStyle.cronogramaKicker.filter }}; transition:{{ revealStyle.cronogramaKicker.transition }}; background-color: #0063A987">Cronograma</div>
+      <h2 style="font-family:'Space Grotesk',sans-serif; font-weight:300; font-size:clamp(32px,5vw,48px); line-height:1.1; margin:0 0 16px; opacity:{{ revealStyle.cronogramaHeadline.opacity }}; transform:{{ revealStyle.cronogramaHeadline.transform }}; filter:{{ revealStyle.cronogramaHeadline.filter }}; transition:{{ revealStyle.cronogramaHeadline.transition }};">Cinco encuentros para seguir <em style="font-family:'Instrument Serif',serif; font-style:italic; color:{{ accent2 }};">creciendo</em>.</h2>
+      <p style="font-family:'Inter',sans-serif; font-size:16px; color:rgba(255,255,255,0.5); line-height:1.7; margin:0;">Después de LEVEL UP, la comunidad se reúne una vez al mes con un speaker distinto para profundizar en un tema clave.</p>
+    </div>
+    <div style="max-width:760px; width:100%;">
+      <sc-for list="{{ cronogramaItems }}" as="ev" hint-placeholder-count="6">
+        <div class="crono-item" style="position:relative; display:flex; gap:20px; align-items:flex-start; padding-bottom:36px; opacity:{{ ev.style.opacity }}; transform:{{ ev.style.transform }}; filter:{{ ev.style.filter }}; transition:{{ ev.style.transition }};">
+          <sc-if value="{{ ev.hasNext }}" hint-placeholder-val="{{ true }}">
+            <div style="position:absolute; left:11px; top:28px; bottom:0; width:2px; background:rgba(255,255,255,0.1);"></div>
+          </sc-if>
+          <div class="crono-dot" style="position:relative; z-index:1; flex-shrink:0; width:24px; height:24px; border-radius:50%; background:{{ ev.dotBg }}; display:flex; align-items:center; justify-content:center; margin-top:6px; transition:background 0.3s ease;">
+            <div style="width:8px; height:8px; border-radius:50%; background:#050608;"></div>
+          </div>
+          <div class="crono-card" style="flex-grow:1; min-width:0; background:{{ ev.cardBg }}; border:1px solid {{ ev.borderColor }}; border-radius:16px; padding:28px; box-sizing:border-box; display:flex; align-items:center; justify-content:space-between; gap:28px; transition:border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;" style-hover="border-color:{{ accent1 }}; box-shadow:0 14px 34px {{ ctaShadow }};">
+            <div class="crono-card-body" style="flex:1; min-width:0;">
+              <span style="display:inline-block; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; padding:5px 14px; border-radius:999px; background:{{ ev.tagBg }}; color:{{ ev.tagColor }}; margin-bottom:16px;">{{ ev.tag }}</span>
+              <div style="font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:34px; letter-spacing:-0.01em; color:#ffffff; line-height:1.1; margin-bottom:6px;">{{ ev.date }}</div>
+              <div style="font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-bottom:20px;">{{ ev.hora }} hrs</div>
+              <div style="font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:19px; color:rgba(255,255,255,0.85); line-height:1.35;">{{ ev.title }}</div>
+            </div>
+            <div class="crono-avatar-col" style="flex-shrink:0; display:flex; flex-direction:column; align-items:center; gap:12px;">
+              <div style="{{ ev.avatarStyle }}"></div>
+              <span style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.05em; text-transform:uppercase; color:rgba(255,255,255,0.5); text-align:center; white-space:nowrap;">{{ ev.speaker }}</span>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
   <section data-reveal-section="recibes" style="background:#000000; display:flex; align-items:center; padding:64px 24px;">
     <div style="max-width:1152px; margin:0 auto; width:100%; display:grid; grid-template-columns:1fr; gap:48px; align-items:stretch;" class="recibes-grid">
       <div style="position:relative; height:100%; opacity:{{ revealStyle.recibesLeft.opacity }}; transform:{{ revealStyle.recibesLeft.transform }}; filter:{{ revealStyle.recibesLeft.filter }}; transition:{{ revealStyle.recibesLeft.transition }};">
@@ -509,6 +541,9 @@
       .speakers-grid { grid-template-columns: 1fr !important; display: none !important; }
       .speakers-carousel { display: flex !important; }
       .speaker-card-wrap { margin: 0 auto !important; }
+      .crono-card { flex-direction: column !important; align-items: center !important; gap: 20px !important; padding: 22px !important; text-align: center !important; }
+      .crono-card-body { text-align: center !important; }
+      .crono-avatar-col { flex-direction: row !important; align-self: center !important; }
       .recibes-grid { grid-template-columns: 1fr !important; }
       .comunidad-grid { grid-template-columns: 1fr !important; }
       .footer-grid { width: 100% !important; height: auto !important; grid-template-columns: 1fr !important; justify-items: center !important; }
@@ -577,7 +612,7 @@ class Component extends DCLogic {
     scrolled: false,
     mounted: false,
     heroVisible: false,
-    revealed: { problema: false, paraquien: false, ejes: false, speakers: false, recibes: false, paises: false, comunidad: false, pricing: false }
+    revealed: { problema: false, paraquien: false, ejes: false, speakers: false, cronograma: false, recibes: false, paises: false, comunidad: false, pricing: false }
   };
 
   setPage = (el) => { this.pageNode = el; };
@@ -839,6 +874,26 @@ class Component extends DCLogic {
     }));
     const speakersCarousel = [...speakersItems, ...speakersItems];
 
+    const cronogramaData = [
+      { num: '1er', speaker: 'Bruno Realini', photo: 'assets/speaker-bruno-realini.png', title: 'Marca personal', date: '10 Septiembre', hora: '13:30', active: true },
+      { num: '2do', speaker: 'Christian Saavedra', photo: 'assets/speaker-christian-saavedra.png', title: 'Marketing que funciona', date: '08 Octubre', hora: '13:30' },
+      { num: '3er', speaker: 'Elio Rincón', photo: 'assets/speaker-elio-rincon.png', title: 'IA en Salud: De la Herramienta a la Acción', date: '15 Octubre', hora: '13:30' },
+      { num: '4to', speaker: 'Cristian Cáceres', photo: 'assets/speaker-cristian-caceres.png', title: '4 pasos para pasar de presupuesto a pacientes recurrentes', date: '12 Noviembre', hora: '13:30' },
+      { num: '5to', speaker: 'Alexis González', photo: 'assets/speaker-alexis-gonzalez.png', title: 'Establecimiento de metas 2027', date: '26 Noviembre', hora: '13:30' }
+    ];
+    const cronogramaItems = cronogramaData.map((e, i) => ({
+      ...e,
+      tag: `${e.num} encuentro`,
+      hasNext: i !== cronogramaData.length - 1,
+      style: mk(r.cronograma, 100 + i * 90),
+      avatarStyle: makeAvatarStyle(e.photo, '88px'),
+      dotBg: e.active ? accent1 : 'rgba(255,255,255,0.15)',
+      tagColor: e.active ? accent1 : 'rgba(255,255,255,0.5)',
+      tagBg: e.active ? this.hexToRgba(accent1, 0.15) : 'rgba(255,255,255,0.06)',
+      cardBg: e.active ? `radial-gradient(circle at 15% -15%, ${this.hexToRgba(accent1, 0.16)} 0%, transparent 55%), #0B0E17` : 'rgba(255,255,255,0.02)',
+      borderColor: e.active ? this.hexToRgba(accent1, 0.4) : 'rgba(255,255,255,0.08)'
+    }));
+
     const criteriosData = [
       'Tienes una consulta, clínica o centro de salud.',
       'Lideras un pequeño equipo.',
@@ -887,12 +942,13 @@ class Component extends DCLogic {
       heroLine2Style: mk(heroVisible, 400, 20),
       heroSubStyle: mk(heroVisible, 600, 20),
       heroCtaStyle: mk(heroVisible, 800, 20),
-      ejesItems, speakersItems, speakersCarousel, criteriosItems, recibesItems, paisesItems,
+      ejesItems, speakersItems, speakersCarousel, cronogramaItems, criteriosItems, recibesItems, paisesItems,
       revealStyle: {
         problemaKicker: mk(r.problema, 0), problemaHeadline: mk(r.problema, 80), problemaBody: mk(r.problema, 160),
         paraquienLeft: mk(r.paraquien, 0), paraquienRight: mk(r.paraquien, 120),
         ejesKicker: mk(r.ejes, 0), ejesHeadline: mk(r.ejes, 80),
         speakersKicker: mk(r.speakers, 0), speakersHeadline: mk(r.speakers, 80),
+        cronogramaKicker: mk(r.cronograma, 0), cronogramaHeadline: mk(r.cronograma, 80),
         recibesLeft: mk(r.recibes, 0), recibesRight: mk(r.recibes, 100),
         paisesBlock: mk(r.paises, 0),
         comunidadLeft: mk(r.comunidad, 0), comunidadRight: mk(r.comunidad, 120),
