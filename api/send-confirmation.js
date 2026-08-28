@@ -159,7 +159,7 @@ module.exports = async (req, res) => {
       return;
     }
 
-    res.status(200).json({ ok: true });
+    res.status(200).json({ ok: true, debugName: name, debugCharCodes: Array.from(name).map(c => c.codePointAt(0)) });
   } catch (err) {
     console.error('send-confirmation error:', err);
     res.status(500).json({ ok: false, error: 'No se pudo enviar el correo de confirmación.' });
