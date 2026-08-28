@@ -1,4 +1,5 @@
 const FROM_EMAIL = 'LEVEL UP <levelup@send.sanamaro.cl>';
+const REPLY_TO_EMAIL = 'levelup@sanamaro.cl';
 
 const ENCUENTRO = {
   numero: '1er encuentro',
@@ -65,6 +66,7 @@ module.exports = async (req, res) => {
       body: JSON.stringify({
         from: FROM_EMAIL,
         to: [email],
+        reply_to: REPLY_TO_EMAIL,
         subject: `Confirmado: ${ENCUENTRO.numero} de LEVEL UP — ${ENCUENTRO.fecha}`,
         html,
       }),
