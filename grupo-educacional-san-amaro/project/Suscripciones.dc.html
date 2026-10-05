@@ -135,6 +135,7 @@
     .sf-trust{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:22px;font-size:13px;color:#6B675E;}
 
     @media (max-width: 640px) {
+      .sf-section{padding:40px 0 56px;}
       .sf-wrap{padding:0 16px;}
       .sf-card{border-radius:24px;}
       .sf-top{padding:16px 18px;gap:12px;}
@@ -607,12 +608,32 @@ class Component extends DCLogic {
         + '<div class="sf-actions"><a class="sf-btn" href="index.html">Volver al inicio ' + ARROW + '</a><a class="sf-link" href="https://wa.me/56959777238" target="_blank" rel="noopener">Escríbenos por WhatsApp</a></div></div>';
     };
 
+    // Altura ocupada por la barra de menú fija (para no quedar pegado a ella)
+    const navBottom = () => {
+      const nav = document.querySelector('nav');
+      return nav ? Math.max(0, nav.getBoundingClientRect().bottom) : 0;
+    };
+
+    // Lleva el formulario a la vista: centrado en el espacio libre bajo la barra si cabe,
+    // o alineado bajo ella con un margen si es más alto que la pantalla.
+    const scrollToForm = (smooth) => {
+      const card = document.getElementById('sf-card');
+      const rect = card.getBoundingClientRect();
+      const nb = navBottom();
+      const free = window.innerHeight - nb;
+      const offset = nb + Math.max(20, (free - rect.height) / 2);
+      window.scrollTo({ top: Math.max(0, window.scrollY + rect.top - offset), behavior: smooth ? 'smooth' : 'auto' });
+    };
+
     const go = (next) => {
       state.history.push(current);
       render(next);
-      const card = document.getElementById('sf-card');
-      const top = card.getBoundingClientRect().top;
-      if (top < 70 || top > window.innerHeight * 0.6) window.scrollTo({ top: window.scrollY + top - 100, behavior: 'smooth' });
+      const rect = document.getElementById('sf-card').getBoundingClientRect();
+      const top = rect.top;
+      const nb = navBottom();
+      if (top < nb + 12 || (rect.bottom > window.innerHeight && top > nb + 28)) {
+        window.scrollTo({ top: window.scrollY + top - nb - 20, behavior: 'smooth' });
+      }
     };
 
     const choose = (stepId, i) => {
@@ -751,8 +772,12 @@ class Component extends DCLogic {
 
     render('residence');
     if (location.hash === '#formulario') {
-      setTimeout(() => document.getElementById('formulario').scrollIntoView({ behavior: 'smooth' }), 150);
+      setTimeout(() => scrollToForm(true), 150);
     }
+    document.querySelectorAll('a[href="#formulario"]').forEach(a => a.addEventListener('click', (e) => {
+      e.preventDefault();
+      scrollToForm(true);
+    }));
   }
 }
 </script>
