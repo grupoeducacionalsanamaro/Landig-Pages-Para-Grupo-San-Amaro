@@ -159,7 +159,7 @@
       <a href="index.html#verticales" style="transition:color .2s;" style-hover="color:#000">Institutos</a>
       <a href="index.html#contacto" style="transition:color .2s;" style-hover="color:#000">Contacto</a>
     </div>
-    <a href="index.html#contacto" style="background:#0D0D0D;color:#fff;font-weight:600;font-size:13px;padding:11px 22px;border-radius:100px;transition:opacity .2s;" style-hover="opacity:.8;">Especialízate</a>
+    <a href="#formulario" style="background:#0D0D0D;color:#fff;font-weight:600;font-size:13px;padding:11px 22px;border-radius:100px;transition:opacity .2s;" style-hover="opacity:.8;">Especialízate</a>
   </nav>
 </div>
 
@@ -173,7 +173,7 @@
 </section>
 
 <!-- FORMULARIO -->
-<section class="sf-section">
+<section class="sf-section" id="formulario">
   <div class="sf-wrap">
     <div class="sf-card" id="sf-card">
       <div class="sf-top">
@@ -731,6 +731,9 @@ class Component extends DCLogic {
     });
 
     render('residence');
+    if (location.hash === '#formulario') {
+      setTimeout(() => document.getElementById('formulario').scrollIntoView({ behavior: 'smooth' }), 150);
+    }
   }
 }
 </script>
