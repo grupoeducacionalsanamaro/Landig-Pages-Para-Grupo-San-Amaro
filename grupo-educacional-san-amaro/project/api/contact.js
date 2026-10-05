@@ -1,4 +1,4 @@
-const TO_EMAIL = 'info@sanamaro.cl';
+const TO_EMAIL = 'admision@sanamaro.cl';
 const FROM_EMAIL = 'Web Grupo San Amaro <contacto@send.sanamaro.cl>';
 
 function escapeHtml(str) {
