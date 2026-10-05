@@ -15,17 +15,122 @@
     body{font-family:'Inter',sans-serif;background:#fff;color:#0D0D0D;}
     a{color:inherit;text-decoration:none;}
     @keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
-    @keyframes breath{0%,100%{transform:scale(1);}50%{transform:scale(1.03);}}
 
-    .card-wrap{animation:fadeUp .8s ease-out both;}
-    .card-wrap:nth-child(1){animation-delay:.1s;}
-    .card-wrap:nth-child(2){animation-delay:.2s;}
-    .card-wrap:nth-child(3){animation-delay:.3s;}
-    .card-wrap:nth-child(4){animation-delay:.4s;}
-    .card-wrap:nth-child(5){animation-delay:.5s;}
-    .inst-btn{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);color:#fff;font-size:13px;font-weight:600;padding:12px 22px;border-radius:100px;border:1px solid rgba(255,255,255,.15);transition:background .2s,border-color .2s;cursor:pointer;font-family:'Inter',sans-serif;text-decoration:none;}
-    .inst-btn:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.3);}
-  
+    /* ---------- Formulario de suscripción ---------- */
+    @keyframes sfIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes sfInBack{from{opacity:0;transform:translateY(-14px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes sfPop{0%{transform:scale(.6);opacity:0;}60%{transform:scale(1.08);opacity:1;}100%{transform:scale(1);}}
+    @keyframes sfDraw{to{stroke-dashoffset:0;}}
+    @keyframes sfSpin{to{transform:rotate(360deg);}}
+    @keyframes sfShake{0%,100%{transform:translateX(0);}25%{transform:translateX(-5px);}75%{transform:translateX(5px);}}
+
+    .sf-section{background:#F5F5F3;padding:0 0 120px;display:flow-root;}
+    .sf-wrap{max-width:780px;margin:-72px auto 0;padding:0 24px;position:relative;z-index:5;animation:fadeUp .8s ease-out .15s both;}
+    .sf-card{background:#fff;border-radius:32px;border:1px solid rgba(0,0,0,.06);box-shadow:0 30px 80px -30px rgba(0,0,0,.25),0 2px 6px rgba(0,0,0,.04);overflow:hidden;}
+    .sf-top{display:flex;align-items:center;gap:16px;padding:22px 32px;border-bottom:1px solid rgba(0,0,0,.06);}
+    .sf-back{display:inline-flex;align-items:center;gap:6px;font:500 13px 'Inter',sans-serif;color:#555;background:none;border:none;cursor:pointer;padding:8px 10px 8px 4px;border-radius:100px;transition:color .2s,opacity .2s,background .2s;}
+    .sf-back:hover{color:#0D0D0D;background:#F5F5F3;}
+    .sf-back[hidden]{display:inline-flex;visibility:hidden;}
+    .sf-progress{flex:1;height:4px;background:#EEEDEA;border-radius:100px;overflow:hidden;}
+    .sf-progress span{display:block;height:100%;width:0;background:#0D0D0D;border-radius:100px;transition:width .5s cubic-bezier(.22,1,.36,1);}
+    .sf-count{font:500 12px 'Inter',sans-serif;color:#8A867C;letter-spacing:.04em;min-width:64px;text-align:right;font-variant-numeric:tabular-nums;}
+
+    .sf-stage{padding:44px 48px 48px;min-height:340px;}
+    .sf-step{animation:sfIn .45s cubic-bezier(.22,1,.36,1) both;}
+    .sf-step.is-back{animation-name:sfInBack;}
+    .sf-inst{display:inline-flex;align-items:center;gap:10px;background:#F5F5F3;border-radius:100px;padding:5px 14px 5px 5px;margin-bottom:18px;}
+    .sf-inst img{width:30px;height:30px;border-radius:50%;object-fit:contain;background:#111113;}
+    .sf-inst span{font:600 11px 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#0D0D0D;}
+    .sf-eyebrow{font:500 12px 'Inter',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#8A867C;margin-bottom:12px;}
+    .sf-title{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(24px,3.2vw,34px);line-height:1.15;letter-spacing:-.02em;color:#0D0D0D;margin-bottom:12px;}
+    .sf-intro{font-size:15px;line-height:1.6;color:#6B675E;font-weight:300;max-width:600px;margin-bottom:28px;}
+    .sf-note{display:flex;gap:10px;align-items:flex-start;background:#FBF6EC;border:1px solid #F0E3C4;color:#7A5B12;border-radius:14px;padding:12px 14px;font-size:13px;line-height:1.5;margin:-12px 0 24px;}
+
+    .sf-options{display:grid;gap:10px;}
+    .sf-options.cols-2{grid-template-columns:1fr 1fr;}
+    .sf-opt{position:relative;display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:#fff;border:1.5px solid #E6E4DF;border-radius:16px;padding:15px 18px;cursor:pointer;font-family:'Inter',sans-serif;color:#0D0D0D;transition:border-color .2s,background .2s,transform .15s,box-shadow .2s;}
+    .sf-opt:hover{border-color:#0D0D0D;box-shadow:0 6px 18px -8px rgba(0,0,0,.2);}
+    .sf-opt:active{transform:scale(.99);}
+    .sf-opt:focus-visible{outline:3px solid rgba(13,13,13,.25);outline-offset:2px;}
+    .sf-key{flex-shrink:0;width:28px;height:28px;border-radius:8px;border:1.5px solid #E6E4DF;display:flex;align-items:center;justify-content:center;font:600 12px 'Inter',sans-serif;color:#8A867C;transition:all .2s;}
+    .sf-ico{flex-shrink:0;font-size:22px;line-height:1;}
+    .sf-opt-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;}
+    .sf-opt-title{font-size:15px;font-weight:600;line-height:1.35;}
+    .sf-opt-sub{font-size:13px;color:#6B675E;font-weight:400;line-height:1.4;}
+    .sf-chip{flex-shrink:0;font:500 11px 'Inter',sans-serif;color:#555;background:#F5F5F3;border-radius:100px;padding:5px 10px;white-space:nowrap;transition:all .2s;}
+    .sf-opt-dur{display:none;}
+    .sf-check{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:#fff;color:#0D0D0D;display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(.5);transition:all .25s cubic-bezier(.22,1,.36,1);}
+    .sf-opt.is-selected{background:#0D0D0D;border-color:#0D0D0D;color:#fff;}
+    .sf-opt.is-selected .sf-opt-sub{color:rgba(255,255,255,.65);}
+    .sf-opt.is-selected .sf-key{border-color:rgba(255,255,255,.3);color:#fff;}
+    .sf-opt.is-selected .sf-chip{background:rgba(255,255,255,.14);color:#fff;}
+    .sf-opt.is-selected .sf-check{opacity:1;transform:scale(1);}
+
+    .sf-fields{display:grid;gap:22px;}
+    .sf-field label{display:block;font:600 13px 'Inter',sans-serif;color:#0D0D0D;margin-bottom:8px;}
+    .sf-field .sf-hint{font-weight:400;color:#8A867C;}
+    .sf-input{width:100%;font:400 17px 'Inter',sans-serif;color:#0D0D0D;background:#FAFAF8;border:1.5px solid #E6E4DF;border-radius:14px;padding:15px 16px;outline:none;transition:border-color .2s,box-shadow .2s,background .2s;}
+    .sf-input::placeholder{color:#B5B1A8;}
+    .sf-input:focus{border-color:#0D0D0D;background:#fff;box-shadow:0 0 0 4px rgba(13,13,13,.06);}
+    .sf-field.has-error .sf-input{border-color:#C0392B;animation:sfShake .3s;}
+    .sf-err{display:none;font-size:12.5px;color:#C0392B;margin-top:6px;}
+    .sf-field.has-error .sf-err{display:block;}
+    .sf-other{margin-top:12px;display:none;}
+    .sf-other.is-open{display:flex;gap:10px;animation:sfIn .35s both;}
+
+    .sf-actions{display:flex;align-items:center;gap:16px;margin-top:30px;flex-wrap:wrap;}
+    .sf-btn{display:inline-flex;align-items:center;gap:10px;background:#0D0D0D;color:#fff;font:600 15px 'Inter',sans-serif;padding:15px 28px;border-radius:100px;border:none;cursor:pointer;transition:transform .15s,opacity .2s,box-shadow .2s;box-shadow:0 10px 24px -10px rgba(0,0,0,.5);}
+    .sf-btn:hover{transform:translateY(-1px);}
+    .sf-btn:active{transform:translateY(0) scale(.98);}
+    .sf-btn[disabled]{opacity:.35;cursor:not-allowed;transform:none;box-shadow:none;}
+    .sf-btn .sf-spin{width:16px;height:16px;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:sfSpin .7s linear infinite;}
+    .sf-kbd{font-size:12px;color:#8A867C;}
+    .sf-kbd b{font-weight:600;color:#555;background:#F5F5F3;border-radius:6px;padding:2px 7px;margin-right:4px;}
+
+    .sf-consent{display:flex;gap:14px;align-items:flex-start;cursor:pointer;border:1.5px solid #E6E4DF;border-radius:16px;padding:18px;transition:border-color .2s,background .2s;}
+    .sf-consent:hover{border-color:#0D0D0D;}
+    .sf-consent input{position:absolute;opacity:0;pointer-events:none;}
+    .sf-box{flex-shrink:0;width:24px;height:24px;border-radius:7px;border:1.5px solid #CFCBC2;display:flex;align-items:center;justify-content:center;color:#fff;transition:all .2s;margin-top:1px;}
+    .sf-box svg{opacity:0;transform:scale(.5);transition:all .2s;}
+    .sf-consent.is-on{border-color:#0D0D0D;background:#FAFAF8;}
+    .sf-consent.is-on .sf-box{background:#0D0D0D;border-color:#0D0D0D;}
+    .sf-consent.is-on .sf-box svg{opacity:1;transform:scale(1);}
+    .sf-consent p{font-size:14px;line-height:1.55;color:#333;}
+    .sf-legal{font-size:13px;line-height:1.6;color:#6B675E;background:#F5F5F3;border-radius:14px;padding:16px 18px;margin-bottom:16px;}
+    .sf-legal a{text-decoration:underline;text-underline-offset:2px;color:#0D0D0D;}
+    .sf-summary{display:grid;gap:8px;margin-bottom:22px;}
+    .sf-summary div{display:flex;justify-content:space-between;gap:16px;font-size:13px;padding:10px 0;border-bottom:1px dashed #E6E4DF;}
+    .sf-summary dt{color:#8A867C;flex-shrink:0;}
+    .sf-summary dd{color:#0D0D0D;font-weight:500;text-align:right;}
+    .sf-alert{display:none;margin-top:16px;font-size:13px;line-height:1.5;color:#C0392B;background:#FDF1EF;border-radius:12px;padding:12px 14px;}
+    .sf-alert.is-on{display:block;}
+    .sf-alert a{text-decoration:underline;font-weight:600;}
+
+    .sf-done{text-align:center;padding:24px 0 8px;}
+    .sf-done-ico{width:84px;height:84px;border-radius:50%;background:#0D0D0D;color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 26px;animation:sfPop .6s cubic-bezier(.22,1,.36,1) both;}
+    .sf-done-ico path{stroke-dasharray:30;stroke-dashoffset:30;animation:sfDraw .5s .35s ease-out forwards;}
+    .sf-done .sf-intro{margin:0 auto 30px;}
+    .sf-done .sf-actions{justify-content:center;}
+    .sf-link{font:600 14px 'Inter',sans-serif;color:#0D0D0D;text-decoration:underline;text-underline-offset:3px;}
+
+    .sf-trust{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:22px;font-size:13px;color:#8A867C;}
+
+    @media (max-width: 640px) {
+      .sf-wrap{margin-top:-48px;padding:0 16px;}
+      .sf-card{border-radius:24px;}
+      .sf-top{padding:16px 18px;gap:12px;}
+      .sf-stage{padding:30px 20px 32px;min-height:0;}
+      .sf-options.cols-2{grid-template-columns:1fr;}
+      .sf-opt{padding:14px;gap:12px;}
+      .sf-key{display:none;}
+      .sf-chip{display:none;}
+      .sf-opt-dur{display:inline-block;width:fit-content;margin-top:4px;font-size:11.5px;font-weight:500;color:#555;background:#F5F5F3;border-radius:100px;padding:3px 9px;}
+      .sf-opt.is-selected .sf-opt-dur{background:rgba(255,255,255,.14);color:#fff;}
+      .sf-kbd{display:none;}
+      .sf-btn{width:100%;justify-content:center;}
+      .sf-other.is-open{flex-direction:column;}
+    }
+
     @media (max-width: 700px) {
       .sa-sub-navlinks { display: none !important; }
     }
@@ -59,109 +164,26 @@
 </div>
 
 <!-- HERO -->
-<section style="background:#0D0D0D;padding:160px 0 80px;">
-  <div style="max-width:900px;margin:0 auto;padding:0 48px;text-align:center;">
-    <p style="font-size:25px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:20px;">Institutos</p>
-    <h1 style="font-family:'Fraunces',serif;font-size:clamp(36px,5vw,64px);font-weight:600;color:#FAF9F5;line-height:1.1;letter-spacing:-.025em;margin-bottom:20px;">Suscripciones</h1>
-    <p style="font-size:17px;color:rgba(255,255,255,.45);font-weight:300;line-height:1.6;max-width:520px;margin:0 auto;">Selecciona el instituto al que deseas suscribirte y completa el formulario correspondiente.</p>
+<section style="background:#0D0D0D;padding:160px 0 140px;">
+  <div style="max-width:900px;margin:0 auto;padding:0 24px;text-align:center;">
+    <p style="font-size:14px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:20px;">Suscripciones</p>
+    <h1 style="font-family:'Fraunces',serif;font-size:clamp(34px,5vw,60px);font-weight:600;color:#FAF9F5;line-height:1.1;letter-spacing:-.025em;margin-bottom:20px;">Encuentra tu próxima formación</h1>
+    <p style="font-size:17px;color:rgba(255,255,255,.5);font-weight:300;line-height:1.6;max-width:560px;margin:0 auto;">Queremos mostrarte únicamente las formaciones que realmente corresponden a tu perfil. Completa este breve registro y accede a programas, próximas fechas y beneficios disponibles.</p>
   </div>
 </section>
 
-<!-- CARDS -->
-<section style="background:#fff;padding:60px 0 120px;">
-  <div style="max-width:1000px;margin:0 auto;padding:0 48px;">
-
-    <!-- Row 1: 3 cards -->
-    <div class="sa-sub-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:24px;">
-
-      <!-- Harmony -->
-      <div class="card-wrap" style="position:relative;display:flex;flex-direction:column;align-items:center;">
-        <div style="position:absolute;inset:0;border-radius:40px;opacity:.55;pointer-events:none;filter:blur(45px);background:linear-gradient(137deg,#D0D0D0 0%,#E8E8E8 45%,#C8C8C8 100%);"></div>
-        <div style="position:relative;z-index:10;width:100%;border-radius:40px;overflow:hidden;padding:8px;background:linear-gradient(#1A1A1C,#1A1A1C) padding-box,linear-gradient(137deg,#D0D0D0 0%,#E8E8E8 45%,#C8C8C8 100%) border-box;border:2px solid transparent;">
-          <div style="background:#111113;border-radius:33px;padding:36px 28px 24px;display:flex;flex-direction:column;align-items:center;gap:16px;height:300px">
-            <img loading="lazy" decoding="async" src="uploads/Harmoy Institute-fe9db893.webp" alt="Harmony" style="height:90px;width:90px;object-fit:contain;border-radius:50%;">
-            <p style="font-family:'Inter',sans-serif;font-size:12px;font-weight:500;color:rgba(255,255,255,.7);text-align:center;letter-spacing:.22em;text-transform:uppercase;min-height:32px;display:flex;align-items:center;justify-content:center;">HARMONY Institute</p>
-            <p style="font-size:12px;color:rgba(255,255,255,.45);text-align:center;font-weight:300;line-height:1.4;padding:0 8px;min-height:48px;display:flex;align-items:center;justify-content:center;">Formación en Armonización Orofacial para médicos y odontólogos</p>
-            <a href="https://docs.google.com/forms/d/1JOydOFFgZPKnisGPCyaxh5QHVcwbzc0cCurIG9GygPA/edit" target="_blank" class="inst-btn" style="margin-top:auto;">Suscribirse <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
-          </div>
-        </div>
+<!-- FORMULARIO -->
+<section class="sf-section">
+  <div class="sf-wrap">
+    <div class="sf-card" id="sf-card">
+      <div class="sf-top">
+        <button type="button" class="sf-back" id="sf-back" hidden><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>Atrás</button>
+        <div class="sf-progress" role="progressbar" aria-label="Progreso del formulario"><span id="sf-bar"></span></div>
+        <span class="sf-count" id="sf-count"></span>
       </div>
-
-      <!-- AGC -->
-      <div class="card-wrap" style="position:relative;display:flex;flex-direction:column;align-items:center;">
-        <div style="position:absolute;inset:0;border-radius:40px;opacity:.55;pointer-events:none;filter:blur(45px);background:linear-gradient(137deg,#D0D0D0 0%,#E8E8E8 45%,#C8C8C8 100%);"></div>
-        <div style="position:relative;z-index:10;width:100%;border-radius:40px;overflow:hidden;padding:8px;background:linear-gradient(#1A1A1C,#1A1A1C) padding-box,linear-gradient(137deg,#D0D0D0 0%,#E8E8E8 45%,#C8C8C8 100%) border-box;border:2px solid transparent;">
-          <div style="background:#111113;border-radius:33px;padding:36px 28px 24px;display:flex;flex-direction:column;align-items:center;gap:16px;height:300px;">
-            <img loading="lazy" decoding="async" src="uploads/AGC Institute-c1c87334.webp" alt="AGC" style="height:90px;width:90px;object-fit:contain;border-radius:50%;">
-            <p style="font-family:'Inter',sans-serif;font-size:12px;font-weight:500;color:rgba(255,255,255,.7);text-align:center;letter-spacing:.22em;text-transform:uppercase;min-height:32px;display:flex;align-items:center;justify-content:center;">AGC Institute</p>
-            <p style="font-size:12px;color:rgba(255,255,255,.45);text-align:center;font-weight:300;line-height:1.4;padding:0 8px;min-height:48px;display:flex;align-items:center;justify-content:center;">Formación en Odontología y Cirugía Bucal</p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdl1IAGSf0RR1qOoyCFZBoU00_gXKp3l25R6oRjJMUnkMt8Dw/viewform?usp=header" target="_blank" class="inst-btn" style="margin-top:auto;">Suscribirse <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Simetría -->
-      <div class="card-wrap" style="position:relative;display:flex;flex-direction:column;align-items:center;">
-        <div style="position:absolute;inset:0;border-radius:40px;opacity:.55;pointer-events:none;filter:blur(45px);background:linear-gradient(137deg,#D0D0D0 0%,#E8E8E8 45%,#C8C8C8 100%);"></div>
-        <div style="position:relative;z-index:10;width:100%;border-radius:40px;overflow:hidden;padding:8px;background:linear-gradient(#1A1A1C,#1A1A1C) padding-box,linear-gradient(137deg,#D0D0D0 0%,#E8E8E8 45%,#C8C8C8 100%) border-box;border:2px solid transparent;">
-          <div style="background:#111113;border-radius:33px;padding:36px 28px 24px;display:flex;flex-direction:column;align-items:center;gap:16px;height:300px;">
-            <img loading="lazy" decoding="async" src="uploads/Simetria Institute-ebd07fe9.webp" alt="Simetría" style="height:90px;width:90px;object-fit:contain;border-radius:50%;">
-            <p style="font-family:'Inter',sans-serif;font-size:12px;font-weight:500;color:rgba(255,255,255,.7);text-align:center;letter-spacing:.22em;text-transform:uppercase;min-height:32px;display:flex;align-items:center;justify-content:center;">Simetría Institute</p>
-            <p style="font-size:12px;color:rgba(255,255,255,.45);text-align:center;font-weight:300;line-height:1.4;padding:0 8px;min-height:48px;display:flex;align-items:center;justify-content:center;">Formación Dermoestética Para Enfermeras</p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdBsF6eXOmVOvT4r8ednup9-UjLLZstD5uWckg6OnKMZ5679A/viewform" target="_blank" class="inst-btn" style="margin-top:auto;">Suscribirse <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
-          </div>
-        </div>
-      </div>
-
+      <div class="sf-stage" id="sf-stage" aria-live="polite"></div>
     </div>
-
-    <!-- Row 2: 3 cards -->
-    <div class="sa-sub-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
-
-      <!-- Premier -->
-      <div class="card-wrap" style="position:relative;display:flex;flex-direction:column;align-items:center;">
-        <div style="position:absolute;inset:0;border-radius:40px;opacity:.55;pointer-events:none;filter:blur(45px);background:linear-gradient(137deg,#D0D0D0 0%,#E8E8E8 45%,#C8C8C8 100%);"></div>
-        <div style="position:relative;z-index:10;width:100%;border-radius:40px;overflow:hidden;padding:8px;background:linear-gradient(#1A1A1C,#1A1A1C) padding-box,linear-gradient(137deg,#D0D0D0 0%,#E8E8E8 45%,#C8C8C8 100%) border-box;border:2px solid transparent;">
-          <div style="background:#111113;border-radius:33px;padding:36px 28px 24px;display:flex;flex-direction:column;align-items:center;gap:16px;height:300px;">
-            <img loading="lazy" decoding="async" src="uploads/Premier Institute-90f850c8.webp" alt="Premier" style="height:90px;width:90px;object-fit:contain;border-radius:50%;">
-            <p style="font-family:'Inter',sans-serif;font-size:12px;font-weight:500;color:rgba(255,255,255,.7);text-align:center;letter-spacing:.22em;text-transform:uppercase;min-height:32px;display:flex;align-items:center;justify-content:center;">Premier Medical Institute</p>
-            <p style="font-size:12px;color:rgba(255,255,255,.45);text-align:center;font-weight:300;line-height:1.4;padding:0 8px;min-height:48px;display:flex;align-items:center;justify-content:center;">Formación en Medicina Estética para Médicos</p>
-            <a href="https://docs.google.com/forms/d/19QGW0B8Q1tgxwzJIRFNgU8oXIBiivxUDoBoeWTay_6Q/edit" target="_blank" class="inst-btn" style="margin-top:auto;">Suscribirse <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Koncepto -->
-      <div class="card-wrap" style="position:relative;display:flex;flex-direction:column;align-items:center;">
-        <div style="position:absolute;inset:0;border-radius:40px;opacity:.55;pointer-events:none;filter:blur(45px);background:linear-gradient(137deg,#D0D0D0 0%,#E8E8E8 45%,#C8C8C8 100%);"></div>
-        <div style="position:relative;z-index:10;width:100%;border-radius:40px;overflow:hidden;padding:8px;background:linear-gradient(#1A1A1C,#1A1A1C) padding-box,linear-gradient(137deg,#D0D0D0 0%,#E8E8E8 45%,#C8C8C8 100%) border-box;border:2px solid transparent;">
-          <div style="background:#111113;border-radius:33px;padding:36px 28px 24px;display:flex;flex-direction:column;align-items:center;gap:16px;height:300px;">
-            <img loading="lazy" decoding="async" src="uploads/Koncepto Institute-ac830fd2.webp" alt="Koncepto" style="height:90px;width:90px;object-fit:contain;border-radius:50%;">
-            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
-              <p style="font-family: 'Inter',sans-serif; font-size: 12px; font-weight: 500; color: rgba(255,255,255,.7); text-align: center; letter-spacing: .22em; text-transform: uppercase; min-height: 32px; display: flex; align-items: center; justify-content: center; width: 88px; height: 41px">Koncepto</p>
-              <p style="font-size:12px;color:rgba(255,255,255,.45);text-align:center;font-weight:300;line-height:1.4;padding:0 8px;min-height:48px;display:flex;align-items:center;justify-content:center;">Formación en Armonización Orofacial en Concepción - Chile</p>
-            </div>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLScNJQoCVCBhJi3PKnUigg69SBXFIQkYdF-SPc1iT7eXol1waw/viewform" target="_blank" class="inst-btn" style="margin-top:auto;">Suscribirse <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Seminarios y Masterclass -->
-      <div class="card-wrap" style="position:relative;display:flex;flex-direction:column;align-items:center;">
-        <div style="position:absolute;inset:0;border-radius:40px;opacity:.55;pointer-events:none;filter:blur(45px);background:linear-gradient(137deg,#D0D0D0 0%,#E8E8E8 45%,#C8C8C8 100%);"></div>
-        <div style="position:relative;z-index:10;width:100%;border-radius:40px;overflow:hidden;padding:8px;background:linear-gradient(#1A1A1C,#1A1A1C) padding-box,linear-gradient(137deg,#D0D0D0 0%,#E8E8E8 45%,#C8C8C8 100%) border-box;border:2px solid transparent;">
-          <div style="background:#111113;border-radius:33px;padding:36px 28px 24px;display:flex;flex-direction:column;align-items:center;gap:16px;height:300px;">
-            <div style="display:flex;flex-direction:column;align-items:center;gap:12px;flex:1;justify-content:center;">
-              <img loading="lazy" decoding="async" src="uploads/Master Class (online y gratuito).webp" alt="Masterclass" style="height:90px;width:90px;object-fit:contain;border-radius:50%;">
-              <p style="font-family: 'Inter',sans-serif; font-size: 12px; font-weight: 500; color: rgba(255,255,255,.7); text-align: center; letter-spacing: .22em; text-transform: uppercase; min-height: 32px; display: flex; align-items: center; justify-content: center; width: 210px; height: 39px">Seminarios y Masterclass</p>
-              <p style="font-size:12px;color:rgba(255,255,255,.35);text-align:center;font-weight:300;min-height:48px;display:flex;align-items:center;justify-content:center;">Online · Gratuitos</p>
-            </div>
-            <a href="https://docs.google.com/forms/d/119wXYKr7GALP9Nyw1bTjR3RB-_rUoxIXdQPaOiUrwJU/edit" target="_blank" class="inst-btn" style="margin-top:auto;">Suscribirse <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></a>
-          </div>
-        </div>
-      </div>
-
-    </div>
+    <p class="sf-trust"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>Tus datos están protegidos según la Ley 21.719</p>
   </div>
 </section>
 
@@ -234,7 +256,483 @@
 </footer>
 </x-dc>
 <script type="text/x-dc" data-dc-script>
-class Component extends DCLogic {}
+class Component extends DCLogic {
+  componentDidMount() {
+    if (this._sfReady) return;
+    this._sfReady = true;
+    this.setupSubscriptionForm();
+  }
+
+  setupSubscriptionForm() {
+    const stage = document.getElementById('sf-stage');
+    const bar = document.getElementById('sf-bar');
+    const count = document.getElementById('sf-count');
+    const backBtn = document.getElementById('sf-back');
+    if (!stage) return;
+
+    // Las respuestas se envían al Google Form original (mismas preguntas y entry IDs).
+    const FORM_ID = '1FAIpQLSdZW7SdaVSegiHnyAUuSKxg6u-oVhO6ncneUC5OXrl_Cuv8mw';
+    const FORM_POST = 'https://docs.google.com/forms/d/e/' + FORM_ID + '/formResponse';
+    const FORM_VIEW = 'https://docs.google.com/forms/d/e/' + FORM_ID + '/viewform';
+
+    const INST = {
+      premier: { name: 'Premier Medical Institute', logo: 'uploads/Premier Institute-90f850c8.webp' },
+      harmony: { name: 'Harmony Instituto Internacional', logo: 'uploads/Harmoy Institute-fe9db893.webp' },
+      simetria: { name: 'Simetría Academia Dermoestética', logo: 'uploads/Simetria Institute-ebd07fe9.webp' },
+      agc: { name: 'AGC Instituto de Odontología', logo: 'uploads/AGC Institute-c1c87334.webp' }
+    };
+
+    const PROFILES = [
+      { v: 'Médico/a interesado/a en Medicina Estética', ico: '🩺', id: 'med' },
+      { v: 'Odontólogo/a interesado/a en Armonización Orofacial', ico: '✨', id: 'ao' },
+      { v: 'Enfermero/a interesado/a en Dermoestética', ico: '💉', id: 'enf' },
+      { v: 'Odontólogo/a interesado/a en Formación Clínica', ico: '🦷', id: 'agc' }
+    ];
+    const PROFILE_NEXT = {
+      cl: { med: 'med_cl', ao: 'ao_cl', enf: 'enf', agc: 'agc' },
+      ext: { med: 'med_ext', ao: 'ao_ext', enf: 'enf', agc: 'agc' }
+    };
+
+    const state = { history: [], answers: {}, other: '', contact: { name: '', phone: '', email: '' }, consent: false, sending: false };
+    const isExt = () => state.answers.residence === 'Extranjero';
+    const profileId = () => (PROFILES.find(p => p.v === state.answers.profile) || {}).id;
+
+    // section: índice de sección del Google Form (para pageHistory)
+    const STEPS = {
+      residence: {
+        section: 0, entry: 309737971, eyebrow: 'Comencemos',
+        title: '¿Dónde resides actualmente?',
+        intro: 'Con este dato te mostraremos solo las formaciones y beneficios disponibles para ti.',
+        cols: 2,
+        options: [{ v: 'Chile', ico: '📍' }, { v: 'Extranjero', ico: '🌎' }],
+        next: v => v === 'Chile' ? 'profile' : 'country'
+      },
+      country: {
+        section: 1, entry: 1944014799, eyebrow: 'Residencia',
+        title: '¿En qué país resides?',
+        intro: 'Algunas formaciones y beneficios varían según el país de residencia. Con este dato te mostraremos solo las opciones disponibles para ti.',
+        cols: 2,
+        options: [
+          'Argentina', 'Brasil', 'Colombia',
+          'Ecuador', 'Perú', 'Uruguay',
+          { v: '__other_option__', label: 'Otro país', other: true }
+        ],
+        next: () => 'profile'
+      },
+      profile: {
+        section: () => isExt() ? 3 : 2,
+        entry: () => isExt() ? 643293228 : 978318389,
+        eyebrow: 'Tu perfil',
+        title: '¿Cuál es tu profesión y área de interés?',
+        intro: 'Según tu profesión y tus intereses, te mostraremos solo las formaciones que realmente te corresponden.',
+        options: PROFILES,
+        next: v => PROFILE_NEXT[isExt() ? 'ext' : 'cl'][PROFILES.find(p => p.v === v).id]
+      },
+      med_cl: {
+        section: 4, entry: 786705908, inst: 'premier',
+        title: '¿Qué tipo de formación te interesa?',
+        intro: 'Estas son las formaciones disponibles en Premier Medical Institute. Si te interesa un Focus Program o Formación Avanzada, selecciónalo para ver las técnicas disponibles.',
+        options: [
+          'Premier Face | Programa Intensivo en Medicina Estética Facial (Duración de 2 días)',
+          'Premier Body | Programa Intensivo en Inyectables Corporales (Duración de 2 días)',
+          'Focus Program | Formación Avanzada (Duración de 1 día)',
+          'Diplomado en Medicina Estética Facial y Corporal | Formación Integral (Duración de 6 meses)',
+          'RIO LAB | Advanced Cadaveric Injector (Duración de 3 días en Río de Janeiro)'
+        ],
+        next: (v, i) => i === 2 ? 'med_focus' : 'contact'
+      },
+      med_focus: {
+        section: 5, entry: 1733847316, inst: 'premier', eyebrow: 'Focus Program',
+        title: '¿En qué técnica te gustaría perfeccionarte?',
+        intro: 'Estos son los Focus Program o Formaciones Avanzadas disponibles en Premier Medical Institute.',
+        options: [
+          'Formación avanzada en Toxina Botulínica',
+          'Formación avanzada en Bioestimuladores de Colágeno',
+          'Formación avanzada en RinoLips (Ácido Hialurónico)',
+          'Formación avanzada en Full Fillers (Ácido Hialurónico)'
+        ],
+        next: () => 'contact'
+      },
+      med_ext: {
+        section: 6, entry: 702575219, inst: 'premier',
+        title: '¿Qué tipo de formación te interesa?',
+        intro: 'Estas son las formaciones disponibles en Premier Medical Institute.',
+        options: [
+          'Master Program Internacional Nivel Inicial (Duración de 3 días en Santiago de Chile)',
+          'Master Program Internacional Nivel Avanzado (Duración de 3 días en Santiago de Chile)',
+          'RIO LAB – Advanced Cadaveric Injector (Duración de 3 días en Rio de Janeiro)',
+          'Postgrado en Armonización Orofacial (Duración de 18 meses en Santiago de Chile)',
+          'Diplomado en Armonización Orofacial (Duración de 6 Meses en Santiago de Chile)'
+        ],
+        next: () => 'contact'
+      },
+      ao_cl: {
+        section: 7, entry: 1393107179, inst: 'harmony',
+        title: '¿Qué tipo de formación te interesa?',
+        intro: 'Estas son las formaciones disponibles en Harmony Instituto Internacional. Si te interesa un Focus Program o Formación Avanzada, selecciónalo para ver las técnicas disponibles.',
+        options: [
+          'Harmony One | Programa inicial (Duración de 2 días)',
+          'Focus Program | Formaciones avanzadas (Duración de 1 día)',
+          'Diplomado en Armonización Orofacial (Duración de 6 meses)',
+          'Mentoría Clínica Avanzada (Duración de 2 días)',
+          'Postgrado Especialista en Armonización Orofacial (Duración de 18 meses)'
+        ],
+        next: (v, i) => i === 1 ? 'ao_focus' : 'contact'
+      },
+      ao_focus: {
+        section: 8, entry: 143808809, inst: 'harmony', eyebrow: 'Focus Program',
+        title: '¿En qué técnica te gustaría perfeccionarte?',
+        intro: 'Estas son las formaciones avanzadas disponibles en Harmony Instituto Internacional.',
+        options: [
+          'Toxin Experts (Toxina Botulínica)',
+          'Bioestimuladores de Colágeno',
+          'RinoLips (Ácido Hialurónico)',
+          'Fillers Full Face (Ácido Hialurónico)'
+        ],
+        next: () => 'contact'
+      },
+      ao_ext: {
+        section: 9, entry: 1123343036, inst: 'harmony',
+        title: '¿Qué tipo de formación te interesa?',
+        intro: 'Estas son las formaciones disponibles en Harmony Instituto Internacional.',
+        options: [
+          'Master Program Internacional Inicial (Duración de 3 días en Santiago de Chile)',
+          'Master Program Internacional Avanzado (Duración de 3 días en Santiago de Chile)',
+          'Postgrado en Armonizacion Orofacial (Duración de 18 meses en Santiago de Chile)',
+          'Diplomado en Armonización Orofacial (Duración de 6 Meses en Santiago de Chile)'
+        ],
+        next: () => 'contact'
+      },
+      enf: {
+        section: 10, entry: 1181588678, inst: 'simetria',
+        title: '¿Qué tipo de formación te interesa?',
+        intro: 'Estas son las formaciones disponibles en Simetría Academia Dermoestética. Si te interesa un entrenamiento avanzado, selecciónalo para ver las técnicas disponibles.',
+        options: [
+          'Dermonurse | Programa Inicial (Duración de 2 días)',
+          'Focus Program - Entrenamiento Avanzado | Requiere experiencia previa (Duración de 1 día)',
+          'Terapias Regenerativas | Sueroterapia, PRP, IPRF y Mesoterapias (Duración de 1 día)',
+          'Diplomado en Dermoestética (Duración de 6 meses)'
+        ],
+        next: (v, i) => i === 1 ? 'enf_focus' : 'contact'
+      },
+      enf_focus: {
+        section: 11, entry: 1619864835, inst: 'simetria', eyebrow: 'Entrenamiento avanzado',
+        title: '¿En qué técnica te gustaría perfeccionarte?',
+        intro: 'Estos son los entrenamientos avanzados disponibles en Simetría Academia Dermoestética.',
+        note: 'Todos los Focus Program o Entrenamientos Avanzados requieren experiencia previa.',
+        options: [
+          'Entrenamiento avanzado en Toxina Botulínica',
+          'Entrenamiento avanzado en Bioestimuladores de Colágeno',
+          'Entrenamiento avanzado en RinoLips (Ácido Hialurónico)'
+        ],
+        next: () => 'contact'
+      },
+      agc: {
+        section: 12, entry: 1513431452, inst: 'agc',
+        title: '¿En qué área clínica te interesa perfeccionarte?',
+        intro: 'Estas son las formaciones disponibles en AGC Instituto de Odontología.',
+        cols: 2,
+        options: [
+          'Odontología Restauradora/Estética', 'Cirugía Bucal', 'Implantología', 'Periodoncia', 'Endodoncia',
+          'Formación integral para odontólogo general', 'Postgrados/programas avanzados', 'Cursos online',
+          'Quiero conocer todas las opciones'
+        ],
+        next: () => 'contact'
+      },
+      contact: { section: 13, type: 'contact', next: () => 'timing' },
+      timing: {
+        section: 13, entry: 1092446410, eyebrow: 'Casi listo',
+        title: '¿Cuándo te gustaría comenzar tu formación?',
+        options: [
+          { v: 'Lo antes posible', ico: '⚡' }, { v: 'Durante los próximos 30 días', ico: '📅' },
+          { v: 'Dentro de 1 a 3 meses', ico: '🗓️' }, { v: 'Más adelante', ico: '⏳' },
+          { v: 'Solo estoy explorando opciones', ico: '🔎' }
+        ],
+        next: () => 'consent'
+      },
+      consent: { section: 13, type: 'consent' }
+    };
+
+    const CONSENT_VALUE = 'Autorizo el uso de mis datos personales para recibir información sobre formaciones y ser contactado/a por el equipo de Grupo Educacional San Amaro vía WhatsApp, correo electrónico o llamada.';
+    const KEYS = 'ABCDEFGHIJ';
+    const val = (x) => typeof x === 'function' ? x() : x;
+    const esc = (s) => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const norm = (o) => typeof o === 'string' ? { v: o } : o;
+    const CHECK = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+    const ARROW = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+
+    // "Título | Detalle (Duración …)" → partes para mostrar; el valor enviado es siempre el texto original.
+    const splitLabel = (text) => {
+      let t = text, chip = '';
+      const m = t.match(/\s*\((Duración[^)]*)\)\s*$/i);
+      if (m) { chip = m[1].replace(/^Duración de /i, ''); t = t.slice(0, m.index); }
+      const parts = t.split(' | ');
+      return { title: parts[0], sub: parts.slice(1).join(' · '), chip };
+    };
+
+    // Estimación de pasos totales para la barra de progreso
+    const totalSteps = (stepId) => {
+      let n = 1 + (isExt() ? 1 : 0) + 1 + 1;
+      if (state.history.concat([stepId]).some(s => /_focus$/.test(s))) n += 1;
+      return n + 3;
+    };
+
+    const setProgress = (stepId) => {
+      const idx = state.history.length;
+      const total = Math.max(totalSteps(stepId), idx + 1);
+      const done = stepId === 'done';
+      bar.style.width = (done ? 100 : Math.round((idx / total) * 100)) + '%';
+      count.textContent = done ? '¡Completado!' : 'Paso ' + (idx + 1) + ' de ' + total;
+      backBtn.hidden = idx === 0 || done;
+    };
+
+    let current = 'residence';
+    let backAnim = false;
+
+    const render = (stepId) => {
+      current = stepId;
+      setProgress(stepId);
+      const step = STEPS[stepId];
+      let html = '';
+      if (stepId === 'done') html = renderDone();
+      else if (step.type === 'contact') html = renderContact();
+      else if (step.type === 'consent') html = renderConsent();
+      else html = renderChoice(step, stepId);
+      stage.innerHTML = '<div class="sf-step' + (backAnim ? ' is-back' : '') + '">' + html + '</div>';
+      backAnim = false;
+      bind(stepId);
+      const first = stage.querySelector('[data-autofocus]');
+      if (first && window.matchMedia('(min-width: 641px)').matches) first.focus({ preventScroll: true });
+    };
+
+    const header = (step) => {
+      let h = '';
+      if (step.inst) h += '<div class="sf-inst"><img src="' + INST[step.inst].logo + '" alt=""><span>' + INST[step.inst].name + '</span></div>';
+      if (step.eyebrow && !step.inst) h += '<p class="sf-eyebrow">' + step.eyebrow + '</p>';
+      h += '<h2 class="sf-title">' + step.title + '</h2>';
+      if (step.intro) h += '<p class="sf-intro">' + step.intro + '</p>';
+      if (step.note) h += '<div class="sf-note"><span>⚠️</span><span>' + step.note + '</span></div>';
+      return h;
+    };
+
+    const renderChoice = (step, stepId) => {
+      const sel = state.answers[stepId];
+      let h = header(step);
+      h += '<div class="sf-options' + (step.cols === 2 ? ' cols-2' : '') + '" role="radiogroup" aria-label="' + esc(step.title) + '">';
+      step.options.map(norm).forEach((o, i) => {
+        const p = o.label ? { title: o.label, sub: '', chip: '' } : splitLabel(o.v);
+        const on = sel === o.v;
+        h += '<button type="button" class="sf-opt' + (on ? ' is-selected' : '') + '" role="radio" aria-checked="' + on + '" data-i="' + i + '"' + (i === 0 ? ' data-autofocus' : '') + '>'
+          + (o.ico ? '<span class="sf-ico" aria-hidden="true">' + o.ico + '</span>' : '<span class="sf-key" aria-hidden="true">' + KEYS[i] + '</span>')
+          + '<span class="sf-opt-body"><span class="sf-opt-title">' + esc(p.title) + '</span>' + (p.sub ? '<span class="sf-opt-sub">' + esc(p.sub) + '</span>' : '') + (p.chip ? '<span class="sf-opt-dur">' + esc(p.chip) + '</span>' : '') + '</span>'
+          + (p.chip ? '<span class="sf-chip">' + esc(p.chip) + '</span>' : '')
+          + '<span class="sf-check">' + CHECK + '</span></button>';
+      });
+      h += '</div>';
+      if (step.options.some(o => o.other)) {
+        const open = sel === '__other_option__';
+        h += '<div class="sf-other' + (open ? ' is-open' : '') + '" id="sf-other"><input class="sf-input" id="sf-other-input" type="text" placeholder="Escribe tu país" autocomplete="country-name" value="' + esc(state.other) + '"><button type="button" class="sf-btn" id="sf-other-go">Continuar ' + ARROW + '</button></div>';
+      }
+      if (!step.options.some(o => norm(o).ico)) {
+        h += '<div class="sf-actions"><span class="sf-kbd"><b>A–' + KEYS[step.options.length - 1] + '</b>Pulsa la letra o haz clic para elegir</span></div>';
+      }
+      return h;
+    };
+
+    const renderContact = () => {
+      const c = state.contact;
+      const phPh = isExt() ? '+57 300 123 4567' : '+56 9 1234 5678';
+      return '<p class="sf-eyebrow">Tus datos</p>'
+        + '<h2 class="sf-title">¿A dónde te enviamos la información?</h2>'
+        + '<p class="sf-intro">Completa tus datos para recibir información sobre el programa de tu preferencia.</p>'
+        + '<form class="sf-fields" id="sf-contact" novalidate>'
+        + '<div class="sf-field" data-f="name"><label for="sf-name">Nombre y apellidos</label><input class="sf-input" id="sf-name" name="name" type="text" autocomplete="name" placeholder="Ej: Camila Rojas Soto" value="' + esc(c.name) + '" data-autofocus><p class="sf-err">Ingresa tu nombre y apellido.</p></div>'
+        + '<div class="sf-field" data-f="phone"><label for="sf-phone">Número de WhatsApp <span class="sf-hint">· con código de país</span></label><input class="sf-input" id="sf-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="' + phPh + '" value="' + esc(c.phone || (isExt() ? '+' : '+56 9 ')) + '"><p class="sf-err">Ingresa un número válido con código de país (ej: ' + phPh + ').</p></div>'
+        + '<div class="sf-field" data-f="email"><label for="sf-email">Correo electrónico</label><input class="sf-input" id="sf-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="tucorreo@ejemplo.com" value="' + esc(c.email) + '"><p class="sf-err">Ingresa un correo electrónico válido.</p></div>'
+        + '<div class="sf-actions" style="margin-top:6px;"><button type="submit" class="sf-btn">Continuar ' + ARROW + '</button><span class="sf-kbd"><b>↵</b>Enter para continuar</span></div>'
+        + '</form>';
+    };
+
+    const programLabel = () => {
+      const h = state.history;
+      for (let i = h.length - 1; i >= 0; i--) {
+        const s = STEPS[h[i]];
+        if (s && s.inst && state.answers[h[i]]) return splitLabel(state.answers[h[i]]).title;
+      }
+      return '';
+    };
+
+    const renderConsent = () => {
+      const c = state.contact;
+      const rows = [
+        ['Residencia', isExt() ? (state.answers.country === '__other_option__' ? state.other : state.answers.country) : 'Chile'],
+        ['Perfil', state.answers.profile],
+        ['Formación', programLabel()],
+        ['Nombre', c.name], ['WhatsApp', c.phone], ['Correo', c.email],
+        ['Inicio', state.answers.timing]
+      ];
+      return '<p class="sf-eyebrow">Último paso</p>'
+        + '<h2 class="sf-title">Tus datos, protegidos.</h2>'
+        + '<dl class="sf-summary">' + rows.filter(r => r[1]).map(r => '<div><dt>' + r[0] + '</dt><dd>' + esc(r[1]) + '</dd></div>').join('') + '</dl>'
+        + '<div class="sf-legal">Los datos que nos entregas serán tratados por Grupo Educacional San Amaro para enviarte información sobre las formaciones de Premier Medical Institute, Harmony Instituto Internacional, Simetría Academia Dermoestética y AGC Instituto de Odontología, y para que nuestro equipo comercial se comunique contigo. Lee más sobre la <a href="https://www.bcn.cl/leychile/navegar?idNorma=1209272" target="_blank" rel="noopener">Ley 21.719</a> de protección de datos personales.</div>'
+        + '<label class="sf-consent' + (state.consent ? ' is-on' : '') + '" id="sf-consent"><input type="checkbox" id="sf-consent-input"' + (state.consent ? ' checked' : '') + '><span class="sf-box">' + CHECK + '</span><p>' + CONSENT_VALUE + '</p></label>'
+        + '<div class="sf-actions"><button type="button" class="sf-btn" id="sf-submit"' + (state.consent ? '' : ' disabled') + '>Enviar mi registro ' + ARROW + '</button></div>'
+        + '<div class="sf-alert" id="sf-alert">No pudimos enviar tu registro. Revisa tu conexión e inténtalo nuevamente, o completa el <a href="' + FORM_VIEW + '" target="_blank" rel="noopener">formulario alternativo</a>.</div>';
+    };
+
+    const renderDone = () => {
+      const first = (state.contact.name || '').trim().split(/\s+/)[0];
+      return '<div class="sf-done"><div class="sf-done-ico"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>'
+        + '<h2 class="sf-title">¡Gracias' + (first ? ', ' + esc(first) : '') + '!</h2>'
+        + '<p class="sf-intro">Recibimos tu registro. Nuestro equipo te contactará muy pronto por WhatsApp o correo con la información' + (programLabel() ? ' de <strong>' + esc(programLabel()) + '</strong>' : '') + ', próximas fechas y beneficios disponibles.</p>'
+        + '<div class="sf-actions"><a class="sf-btn" href="index.html">Volver al inicio ' + ARROW + '</a><a class="sf-link" href="https://wa.me/56959777238" target="_blank" rel="noopener">Escríbenos por WhatsApp</a></div></div>';
+    };
+
+    const go = (next) => {
+      state.history.push(current);
+      render(next);
+      const card = document.getElementById('sf-card');
+      const top = card.getBoundingClientRect().top;
+      if (top < 70 || top > window.innerHeight * 0.6) window.scrollTo({ top: window.scrollY + top - 100, behavior: 'smooth' });
+    };
+
+    const choose = (stepId, i) => {
+      const step = STEPS[stepId];
+      const o = norm(step.options[i]);
+      state.answers[stepId] = o.v;
+      stage.querySelectorAll('.sf-opt').forEach((b, j) => {
+        b.classList.toggle('is-selected', j === i);
+        b.setAttribute('aria-checked', j === i);
+      });
+      if (o.other) {
+        const box = document.getElementById('sf-other');
+        box.classList.add('is-open');
+        document.getElementById('sf-other-input').focus();
+        return;
+      }
+      const other = document.getElementById('sf-other');
+      if (other) other.classList.remove('is-open');
+      clearTimeout(this._sfT);
+      this._sfT = setTimeout(() => go(step.next(o.v, i)), 320);
+    };
+
+    const validators = {
+      name: v => v.trim().split(/\s+/).length >= 2 && v.trim().length >= 4,
+      phone: v => /^\+\d[\d\s()-]{6,}$/.test(v.trim()) && v.replace(/\D/g, '').length >= 8,
+      email: v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim())
+    };
+
+    const bind = (stepId) => {
+      const step = STEPS[stepId] || {};
+      stage.querySelectorAll('.sf-opt').forEach(b => b.addEventListener('click', () => choose(stepId, +b.dataset.i)));
+
+      const otherGo = document.getElementById('sf-other-go');
+      if (otherGo) {
+        const input = document.getElementById('sf-other-input');
+        const submitOther = () => {
+          if (!input.value.trim()) { input.focus(); input.parentElement.style.animation = 'none'; void input.offsetWidth; input.style.borderColor = '#C0392B'; return; }
+          state.other = input.value.trim();
+          go(step.next());
+        };
+        otherGo.addEventListener('click', submitOther);
+        input.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); submitOther(); } });
+        input.addEventListener('input', () => { input.style.borderColor = ''; });
+      }
+
+      const form = document.getElementById('sf-contact');
+      if (form) {
+        const check = (f, show) => {
+          const input = form.querySelector('[name="' + f + '"]');
+          const ok = validators[f](input.value);
+          if (show || ok) input.closest('.sf-field').classList.toggle('has-error', !ok);
+          return ok;
+        };
+        ['name', 'phone', 'email'].forEach(f => {
+          const input = form.querySelector('[name="' + f + '"]');
+          input.addEventListener('input', () => { state.contact[f] = input.value; if (input.closest('.has-error')) check(f, false); });
+          input.addEventListener('blur', () => { if (input.value.trim() && !(f === 'phone' && /^\+[\d\s]*$/.test(input.value.trim()) && input.value.replace(/\D/g, '').length < 4)) check(f, true); });
+        });
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+          const bad = ['name', 'phone', 'email'].filter(f => !check(f, true));
+          if (bad.length) { form.querySelector('[name="' + bad[0] + '"]').focus(); return; }
+          ['name', 'phone', 'email'].forEach(f => { state.contact[f] = form.querySelector('[name="' + f + '"]').value.trim(); });
+          go('timing');
+        });
+      }
+
+      const consent = document.getElementById('sf-consent-input');
+      if (consent) {
+        const submit = document.getElementById('sf-submit');
+        consent.addEventListener('change', () => {
+          state.consent = consent.checked;
+          document.getElementById('sf-consent').classList.toggle('is-on', consent.checked);
+          submit.disabled = !consent.checked;
+        });
+        submit.addEventListener('click', () => send(submit));
+      }
+    };
+
+    const send = async (btn) => {
+      if (state.sending || !state.consent) return;
+      state.sending = true;
+      btn.disabled = true;
+      btn.innerHTML = '<span class="sf-spin"></span> Enviando…';
+      document.getElementById('sf-alert').classList.remove('is-on');
+
+      const path = state.history.concat([current]);
+      const data = new URLSearchParams();
+      path.forEach(id => {
+        const s = STEPS[id];
+        if (!s || !s.entry) return;
+        const key = 'entry.' + val(s.entry);
+        data.append(key, state.answers[id]);
+        if (state.answers[id] === '__other_option__') data.append(key + '.other_option_response', state.other);
+      });
+      data.append('entry.957874287', state.contact.name);
+      data.append('entry.1887184823', state.contact.phone);
+      data.append('entry.1093950877', state.contact.email);
+      data.append('entry.1387409253', CONSENT_VALUE);
+      const sections = [];
+      path.forEach(id => { const n = val(STEPS[id].section); if (sections.indexOf(n) === -1) sections.push(n); });
+      data.append('pageHistory', sections.join(','));
+      data.append('fvv', '1');
+
+      try {
+        await fetch(FORM_POST, { method: 'POST', mode: 'no-cors', body: data });
+        state.history.push(current);
+        render('done');
+      } catch (err) {
+        state.sending = false;
+        btn.disabled = false;
+        btn.innerHTML = 'Reintentar envío ' + ARROW;
+        document.getElementById('sf-alert').classList.add('is-on');
+      }
+    };
+
+    backBtn.addEventListener('click', () => {
+      if (!state.history.length || state.sending) return;
+      clearTimeout(this._sfT);
+      backAnim = true;
+      render(state.history.pop());
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      const tag = (e.target.tagName || '').toLowerCase();
+      if (tag === 'input' || tag === 'textarea') return;
+      const step = STEPS[current];
+      if (!step || !step.options) return;
+      const i = KEYS.indexOf(e.key.toUpperCase());
+      if (e.key.length === 1 && i > -1 && i < step.options.length && !step.options.some(o => norm(o).ico)) {
+        e.preventDefault();
+        choose(current, i);
+      }
+    });
+
+    render('residence');
+  }
+}
 </script>
 </body>
 </html>
