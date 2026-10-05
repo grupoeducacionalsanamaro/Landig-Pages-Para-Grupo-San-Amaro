@@ -1,4 +1,5 @@
 const TO_EMAIL = 'admision@sanamaro.cl';
+const CC_EMAILS = ['gerencia.comercial@sanamaro.cl'];
 const FROM_EMAIL = 'Web Grupo San Amaro <contacto@send.sanamaro.cl>';
 
 function escapeHtml(str) {
@@ -63,6 +64,7 @@ module.exports = async (req, res) => {
       body: JSON.stringify({
         from: FROM_EMAIL,
         to: [TO_EMAIL],
+        cc: CC_EMAILS,
         reply_to: email,
         subject: `Nuevo contacto: ${name}`,
         html,
