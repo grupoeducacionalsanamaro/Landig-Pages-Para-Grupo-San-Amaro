@@ -298,7 +298,7 @@ class Component extends DCLogic {
     const INST = {
       premier: { name: 'Premier Medical Institute', logo: 'uploads/Premier Institute-90f850c8.webp' },
       harmony: { name: 'Harmony Instituto Internacional', logo: 'uploads/Harmoy Institute-fe9db893.webp' },
-      simetria: { name: 'Simetría Academia Dermoestética', logo: 'uploads/Simetria Institute-ebd07fe9.webp' },
+      simetria: { name: 'Simetría Instituto de Enfermería', logo: 'uploads/Simetria Institute-ebd07fe9.webp' },
       agc: { name: 'AGC Instituto de Odontología', logo: 'uploads/AGC Institute-c1c87334.webp' }
     };
 
@@ -426,10 +426,9 @@ class Component extends DCLogic {
       enf: {
         section: 10, entry: 1181588678, inst: 'simetria',
         title: '¿Qué tipo de formación te interesa?',
-        intro: 'Estas son las formaciones disponibles en Simetría. Si te interesa un entrenamiento avanzado, selecciona Focalizados para ver las técnicas disponibles. Todos los Focalizados requieren experiencia previa.',
+        intro: 'Estas son las formaciones disponibles en Simetría Instituto de Enfermería. Si te interesa un entrenamiento avanzado, selecciona Focalizados para ver las técnicas disponibles. Todos los Focalizados requieren experiencia previa.',
         options: [
-          // El texto del Google Form trae una "i" de más ("DERMOESTÉTICAi"); el valor enviado debe ser idéntico.
-          { v: 'INMERSIÓN CLÍNICA EN DERMOESTÉTICAi | Programa Inicial (Duración de 2 días)', title: 'Inmersión Clínica en Dermoestética', sub: 'Programa Inicial', chip: '2 días' },
+          { v: 'INMERSIÓN CLÍNICA EN DERMOESTÉTICA | Programa Inicial (Duración de 2 días)', title: 'Inmersión Clínica en Dermoestética', sub: 'Programa Inicial', chip: '2 días' },
           { v: 'FOCALIZADOS | Requiere experiencia previa (Duración de 1 día)', title: 'Focalizados', sub: 'Requiere experiencia previa', chip: '1 día' },
           'Terapias Regenerativas | Sueroterapia, PRP, IPRF y Mesoterapias (Duración de 1 día)',
           'Diplomado en Dermoestética (Duración de 6 meses)'
@@ -439,7 +438,7 @@ class Component extends DCLogic {
       enf_focus: {
         section: 11, entry: 1619864835, inst: 'simetria', eyebrow: 'Focalizados',
         title: '¿En qué técnica te gustaría perfeccionarte?',
-        intro: 'Estos son los programas Focalizados disponibles en Simetría. Selecciona la formación de tu interés para conocer los detalles, próximas fechas y disponibilidad de cupos.',
+        intro: 'Estos son los programas Focalizados disponibles en Simetría Instituto de Enfermería. Selecciona la formación de tu interés para conocer los detalles, próximas fechas y disponibilidad de cupos.',
         note: 'Todos los Focalizados requieren experiencia previa.',
         options: [
           'Entrenamiento avanzado en Toxina Botulínica',
@@ -608,7 +607,7 @@ class Component extends DCLogic {
       return '<p class="sf-eyebrow">Último paso</p>'
         + '<h2 class="sf-title">Tus datos, protegidos.</h2>'
         + '<dl class="sf-summary">' + rows.filter(r => r[1]).map(r => '<div><dt>' + r[0] + '</dt><dd>' + esc(r[1]) + '</dd></div>').join('') + '</dl>'
-        + '<div class="sf-legal">Los datos que nos entregas serán tratados por Grupo Educacional San Amaro para enviarte información sobre las formaciones de Premier Medical Institute, Harmony Instituto Internacional, Simetría Academia Dermoestética y AGC Instituto de Odontología, y para que nuestro equipo comercial se comunique contigo. Lee más sobre la <a href="https://www.bcn.cl/leychile/navegar?idNorma=1209272" target="_blank" rel="noopener">Ley 21.719</a> de protección de datos personales.</div>'
+        + '<div class="sf-legal">Los datos que nos entregas serán tratados por Grupo Educacional San Amaro para enviarte información sobre las formaciones de Premier Medical Institute, Harmony Instituto Internacional, Simetría Instituto de Enfermería y AGC Instituto de Odontología, y para que nuestro equipo comercial se comunique contigo. Lee más sobre la <a href="https://www.bcn.cl/leychile/navegar?idNorma=1209272" target="_blank" rel="noopener">Ley 21.719</a> de protección de datos personales.</div>'
         + '<label class="sf-consent' + (state.consent ? ' is-on' : '') + '" id="sf-consent"><input type="checkbox" id="sf-consent-input"' + (state.consent ? ' checked' : '') + '><span class="sf-box">' + CHECK + '</span><p>' + CONSENT_VALUE + '</p></label>'
         + '<div class="sf-actions"><button type="button" class="sf-btn" id="sf-submit"' + (state.consent ? '' : ' disabled') + '>Enviar mi registro ' + ARROW + '</button></div>'
         + '<div class="sf-alert" id="sf-alert">No pudimos enviar tu registro. Revisa tu conexión e inténtalo nuevamente, o completa el <a href="' + FORM_VIEW + '" target="_blank" rel="noopener">formulario alternativo</a>.</div>';
