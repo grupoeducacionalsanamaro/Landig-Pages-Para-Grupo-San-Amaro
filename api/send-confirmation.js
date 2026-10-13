@@ -3,11 +3,11 @@ const REPLY_TO_EMAIL = 'levelup@sanamaro.cl';
 const ASSET_BASE = 'https://levelup.sanamaro.cl/assets';
 
 const ENCUENTRO = {
-  numero: '1er encuentro',
-  tema: 'Marca personal',
-  speaker: 'Bruno Realini',
-  speakerPhoto: `${ASSET_BASE}/speaker-bruno-realini.png`,
-  fecha: '10 de septiembre de 2026',
+  numero: '3er encuentro',
+  tema: 'IA en Salud: De la Herramienta a la Acción',
+  speaker: 'Elio Rincón',
+  speakerPhoto: `${ASSET_BASE}/speaker-elio-rincon.png`,
+  fecha: '14 de octubre de 2026',
   hora: '13:30 hrs (Chile)'
 };
 
@@ -118,7 +118,7 @@ module.exports = async (req, res) => {
 
           <tr>
             <td style="padding:24px 32px 0;">
-              <p style="margin:0; font-family:Arial,Helvetica,sans-serif; font-size:13px; line-height:1.6; color:#8a90a0;">Este es el primero de 5 encuentros mensuales gratuitos del ciclo LEVEL UP. Te avisaremos con anticipación antes de cada sesión.</p>
+              <p style="margin:0; font-family:Arial,Helvetica,sans-serif; font-size:13px; line-height:1.6; color:#8a90a0;">Este es uno de los 6 encuentros gratuitos del ciclo LEVEL UP. Te avisaremos con anticipación antes de cada sesión.</p>
             </td>
           </tr>
 
