@@ -351,20 +351,20 @@ class Component extends DCLogic {
       med_cl: {
         section: 4, entry: 786705908, inst: 'premier',
         title: '¿Qué tipo de formación te interesa?',
-        intro: 'Estas son las formaciones disponibles en Premier Medical Institute. Si te interesa un Focus Program o Formación Avanzada, selecciónalo para ver las técnicas disponibles.',
+        intro: 'Estas son las formaciones disponibles en Premier Medical Institute. Si te interesa un programa Focalizado o Formación Avanzada, selecciónalo para ver las técnicas disponibles.',
         options: [
           'Premier Face | Programa Intensivo en Medicina Estética Facial (Duración de 2 días)',
           'Premier Body | Programa Intensivo en Inyectables Corporales (Duración de 2 días)',
-          'Focus Program | Formación Avanzada (Duración de 1 día)',
+          'Focalizados | Formación Avanzada (Duración de 1 día)',
           'Diplomado en Medicina Estética Facial y Corporal | Formación Integral (Duración de 6 meses)',
           'RIO LAB | Advanced Cadaveric Injector (Duración de 3 días en Río de Janeiro)'
         ],
         next: (v, i) => i === 2 ? 'med_focus' : 'contact'
       },
       med_focus: {
-        section: 5, entry: 1733847316, inst: 'premier', eyebrow: 'Focus Program',
+        section: 5, entry: 1733847316, inst: 'premier', eyebrow: 'Focalizados',
         title: '¿En qué técnica te gustaría perfeccionarte?',
-        intro: 'Estos son los Focus Program o Formaciones Avanzadas disponibles en Premier Medical Institute.',
+        intro: 'Estos son los programas Focalizados disponibles en Premier Medical Institute. Selecciona la formación de tu interés para conocer los detalles, próximas fechas y disponibilidad de cupos.',
         options: [
           'Formación avanzada en Toxina Botulínica',
           'Formación avanzada en Bioestimuladores de Colágeno',
@@ -389,10 +389,10 @@ class Component extends DCLogic {
       ao_cl: {
         section: 7, entry: 1393107179, inst: 'harmony',
         title: '¿Qué tipo de formación te interesa?',
-        intro: 'Estas son las formaciones disponibles en Harmony Instituto Internacional. Si te interesa un Focus Program o Formación Avanzada, selecciónalo para ver las técnicas disponibles.',
+        intro: 'Estas son las formaciones disponibles en Harmony Instituto Internacional. Si te interesa un programa Focalizado o Formación Avanzada, selecciónalo para ver las técnicas disponibles.',
         options: [
           'Harmony One | Programa inicial (Duración de 2 días)',
-          'Focus Program | Formaciones avanzadas (Duración de 1 día)',
+          'Focalizados | Formaciones avanzadas (Duración de 1 día)',
           'Diplomado en Armonización Orofacial (Duración de 6 meses)',
           'Mentoría Clínica Avanzada (Duración de 2 días)',
           'Postgrado Especialista en Armonización Orofacial (Duración de 18 meses)'
@@ -400,7 +400,7 @@ class Component extends DCLogic {
         next: (v, i) => i === 1 ? 'ao_focus' : 'contact'
       },
       ao_focus: {
-        section: 8, entry: 143808809, inst: 'harmony', eyebrow: 'Focus Program',
+        section: 8, entry: 143808809, inst: 'harmony', eyebrow: 'Focalizados',
         title: '¿En qué técnica te gustaría perfeccionarte?',
         intro: 'Estas son las formaciones avanzadas disponibles en Harmony Instituto Internacional.',
         options: [
@@ -426,20 +426,21 @@ class Component extends DCLogic {
       enf: {
         section: 10, entry: 1181588678, inst: 'simetria',
         title: '¿Qué tipo de formación te interesa?',
-        intro: 'Estas son las formaciones disponibles en Simetría Academia Dermoestética. Si te interesa un entrenamiento avanzado, selecciónalo para ver las técnicas disponibles.',
+        intro: 'Estas son las formaciones disponibles en Simetría. Si te interesa un entrenamiento avanzado, selecciona Focalizados para ver las técnicas disponibles. Todos los Focalizados requieren experiencia previa.',
         options: [
-          'Dermonurse | Programa Inicial (Duración de 2 días)',
-          'Focus Program - Entrenamiento Avanzado | Requiere experiencia previa (Duración de 1 día)',
+          // El texto del Google Form trae una "i" de más ("DERMOESTÉTICAi"); el valor enviado debe ser idéntico.
+          { v: 'INMERSIÓN CLÍNICA EN DERMOESTÉTICAi | Programa Inicial (Duración de 2 días)', title: 'Inmersión Clínica en Dermoestética', sub: 'Programa Inicial', chip: '2 días' },
+          { v: 'FOCALIZADOS | Requiere experiencia previa (Duración de 1 día)', title: 'Focalizados', sub: 'Requiere experiencia previa', chip: '1 día' },
           'Terapias Regenerativas | Sueroterapia, PRP, IPRF y Mesoterapias (Duración de 1 día)',
           'Diplomado en Dermoestética (Duración de 6 meses)'
         ],
         next: (v, i) => i === 1 ? 'enf_focus' : 'contact'
       },
       enf_focus: {
-        section: 11, entry: 1619864835, inst: 'simetria', eyebrow: 'Entrenamiento avanzado',
+        section: 11, entry: 1619864835, inst: 'simetria', eyebrow: 'Focalizados',
         title: '¿En qué técnica te gustaría perfeccionarte?',
-        intro: 'Estos son los entrenamientos avanzados disponibles en Simetría Academia Dermoestética.',
-        note: 'Todos los Focus Program o Entrenamientos Avanzados requieren experiencia previa.',
+        intro: 'Estos son los programas Focalizados disponibles en Simetría. Selecciona la formación de tu interés para conocer los detalles, próximas fechas y disponibilidad de cupos.',
+        note: 'Todos los Focalizados requieren experiencia previa.',
         options: [
           'Entrenamiento avanzado en Toxina Botulínica',
           'Entrenamiento avanzado en Bioestimuladores de Colágeno',
@@ -451,11 +452,15 @@ class Component extends DCLogic {
         section: 12, entry: 1513431452, inst: 'agc',
         title: '¿En qué área clínica te interesa perfeccionarte?',
         intro: 'Estas son las formaciones disponibles en AGC Instituto de Odontología.',
-        cols: 2,
+        // v = texto exacto del Google Form; title/sub/chip = cómo se muestra en la web.
         options: [
-          'Odontología Restauradora/Estética', 'Cirugía Bucal', 'Implantología', 'Periodoncia', 'Endodoncia',
-          'Formación integral para odontólogo general', 'Postgrados/programas avanzados', 'Cursos online',
-          'Quiero conocer todas las opciones'
+          { v: 'RESIN LAYERING | Carillas Directas en Resinas Compuestas | 2 Días', title: 'Resin Layering', sub: 'Carillas Directas en Resinas Compuestas', chip: '2 días' },
+          { v: 'INMERSIÓN EN CIRUGÍA BUCAL | Exodoncias Simples y Complejas | 3 Días', title: 'Inmersión en Cirugía Bucal', sub: 'Exodoncias Simples y Complejas', chip: '3 días' },
+          { v: 'DIPLOMADO EN CIRUGÍA BUCAL | 6 Meses', title: 'Diplomado en Cirugía Bucal', chip: '6 meses' },
+          { v: 'POSTGRADO EN REHABILITACIÓN ESTÉTICA | DENTÍSTICA | 18 Meses', title: 'Postgrado en Rehabilitación Estética', sub: 'Dentística', chip: '18 meses' },
+          { v: 'POSTGRADO EN IMPLANTOLOGÍA Y PERIODONCIA | 18 Meses', title: 'Postgrado en Implantología y Periodoncia', chip: '18 meses' },
+          { v: 'INMERSIÓN EN CIRUGÍA PLÁSTICA PERIODONTAL | 2 Días', title: 'Inmersión en Cirugía Plástica Periodontal', chip: '2 días' },
+          { v: 'INMERSIONES CLÍNICAS INTERNACIONALES |  🇧🇷🇨🇴 | 4 a 5 Días', title: 'Inmersiones Clínicas Internacionales', sub: 'Brasil y Colombia', chip: '4 a 5 días' }
         ],
         next: () => 'contact'
       },
@@ -488,6 +493,12 @@ class Component extends DCLogic {
       if (m) { chip = m[1].replace(/^Duración de /i, ''); t = t.slice(0, m.index); }
       const parts = t.split(' | ');
       return { title: parts[0], sub: parts.slice(1).join(' · '), chip };
+    };
+    // Texto a mostrar de una opción: etiqueta explícita si la tiene, si no se deriva del valor.
+    const display = (o) => {
+      if (o.label) return { title: o.label, sub: '', chip: '' };
+      if (o.title) return { title: o.title, sub: o.sub || '', chip: o.chip || '' };
+      return splitLabel(o.v);
     };
 
     // Estimación de pasos totales para la barra de progreso
@@ -540,7 +551,7 @@ class Component extends DCLogic {
       let h = header(step);
       h += '<div class="sf-options' + (step.cols === 2 ? ' cols-2' : '') + '" role="radiogroup" aria-label="' + esc(step.title) + '">';
       step.options.map(norm).forEach((o, i) => {
-        const p = o.label ? { title: o.label, sub: '', chip: '' } : splitLabel(o.v);
+        const p = display(o);
         const on = sel === o.v;
         h += '<button type="button" class="sf-opt' + (on ? ' is-selected' : '') + '" role="radio" aria-checked="' + on + '" data-i="' + i + '"' + (i === 0 ? ' data-autofocus' : '') + '>'
           + (o.ico ? '<span class="sf-ico" aria-hidden="true">' + o.ico + '</span>' : '<span class="sf-key" aria-hidden="true">' + KEYS[i] + '</span>')
@@ -577,7 +588,10 @@ class Component extends DCLogic {
       const h = state.history;
       for (let i = h.length - 1; i >= 0; i--) {
         const s = STEPS[h[i]];
-        if (s && s.inst && state.answers[h[i]]) return splitLabel(state.answers[h[i]]).title;
+        if (s && s.inst && state.answers[h[i]]) {
+          const o = s.options.map(norm).find(x => x.v === state.answers[h[i]]);
+          return display(o || { v: state.answers[h[i]] }).title;
+        }
       }
       return '';
     };
