@@ -1,5 +1,10 @@
 {
   "rewrites": [
-    { "source": "/verificaciondecertificado", "destination": "/verificacion-certificado.dc.html" }
+    { "source": "/verificaciondecertificado", "destination": "/verificacion-certificado.dc.html" },
+    { "source": "/protocolos", "destination": "/Protocolos.dc.html" }
+  ],
+  "headers": [
+    { "source": "/protocolos", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }] },
+    { "source": "/Protocolos.dc.html", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }] }
   ]
 }

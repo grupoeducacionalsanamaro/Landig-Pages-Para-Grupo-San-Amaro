@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Protocolos de trabajo | Grupo Educacional San Amaro</title>
+<meta name="description" content="Protocolos internos de trabajo de las áreas de Grupo Educacional San Amaro. Uso exclusivo de colaboradores.">
+<link rel="icon" href="/brand/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/brand/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/brand/favicon-16.png">
+<link rel="apple-touch-icon" href="/brand/apple-touch-icon.png">
+<meta name="theme-color" content="#0D0D0D">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Grupo Educacional San Amaro">
+<meta property="og:locale" content="es_CL">
+<meta property="og:title" content="Protocolos de trabajo | Grupo Educacional San Amaro">
+<meta property="og:description" content="Protocolos internos de trabajo de las áreas de Grupo Educacional San Amaro. Uso exclusivo de colaboradores.">
+<meta property="og:url" content="https://sanamaro.cl/protocolos">
+<meta property="og:image" content="https://sanamaro.cl/brand/og-logo.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="600">
+<meta property="og:image:alt" content="Logo de Grupo Educacional San Amaro">
+<meta name="twitter:card" content="summary">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400;1,600&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'Inter',sans-serif;background:#fff;color:#0D0D0D;}
+    a{color:inherit;text-decoration:none;}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+
+
+    /* ---------- Protocolos ---------- */
+    [hidden]{display:none !important;}
+    .pr-doc:not(.is-open), .pr-empty:not(.is-on){display:none;}
+    @keyframes prIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+    .pr-hero{background:#0D0D0D;padding:150px 0 72px;}
+    .pr-hero-in{max-width:900px;margin:0 auto;padding:0 24px;text-align:center;}
+    .pr-eyebrow{display:inline-flex;align-items:center;gap:8px;font:500 12px 'Inter',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.14);border-radius:100px;padding:7px 14px;margin-bottom:22px;}
+    .pr-h1{font-family:'Fraunces',serif;font-size:clamp(34px,5vw,58px);font-weight:600;color:#FAF9F5;line-height:1.1;letter-spacing:-.025em;margin-bottom:18px;}
+    .pr-lead{font-size:17px;color:rgba(255,255,255,.5);font-weight:300;line-height:1.6;max-width:580px;margin:0 auto;}
+
+    .pr-main{background:#F5F5F3;padding:48px 0 110px;min-height:60vh;}
+    .pr-wrap{max-width:1000px;margin:0 auto;padding:0 24px;}
+
+    .pr-toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:28px;}
+    .pr-chips{display:flex;gap:8px;flex-wrap:wrap;}
+    .pr-chip{font:500 13px 'Inter',sans-serif;color:#555;background:#E6E4DF;border:none;border-radius:100px;padding:9px 18px;cursor:pointer;transition:background .2s,color .2s;}
+    .pr-chip:hover{background:#DAD7D0;}
+    .pr-chip.is-on{background:#0D0D0D;color:#fff;}
+    .pr-search{display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid #E6E4DF;border-radius:100px;padding:0 16px;height:42px;min-width:240px;color:#8A867C;transition:border-color .2s;}
+    .pr-search:focus-within{border-color:#0D0D0D;}
+    .pr-search input{border:none;outline:none;background:none;font:400 14px 'Inter',sans-serif;color:#0D0D0D;width:100%;}
+
+    .pr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:20px;}
+    .pr-card{display:flex;flex-direction:column;gap:14px;background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:24px;padding:28px;transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s;animation:prIn .5s cubic-bezier(.22,1,.36,1) both;}
+    .pr-card:nth-child(2){animation-delay:.06s;}
+    .pr-card:nth-child(3){animation-delay:.12s;}
+    .pr-card:hover{transform:translateY(-3px);box-shadow:0 22px 50px -26px rgba(0,0,0,.35);}
+    .pr-card:hover .pr-go{background:#0D0D0D;color:#fff;}
+    .pr-card-top{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+    .pr-tag{display:inline-block;font:600 11px 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#0D0D0D;background:#F0EEE9;border-radius:100px;padding:6px 12px;}
+    .pr-read{font-size:12px;color:#8A867C;white-space:nowrap;}
+    .pr-card-title{font-family:'Fraunces',serif;font-weight:600;font-size:23px;line-height:1.22;letter-spacing:-.015em;color:#0D0D0D;}
+    .pr-card-ex{font-size:14.5px;line-height:1.6;color:#6B675E;font-weight:300;flex:1;}
+    .pr-card-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:16px;border-top:1px solid #EFEDE8;}
+    .pr-person{display:flex;align-items:center;gap:10px;min-width:0;}
+    .pr-person img{width:38px;height:38px;border-radius:50%;object-fit:cover;object-position:top;flex-shrink:0;background:#E6E4DF;}
+    .pr-person span{display:flex;flex-direction:column;min-width:0;}
+    .pr-person b{font-size:13.5px;font-weight:600;color:#0D0D0D;}
+    .pr-person small{font-size:12px;color:#8A867C;}
+    .pr-go{display:inline-flex;align-items:center;gap:6px;font:600 13px 'Inter',sans-serif;color:#0D0D0D;border:1.5px solid #0D0D0D;border-radius:100px;padding:8px 14px;transition:background .2s,color .2s;flex-shrink:0;}
+    .pr-empty{text-align:center;color:#8A867C;font-size:15px;padding:48px 0;}
+
+    .pr-doc{max-width:760px;margin:0 auto;animation:prIn .45s cubic-bezier(.22,1,.36,1) both;}
+    .pr-back{display:inline-flex;align-items:center;gap:8px;font:500 14px 'Inter',sans-serif;color:#555;margin-bottom:22px;padding:8px 14px 8px 10px;border-radius:100px;transition:background .2s,color .2s;}
+    .pr-back:hover{background:#E6E4DF;color:#0D0D0D;}
+    .pr-doc-head{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:28px 28px 0 0;padding:40px 48px 28px;border-bottom:none;}
+    .pr-doc-title{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(28px,4vw,40px);line-height:1.15;letter-spacing:-.02em;color:#0D0D0D;margin:16px 0 22px;}
+    .pr-doc-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:20px;border-top:1px solid #EFEDE8;}
+    .pr-meta-actions{display:flex;align-items:center;gap:14px;}
+    .pr-print{display:inline-flex;align-items:center;gap:7px;font:500 13px 'Inter',sans-serif;color:#0D0D0D;background:#F5F5F3;border:none;border-radius:100px;padding:9px 14px;cursor:pointer;transition:background .2s;}
+    .pr-print:hover{background:#E6E4DF;}
+
+    .pr-body{background:#fff;border:1px solid rgba(0,0,0,.06);border-top:none;border-radius:0 0 28px 28px;padding:8px 48px 48px;color:#2B2925;}
+    .pr-body p{font-size:16px;line-height:1.75;margin:0 0 14px;}
+    .pr-body strong{font-weight:600;color:#0D0D0D;}
+    .pr-body h2{display:flex;align-items:center;gap:14px;font-family:'Fraunces',serif;font-weight:600;font-size:24px;line-height:1.25;letter-spacing:-.01em;color:#0D0D0D;margin:44px 0 16px;scroll-margin-top:100px;}
+    .pr-n{flex-shrink:0;width:34px;height:34px;border-radius:50%;background:#0D0D0D;color:#fff;display:flex;align-items:center;justify-content:center;font:600 14px 'Inter',sans-serif;}
+    .pr-body h3{font:600 15px 'Inter',sans-serif;color:#0D0D0D;margin:26px 0 10px;}
+    .pr-check{list-style:none;margin:6px 0 18px;padding:0;display:grid;gap:10px;}
+    .pr-check li{position:relative;padding-left:32px;font-size:15.5px;line-height:1.6;}
+    .pr-check li::before{content:'';position:absolute;left:0;top:3px;width:20px;height:20px;border-radius:6px;background:#F0EEE9 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%230D0D0D' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/12px no-repeat;}
+    .pr-intro{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0 18px;}
+    .pr-intro.is-single{grid-template-columns:1fr;}
+    .pr-intro > div{background:#F5F5F3;border-radius:18px;padding:20px 22px;}
+    .pr-intro h4{font:600 11px 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#8A867C;margin-bottom:8px;}
+    .pr-intro p{font-size:15px;line-height:1.65;margin:0;}
+    .pr-keys{background:#0D0D0D;color:#fff;border-radius:20px;padding:22px 24px;margin:0 0 8px;}
+    .pr-keys-t{font:600 11px 'Inter',sans-serif !important;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin:0 0 14px !important;}
+    .pr-keys-g{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+    .pr-keys-g div{display:flex;flex-direction:column;gap:4px;}
+    .pr-keys-g b{font-family:'Fraunces',serif;font-weight:600;font-size:22px;color:#FAF9F5;}
+    .pr-keys-g span{font-size:13px;line-height:1.45;color:rgba(255,255,255,.6);}
+    .pr-callout{background:#F5F5F3;border-left:3px solid #8A867C;border-radius:0 14px 14px 0;padding:14px 18px;font-size:15px;line-height:1.65;margin:6px 0 18px;}
+    .pr-callout.is-warn{background:#FBF6EC;border-left-color:#C9962B;color:#5C4510;}
+    .pr-callout.is-warn strong{color:#4A370C;}
+
+    @media (max-width: 640px) {
+      .pr-hero{padding:120px 0 52px;}
+      .pr-main{padding:28px 0 64px;}
+      .pr-wrap{padding:0 16px;}
+      .pr-grid{grid-template-columns:1fr;}
+      .pr-card{padding:22px;border-radius:20px;}
+      .pr-card-title{font-size:21px;}
+      .pr-search{min-width:0;width:100%;}
+      .pr-doc-head{padding:28px 22px 22px;border-radius:22px 22px 0 0;}
+      .pr-body{padding:4px 22px 32px;border-radius:0 0 22px 22px;}
+      .pr-intro{grid-template-columns:1fr;}
+      .pr-keys-g{grid-template-columns:1fr;gap:12px;}
+      .pr-body h2{font-size:21px;margin-top:36px;}
+      .pr-print{display:none;}
+    }
+    @media print {
+      nav, footer, .pr-hero, .pr-back, .pr-print, #pr-list { display:none !important; }
+      .pr-main{background:#fff;padding:0;}
+      .pr-doc-head,.pr-body{border:none;padding-left:0;padding-right:0;}
+      .pr-keys{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+      .pr-body h2{break-after:avoid;}
+    }
+    @media (max-width: 700px) {
+      .sa-sub-navlinks { display: none !important; }
+    }
+    @media (max-width: 900px) {
+      .sa-footer-grid { grid-template-columns: 1fr 1fr !important; padding: 40px 24px 20px !important; row-gap: 32px !important; }
+      .sa-footer-grid > div:first-child { grid-column: 1 / -1 !important; }
+      .sa-sub-grid-2 { grid-template-columns: 1fr !important; gap: 40px !important; }
+      .sa-sub-grid-3 { grid-template-columns: 1fr 1fr !important; }
+    }
+    @media (max-width: 640px) {
+      .sa-footer-grid { grid-template-columns: 1fr !important; text-align: center; padding: 32px 24px 16px !important; }
+      .sa-footer-grid > div { align-items: center !important; }
+      .sa-footer-legal { flex-direction: column !important; align-items: flex-start !important; padding: 20px 24px !important; text-align: left; }
+      .sa-sub-grid-3 { grid-template-columns: 1fr !important; }
+      .sa-form-row2 { grid-template-columns: 1fr !important; gap: 16px !important; }
+    }
+</style>
+</helmet>
+
+<!-- NAVBAR -->
+<div style="position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:100;width:min(1060px,calc(100vw - 32px));">
+  <nav style="background:rgba(255,255,255,0.85);backdrop-filter:blur(20px);border:1px solid rgba(0,0,0,0.06);border-radius:100px;padding:0 8px 0 20px;height:52px;display:flex;align-items:center;justify-content:space-between;gap:20px;">
+    <a href="index.html" style="flex-shrink:0;"><img src="uploads/GRUPO EDUCACIONAL SAN AMARO.webp" alt="San Amaro" style="height:32px;display:block;"></a>
+    <div class="sa-sub-navlinks" style="display:flex;align-items:center;gap:28px;font-size:13px;color:rgba(0,0,0,0.5);">
+      <a href="index.html#quienes-somos" style="transition:color .2s;" style-hover="color:#000">Quiénes somos</a>
+      <a href="index.html#verticales" style="transition:color .2s;" style-hover="color:#000">Institutos</a>
+      <a href="index.html#contacto" style="transition:color .2s;" style-hover="color:#000">Contacto</a>
+    </div>
+    <a href="Suscripciones.dc.html#formulario" style="background:#0D0D0D;color:#fff;font-weight:600;font-size:13px;padding:11px 22px;border-radius:100px;transition:opacity .2s;" style-hover="opacity:.8;">Especialízate</a>
+  </nav>
+</div>
+
+<!-- HERO -->
+<section class="pr-hero">
+  <div class="pr-hero-in">
+    <p class="pr-eyebrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>Uso interno · Colaboradores</p>
+    <h1 class="pr-h1">Protocolos de trabajo</h1>
+    <p class="pr-lead">Los procedimientos oficiales de cada área de Grupo San Amaro, reunidos en un solo lugar. Consúltalos antes de cada proceso y compártelos con tu equipo.</p>
+  </div>
+</section>
+
+<section class="pr-main">
+  <div class="pr-wrap">
+
+    <!-- LISTADO -->
+    <div id="pr-list">
+      <div class="pr-toolbar">
+        <div class="pr-chips" id="pr-chips">
+          <button type="button" class="pr-chip is-on" data-area="Todas">Todas las áreas</button>
+          <button type="button" class="pr-chip" data-area="Operaciones y Logística">Operaciones y Logística</button>
+          <button type="button" class="pr-chip" data-area="Gerencia Educacional">Gerencia Educacional</button>
+        </div>
+        <label class="pr-search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+          <input type="search" id="pr-q" placeholder="Buscar protocolo…" aria-label="Buscar protocolo" autocomplete="off">
+        </label>
+      </div>
+
+      <div class="pr-grid" id="pr-grid">
+        <a class="pr-card" href="#envio-insumos" data-id="envio-insumos" data-area="Operaciones y Logística">
+          <div class="pr-card-top"><span class="pr-tag">Operaciones y Logística</span><span class="pr-read" data-read-for="envio-insumos"></span></div>
+          <h2 class="pr-card-title">Protocolo de comunicación y seguimiento para envío de insumos</h2>
+          <p class="pr-card-ex">Planificación, seguimiento y confirmación del envío de insumos para cursos, para que todos los materiales lleguen a tiempo a su destino.</p>
+          <div class="pr-card-foot">
+            <span class="pr-person"><img src="uploads/Valeria Muñoz.webp" alt=""><span><b>Valeria Muñoz</b><small>Encargada · Operaciones y Logística</small></span></span>
+            <span class="pr-go">Leer <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></span>
+          </div>
+        </a>
+
+        <a class="pr-card" href="#inventario-kits" data-id="inventario-kits" data-area="Gerencia Educacional">
+          <div class="pr-card-top"><span class="pr-tag">Gerencia Educacional</span><span class="pr-read" data-read-for="inventario-kits"></span></div>
+          <h2 class="pr-card-title">Protocolo de control de inventario y gestión de kits corporativos</h2>
+          <p class="pr-card-ex">Control del stock de merchandising institucional, armado de kits de bienvenida para cursos, reposiciones y envíos a la sede Concepción.</p>
+          <div class="pr-card-foot">
+            <span class="pr-person"><img src="uploads/Zequelly Blanco.webp?v=2" alt=""><span><b>Zequelly Blanco</b><small>Responsable · Gerente Educacional</small></span></span>
+            <span class="pr-go">Leer <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></span>
+          </div>
+        </a>
+      </div>
+      <p class="pr-empty" id="pr-empty" hidden>No encontramos protocolos con esa búsqueda.</p>
+    </div>
+
+    <!-- PROTOCOLO 1 -->
+    <article class="pr-doc" id="doc-envio-insumos" hidden>
+      <a href="#" class="pr-back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>Todos los protocolos</a>
+      <header class="pr-doc-head">
+        <span class="pr-tag">Operaciones y Logística</span>
+        <h1 class="pr-doc-title">Protocolo de comunicación y seguimiento para envío de insumos</h1>
+        <div class="pr-doc-meta">
+          <span class="pr-person"><img src="uploads/Valeria Muñoz.webp" alt=""><span><b>Valeria Muñoz</b><small>Encargada · Operaciones y Logística</small></span></span>
+          <span class="pr-meta-actions"><span class="pr-read" data-read-for="envio-insumos"></span><button type="button" class="pr-print"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>Imprimir / PDF</button></span>
+        </div>
+      </header>
+
+      <div class="pr-body">
+        <div class="pr-intro">
+          <div><h4>Objetivo</h4><p>Establecer un procedimiento de planificación, seguimiento y confirmación del envío de insumos para cursos, con el fin de asegurar que todos los materiales lleguen oportunamente al lugar de destino y evitar retrasos ocasionados por falta de coordinación.</p></div>
+          <div><h4>Alcance</h4><p>Este protocolo aplica a todos los envíos de insumos destinados a cursos, capacitaciones, diplomados y demás actividades organizadas por la institución.</p></div>
+        </div>
+
+        <div class="pr-keys">
+          <p class="pr-keys-t">Plazos clave</p>
+          <div class="pr-keys-g">
+            <div><b>10 días hábiles</b><span>Aviso mínimo del curso fuera de Providencia</span></div>
+            <div><b>7 días hábiles</b><span>Despacho de insumos antes del inicio del curso</span></div>
+            <div><b>7 días hábiles</b><span>Confirmación de cursos en el recinto de Providencia</span></div>
+          </div>
+        </div>
+
+        <h2><span class="pr-n">1</span>Aviso de realización del curso</h2>
+        <h3>Cursos realizados fuera del recinto de Providencia</h3>
+        <p>Con el fin de asegurar la correcta planificación logística, el <strong>Coordinador del Curso o la Línea de Negocio</strong> deberá informar la realización del curso con una <strong>anticipación mínima de 10 días hábiles</strong>.</p>
+        <p>Una vez recibida toda la información requerida, el <strong>encargado del despacho</strong> deberá preparar y gestionar el envío de los insumos, efectuando el despacho con una <strong>anticipación mínima de 7 días hábiles</strong> al inicio del curso.</p>
+        <p>Estos plazos permiten verificar disponibilidad de insumos, preparar el material, coordinar el pago del transporte, gestionar el despacho y realizar el seguimiento hasta su recepción.</p>
+        <h3>Cursos realizados en el recinto de Providencia</h3>
+        <p>Para los cursos que se desarrollen en el recinto de <strong>Providencia</strong>, el <strong>Coordinador del Curso o la Línea de Negocio</strong> deberá confirmar su realización con una <strong>anticipación mínima de 7 días hábiles</strong>.</p>
+        <p>Esta confirmación permitirá al encargado correspondiente preparar oportunamente los insumos, equipos y materiales necesarios para que todo se encuentre disponible el día del curso.</p>
+        <h3>Situaciones excepcionales</h3>
+        <p>Cualquier modificación, cambio de fecha, aumento de participantes o cancelación del curso deberá ser informada inmediatamente al área encargada de la logística y despacho, con el fin de evaluar su impacto y coordinar las acciones necesarias.</p>
+        <p>La información deberá ser enviada al responsable del despacho de insumos mediante el medio de comunicación definido por la empresa (correo electrónico o plataforma interna) y deberá contener, como mínimo, los siguientes antecedentes:</p>
+        <ul class="pr-check">
+          <li>Nombre del curso.</li>
+          <li>Tipo de curso (curso, diplomado, taller, certificación u otro).</li>
+          <li>En caso de tratarse de un curso nuevo o con modificaciones relevantes, adjuntar el programa o temario cuando sea necesario para identificar correctamente los insumos requeridos.</li>
+          <li>Nombre y número de contacto del coordinador.</li>
+          <li>Lugar donde se desarrollará el curso.</li>
+          <li>Fecha de realización del curso.</li>
+          <li>Nombre del docente a cargo.</li>
+          <li>Número de teléfono de contacto del docente.</li>
+          <li>Dirección exacta de despacho de los insumos, indicando nombre y teléfono de la persona que recibirá el envío, cuando corresponda.</li>
+          <li>Cualquier requerimiento especial relacionado con materiales, equipos o logística.</li>
+        </ul>
+        <p>La entrega de esta información dentro del plazo establecido es indispensable para asegurar la correcta preparación, despacho y recepción de los insumos.</p>
+        <div class="pr-callout is-warn"><strong>Importante:</strong> en caso de que el aviso no sea entregado dentro del plazo predeterminado, no se podrá garantizar que los materiales lleguen antes del inicio del curso, debiendo el Coordinador del Curso o la Línea de Negocio informar oportunamente cualquier contingencia y coordinar las medidas necesarias.</div>
+
+        <h2><span class="pr-n">2</span>Planificación del envío</h2>
+        <p>Una vez recibida toda la información del curso, el responsable del despacho deberá:</p>
+        <ul class="pr-check">
+          <li>Revisar el listado de insumos requeridos.</li>
+          <li>Verificar el stock disponible.</li>
+          <li>Preparar el pedido.</li>
+          <li>Confirmar la dirección de entrega y los datos del destinatario.</li>
+          <li>Coordinar la disponibilidad del pago del despacho cuando corresponda.</li>
+        </ul>
+
+        <h2><span class="pr-n">3</span>Fecha límite de despacho</h2>
+        <ul class="pr-check">
+          <li>El envío deberá realizarse como máximo <strong>7 días hábiles antes del inicio del curso</strong>.</li>
+          <li>En caso de que el transporte requiera un mayor tiempo de traslado, el despacho deberá adelantarse según corresponda.</li>
+        </ul>
+
+        <h2><span class="pr-n">4</span>Confirmación del envío</h2>
+        <p>Una vez despachado el paquete, el responsable deberá:</p>
+        <ul class="pr-check">
+          <li>Informar el envío al coordinador del curso mediante correo electrónico o medio de comunicación definido.</li>
+          <li>Enviar el número de seguimiento.</li>
+          <li>Enviar la hora en la que se retiró la encomienda.</li>
+        </ul>
+
+        <h2><span class="pr-n">5</span>Seguimiento del despacho</h2>
+        <ul class="pr-check">
+          <li>El responsable deberá revisar el estado del envío diariamente hasta confirmar su entrega.</li>
+          <li>Si se detecta un retraso o incidencia, deberá comunicarse inmediatamente con la empresa de transporte para gestionar una solución.</li>
+          <li>Paralelamente, se deberá informar al coordinador del curso sobre la situación y las acciones realizadas.</li>
+        </ul>
+
+        <h2><span class="pr-n"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>Responsabilidades previas al despacho</h2>
+        <h3>Del encargado del despacho</h3>
+        <p>Antes de realizar cualquier envío, el responsable deberá:</p>
+        <ul class="pr-check">
+          <li>Contar con una cuenta activa en la empresa de transporte autorizada por la organización para gestionar los despachos.</li>
+          <li>Verificar que la cuenta permita generar órdenes de envío, obtener el número de seguimiento y emitir el comprobante correspondiente.</li>
+          <li>Coordinar con el área de recepción o administración que el monto requerido para el envío se encuentre disponible antes de realizar el despacho, cuando corresponda.</li>
+          <li>Confirmar que toda la documentación e insumos estén correctamente preparados antes de entregar el paquete a la empresa de transporte.</li>
+        </ul>
+        <h3>Del personal de recepción o administración</h3>
+        <p>El personal responsable deberá:</p>
+        <ul class="pr-check">
+          <li>Disponer oportunamente del dinero destinado al pago del envío, el cual será proporcionado por la empresa antes de efectuar el despacho.</li>
+          <li>Entregar los fondos al encargado del despacho dentro de los plazos establecidos, evitando retrasos en la fecha de envío.</li>
+          <li>Confirmar al encargado del despacho que el pago se encuentra disponible antes de la fecha límite de despacho.</li>
+        </ul>
+      </div>
+    </article>
+
+    <!-- PROTOCOLO 2 -->
+    <article class="pr-doc" id="doc-inventario-kits" hidden>
+      <a href="#" class="pr-back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>Todos los protocolos</a>
+      <header class="pr-doc-head">
+        <span class="pr-tag">Gerencia Educacional</span>
+        <h1 class="pr-doc-title">Protocolo de control de inventario y gestión de kits corporativos</h1>
+        <div class="pr-doc-meta">
+          <span class="pr-person"><img src="uploads/Zequelly Blanco.webp?v=2" alt=""><span><b>Zequelly Blanco</b><small>Responsable · Gerente Educacional</small></span></span>
+          <span class="pr-meta-actions"><span class="pr-read" data-read-for="inventario-kits"></span><button type="button" class="pr-print"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>Imprimir / PDF</button></span>
+        </div>
+      </header>
+
+      <div class="pr-body">
+        <div class="pr-intro is-single">
+          <div><h4>Objetivo</h4><p>Establecer un procedimiento estandarizado para el control del inventario de merchandising institucional, asegurando la correcta administración del stock, la planificación de reposiciones y la coordinación eficiente de envíos entre sedes.</p></div>
+        </div>
+
+        <div class="pr-keys">
+          <p class="pr-keys-t">Plazos clave</p>
+          <div class="pr-keys-g">
+            <div><b>Al instante</b><span>Registrar todo retiro en el Excel Oficial de Inventario</span></div>
+            <div><b>30 días corridos</b><span>Anticipación mínima para solicitar reposición de stock</span></div>
+            <div><b>2 semanas</b><span>Anticipación mínima para envíos a la sede Concepción</span></div>
+          </div>
+        </div>
+
+        <h2><span class="pr-n">1</span>Control de inventario</h2>
+        <p>Todo colaborador que retire productos del inventario para la preparación de kits corporativos deberá registrar inmediatamente el movimiento en el <strong>Excel Oficial de Inventario</strong>.</p>
+        <p>El registro deberá incluir como mínimo:</p>
+        <ul class="pr-check">
+          <li>Fecha del retiro.</li>
+          <li>Nombre del responsable.</li>
+          <li>Cantidad retirada.</li>
+          <li>Motivo del retiro (curso, evento o actividad).</li>
+          <li>Stock restante (obligatorio).</li>
+        </ul>
+        <div class="pr-callout is-warn"><strong>Importante:</strong> ningún producto podrá retirarse del inventario sin haber sido registrado previamente en el archivo oficial.</div>
+        <div class="pr-callout">El stock restante tiene una fórmula dentro del Excel para que se reste automáticamente.</div>
+
+        <h2><span class="pr-n">2</span>Armado de kits</h2>
+        <p>Cada vez que se preparen kits institucionales, el responsable deberá:</p>
+        <ul class="pr-check">
+          <li>Revisar la disponibilidad de stock antes de comenzar.</li>
+          <li>Registrar en el Excel Oficial cada producto utilizado y la cantidad correspondiente.</li>
+          <li>Verificar que la información quede correctamente guardada antes de finalizar el proceso.</li>
+        </ul>
+        <p>El objetivo es mantener el inventario actualizado en tiempo real y evitar diferencias entre el stock físico y el registro digital.</p>
+
+        <h2><span class="pr-n">3</span>Solicitud de reposición de stock</h2>
+        <p>Con el fin de evitar quiebres de inventario, toda solicitud de reposición deberá realizarse con una <strong>anticipación mínima de 30 días corridos</strong>.</p>
+        <p>La solicitud deberá considerar:</p>
+        <ul class="pr-check">
+          <li>Productos requeridos.</li>
+          <li>Cantidad necesaria.</li>
+          <li>Motivo de la reposición.</li>
+          <li>Fecha estimada en que será utilizada.</li>
+        </ul>
+        <div class="pr-callout is-warn">No se garantizará la disponibilidad inmediata para solicitudes realizadas fuera de este plazo.</div>
+
+        <h2><span class="pr-n">4</span>Solicitud de envíos a sede Concepción</h2>
+        <p>Toda solicitud de envío de merchandising a la sede de Concepción deberá realizarse con una <strong>anticipación mínima de 2 semanas</strong> para prever contratiempos.</p>
+        <p>La solicitud deberá indicar:</p>
+        <ul class="pr-check">
+          <li>Fecha en que se requiere recibir el material.</li>
+          <li>Curso, evento o actividad.</li>
+          <li>Listado de productos.</li>
+          <li>Cantidades requeridas.</li>
+          <li>Persona responsable de la recepción.</li>
+        </ul>
+        <p>Una vez despachado el material, el movimiento deberá registrarse inmediatamente en el Excel Oficial de Inventario.</p>
+
+        <h2><span class="pr-n">5</span>Acceso al registro de inventario</h2>
+        <p>Las personas autorizadas para solicitar productos, realizar reposiciones o coordinar envíos deberán contar con acceso al Excel Oficial de Inventario.</p>
+        <p>Es responsabilidad de cada usuario:</p>
+        <ul class="pr-check">
+          <li>Mantener la información actualizada.</li>
+          <li>Registrar todos los movimientos realizados.</li>
+          <li>No eliminar ni modificar registros históricos sin autorización.</li>
+          <li>Informar inmediatamente cualquier diferencia detectada entre el inventario físico y el registrado.</li>
+        </ul>
+
+        <h2><span class="pr-n">6</span>Responsabilidades</h2>
+        <p>Es responsabilidad de todos los colaboradores involucrados en la gestión del merchandising institucional:</p>
+        <ul class="pr-check">
+          <li>Mantener un registro preciso y oportuno de todos los movimientos.</li>
+          <li>Respetar los plazos establecidos para reposiciones y envíos.</li>
+          <li>Verificar el stock antes de realizar solicitudes.</li>
+          <li>Contribuir al correcto control del inventario institucional.</li>
+        </ul>
+
+        <h2><span class="pr-n">!</span>Incumplimiento del protocolo</h2>
+        <p>El incumplimiento de cualquiera de los procedimientos establecidos en este documento podrá generar diferencias de inventario, retrasos en la preparación de kits y dificultades en la planificación logística.</p>
+        <div class="pr-callout is-warn">Por este motivo, el cumplimiento de este protocolo es <strong>obligatorio</strong> para todas las personas autorizadas a manipular el inventario de merchandising institucional.</div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#0D0D0D;padding:20px 24px 0;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="background:#1A1A1A;border-radius:48px;border:1px solid rgba(255,255,255,.08);">
+      <div style="background:#111;border-radius:40px;margin:8px;">
+        <div class="sa-footer-grid" style="padding:28px 56px 20px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:40px;">
+          <div style="display:flex;flex-direction:column;gap:0;align-items:center;text-align:center;">
+            <a href="index.html" style="display:flex;justify-content:center;"><img loading="lazy" decoding="async" src="uploads/LOGOS -  VARIANTES-03 (1).webp" alt="San Amaro" style="height:210px;width:auto;object-fit:contain;margin-bottom:-24px;filter:brightness(0) invert(1);"></a>
+            <p style="font-size:16px;line-height:1.2;color:#8A867C;font-weight:400;max-width:300px;">Holding educacional especializado en formación continua para profesionales de la salud.</p>
+            <div style="display:flex;gap:10px;margin-top:16px;">
+              <a href="#" aria-label="LinkedIn" style="width:44px;height:44px;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;color:#fff;transition:background .2s;" style-hover="background:rgba(255,255,255,.12);"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"></path><circle cx="4" cy="4" r="2"></circle></svg></a>
+              <a href="#" aria-label="Instagram" style="width:44px;height:44px;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;color:#fff;transition:background .2s;" style-hover="background:rgba(255,255,255,.12);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+              <a href="#" aria-label="YouTube" style="width:44px;height:44px;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;color:#fff;transition:background .2s;" style-hover="background:rgba(255,255,255,.12);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.45A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.4a2.78 2.78 0 0 0 1.95-1.97A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"></path><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon></svg></a>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <h4 style="font-size:13px;font-weight:500;color:rgba(255,255,255,.25);letter-spacing:.08em;text-transform:uppercase;">Navegación</h4>
+            <ul style="display:flex;flex-direction:column;gap:14px;list-style:none;padding:0;margin:0;">
+              <li><a href="index.html#quienes-somos" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Quiénes somos</a></li>
+              <li><a href="index.html#proposito" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Propósito</a></li>
+              <li><a href="index.html#vision-mision" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Visión y misión</a></li>
+              <li><a href="index.html#valores" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Valores</a></li>
+              <li><a href="index.html#contacto" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Contacto</a></li>
+            </ul>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <h4 style="font-size:13px;font-weight:500;color:rgba(255,255,255,.25);letter-spacing:.08em;text-transform:uppercase;">Institutos</h4>
+            <ul style="display:flex;flex-direction:column;gap:14px;list-style:none;padding:0;margin:0;">
+              <li><a href="index.html#verticales" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">HARMONY</a></li>
+              <li><a href="index.html#verticales" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">AGC</a></li>
+              <li><a href="index.html#verticales" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Simetría</a></li>
+              <li><a href="index.html#verticales" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Premier Medical</a></li>
+              <li><a href="index.html#verticales" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Koncepto</a></li>
+              <li><a href="index.html#verticales" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Kinexia</a></li>
+            </ul>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <h4 style="font-size:13px;font-weight:500;color:rgba(255,255,255,.25);letter-spacing:.08em;text-transform:uppercase;">Enlaces</h4>
+            <ul style="display:flex;flex-direction:column;gap:14px;list-style:none;padding:0;margin:0;">
+              <li><a href="Aula Virtual.dc.html" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Aula Virtual</a></li>
+              <li><a href="Politicas Comerciales.dc.html" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Políticas Comerciales</a></li>
+              <li><a href="Certificados.dc.html" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Certificados</a></li>
+              <li><a href="Suscripciones.dc.html" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Suscripciones</a></li>
+              <li><a href="Inscripciones.dc.html" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">Inscripciones</a></li>
+            </ul>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <h4 style="font-size:13px;font-weight:500;color:rgba(255,255,255,.25);letter-spacing:.08em;text-transform:uppercase;">Contacto</h4>
+            <ul style="display:flex;flex-direction:column;gap:14px;list-style:none;padding:0;margin:0;">
+              <li><a href="mailto:admision@sanamaro.cl" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">admision@sanamaro.cl</a></li>
+              <li><a href="https://wa.me/56921609920" style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);transition:color .2s;" style-hover="color:#fff;">+56 9 2160 9920</a></li>
+              <li><span style="font-size:15px;font-weight:500;color:rgba(255,255,255,.65);">Santiago, Chile</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="sa-footer-legal" style="padding:20px 56px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+        <p style="font-size:14px;color:rgba(255,255,255,.3);font-weight:500;">© 2025 Grupo Educacional San Amaro. Todos los derechos reservados.</p>
+        <div style="display:flex;gap:24px;align-items:center;">
+          <a href="Politicas Comerciales.dc.html" style="font-size:14px;color:rgba(255,255,255,.3);font-weight:500;transition:color .2s;" style-hover="color:rgba(255,255,255,.7);">Política de privacidad</a>
+          <div style="width:1px;height:16px;background:rgba(255,255,255,.15);"></div>
+          <a href="Politicas Comerciales.dc.html" style="font-size:14px;color:rgba(255,255,255,.3);font-weight:500;transition:color .2s;" style-hover="color:rgba(255,255,255,.7);">Términos de uso</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    if (this._prReady) return;
+    this._prReady = true;
+    this.setupProtocols();
+  }
+
+  // Listado tipo blog + vista de cada protocolo. Cada protocolo es un <article id="doc-SLUG">
+  // y su tarjeta un <a href="#SLUG">; para agregar uno nuevo basta sumar ambos al HTML.
+  setupProtocols() {
+    const list = document.getElementById('pr-list');
+    const cards = [...document.querySelectorAll('.pr-card')];
+    const docs = [...document.querySelectorAll('.pr-doc')];
+    const chips = [...document.querySelectorAll('.pr-chip')];
+    const q = document.getElementById('pr-q');
+    const empty = document.getElementById('pr-empty');
+    if (!list) return;
+
+    const norm = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+    const BASE_TITLE = 'Protocolos de trabajo | Grupo Educacional San Amaro';
+
+    // Tiempo de lectura (~200 palabras por minuto)
+    docs.forEach(d => {
+      const slug = d.id.replace(/^doc-/, '');
+      const words = (d.querySelector('.pr-body').textContent || '').trim().split(/\s+/).length;
+      const min = Math.max(1, Math.round(words / 200));
+      document.querySelectorAll('[data-read-for="' + slug + '"]').forEach(el => { el.textContent = min + ' min de lectura'; });
+      // Texto completo para que la búsqueda también encuentre contenido del protocolo
+      const card = cards.find(c => c.dataset.id === slug);
+      if (card) card.dataset.text = norm(card.textContent + ' ' + d.textContent);
+    });
+
+    let area = 'Todas';
+    const filter = () => {
+      const term = norm(q.value.trim());
+      let shown = 0;
+      cards.forEach(c => {
+        const ok = (area === 'Todas' || c.dataset.area === area) && (!term || (c.dataset.text || norm(c.innerText)).includes(term));
+        c.hidden = !ok;
+        if (ok) shown++;
+      });
+      empty.classList.toggle('is-on', shown === 0);
+    };
+    chips.forEach(ch => ch.addEventListener('click', () => {
+      area = ch.dataset.area;
+      chips.forEach(x => x.classList.toggle('is-on', x === ch));
+      filter();
+    }));
+    q.addEventListener('input', filter);
+
+    const route = () => {
+      const slug = decodeURIComponent(location.hash.replace(/^#/, ''));
+      const doc = slug && document.getElementById('doc-' + slug);
+      docs.forEach(d => { d.classList.toggle('is-open', d === doc); });
+      list.hidden = !!doc;
+      document.title = doc ? doc.querySelector('.pr-doc-title').textContent + ' | Protocolos San Amaro' : BASE_TITLE;
+      const main = document.querySelector('.pr-main');
+      if (doc) window.scrollTo({ top: main.getBoundingClientRect().top + window.scrollY - 90, behavior: 'auto' });
+    };
+    window.addEventListener('hashchange', route);
+    document.querySelectorAll('.pr-back').forEach(b => b.addEventListener('click', (e) => {
+      e.preventDefault();
+      history.pushState(null, '', location.pathname + location.search);
+      route();
+    }));
+    document.querySelectorAll('.pr-print').forEach(b => b.addEventListener('click', () => window.print()));
+    filter();
+    route();
+  }
+}
+</script>
+</body>
+</html>
