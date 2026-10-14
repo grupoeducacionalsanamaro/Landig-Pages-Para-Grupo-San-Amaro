@@ -143,6 +143,15 @@
     .pr-note p{font-size:13.5px !important;line-height:1.6 !important;color:#6B675E;}
     .pr-sign{margin-top:32px !important;padding-top:18px;border-top:1px solid #EFEDE8;font-size:14.5px !important;color:#6B675E;}
 
+
+    .pr-subchips{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:-12px 0 24px;}
+    .pr-subchips:empty{display:none;}
+    .pr-subchips .pr-sub-l{font:500 12px 'Inter',sans-serif;color:#8A867C;margin-right:4px;}
+    .pr-sub{font:500 12.5px 'Inter',sans-serif;color:#555;background:transparent;border:1.5px solid #D6D3CC;border-radius:100px;padding:6px 14px;cursor:pointer;transition:all .2s;}
+    .pr-sub:hover{border-color:#0D0D0D;color:#0D0D0D;}
+    .pr-sub.is-on{background:#fff;border-color:#0D0D0D;color:#0D0D0D;}
+    .pr-mail{color:#0D0D0D;font-weight:600;text-decoration:underline;text-underline-offset:3px;word-break:break-all;}
+
     @media (max-width: 640px) {
       .pr-hero{padding:120px 0 52px;}
       .pr-main{padding:28px 0 64px;}
@@ -229,6 +238,8 @@
         </label>
       </div>
 
+      <div class="pr-subchips" id="pr-sub" aria-label="Departamentos"></div>
+
       <div class="pr-grid" id="pr-grid">
         <a class="pr-card" href="#gestion-de-quejas" data-id="gestion-de-quejas" data-area="Todas las áreas">
           <div class="pr-card-top"><span class="pr-tag is-inst">Todas las áreas</span><span class="pr-read" data-read-for="gestion-de-quejas"></span></div>
@@ -286,6 +297,16 @@
           <p class="pr-card-ex">Por qué San Amaro no publica efemérides, las excepciones permitidas, qué fechas sí se comunican y los días prioritarios de publicación.</p>
           <div class="pr-card-foot">
             <span class="pr-person is-duo"><span class="pr-avs"><img src="uploads/Elio Rincón.webp" alt=""><img src="uploads/Dania Candia.webp?v=2" alt=""></span><span><b>Elio Rincón y Dania Candia</b><small>Responsables · Marketing</small></span></span>
+            <span class="pr-go">Leer <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></span>
+          </div>
+        </a>
+
+        <a class="pr-card" href="#diseno-grafico" data-id="diseno-grafico" data-area="Marketing" data-dept="Diseño gráfico">
+          <div class="pr-card-top"><span class="pr-tag">Marketing · Diseño gráfico</span><span class="pr-read" data-read-for="diseno-grafico"></span></div>
+          <h2 class="pr-card-title">Protocolo interno de solicitudes al área de Diseño Gráfico</h2>
+          <p class="pr-card-ex">Cómo pedir una pieza gráfica: canal oficial, brief obligatorio, plazos mínimos, priorización, revisión y entrega de archivos.</p>
+          <div class="pr-card-foot">
+            <span class="pr-person"><img src="uploads/Dania Candia.webp?v=2" alt=""><span><b>Dania Candia</b><small>Responsable · Diseño Gráfico</small></span></span>
             <span class="pr-go">Leer <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></span>
           </div>
         </a>
@@ -904,6 +925,146 @@
       </div>
     </article>
 
+
+    <!-- PROTOCOLO: DISEÑO GRÁFICO -->
+    <article class="pr-doc" id="doc-diseno-grafico">
+      <a href="#" class="pr-back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>Todos los protocolos</a>
+      <header class="pr-doc-head">
+        <span class="pr-tag">Marketing · Diseño gráfico</span>
+        <h1 class="pr-doc-title">Protocolo interno de solicitudes al área de Diseño Gráfico</h1>
+        <div class="pr-doc-meta">
+          <span class="pr-person"><img src="uploads/Dania Candia.webp?v=2" alt=""><span><b>Dania Candia</b><small>Responsable · Diseño Gráfico</small></span></span>
+          <span class="pr-meta-actions"><span class="pr-read" data-read-for="diseno-grafico"></span><button type="button" class="pr-print"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>Imprimir / PDF</button></span>
+        </div>
+      </header>
+
+      <div class="pr-body">
+        <dl class="pr-facts">
+          <div><dt>Versión</dt><dd>1.0 · Octubre 2026</dd></div>
+          <div><dt>Canal oficial de solicitudes</dt><dd><a class="pr-mail" href="mailto:diseno.grafico@sanamaro.cl">diseno.grafico@sanamaro.cl</a></dd></div>
+        </dl>
+
+        <div class="pr-keys">
+          <p class="pr-keys-t">Lo esencial</p>
+          <div class="pr-keys-g">
+            <div><b>Solo por correo</b><span>Las solicitudes por WhatsApp o verbales no se consideran ingresadas</span></div>
+            <div><b>Brief completo</b><span>Con textos definitivos y aprobados antes de empezar</span></div>
+            <div><b>48 horas</b><span>Anticipación mínima para piezas estáticas y carruseles cortos</span></div>
+            <div><b>Más de 48 h</b><span>Para piezas extensas, según su complejidad</span></div>
+          </div>
+        </div>
+
+        <h2><span class="pr-n">1</span>Objetivo</h2>
+        <p>Establecer un procedimiento estandarizado para la recepción, planificación, desarrollo, revisión y entrega de solicitudes de diseño gráfico, con el propósito de optimizar los tiempos de trabajo, mejorar la organización interna y asegurar que cada pieza gráfica responda a los objetivos y necesidades de las distintas marcas del grupo.</p>
+        <p>Este protocolo busca facilitar la coordinación entre los colaboradores y el área de Diseño Gráfico, promoviendo una comunicación clara, una planificación anticipada y el cumplimiento de los plazos establecidos.</p>
+
+        <h2><span class="pr-n">2</span>Canal oficial de recepción de solicitudes</h2>
+        <p>Todas las solicitudes de diseño gráfico deberán enviarse exclusivamente al correo <a class="pr-mail" href="mailto:diseno.grafico@sanamaro.cl">diseno.grafico@sanamaro.cl</a>.</p>
+        <p>Este correo será el canal oficial para registrar, organizar y gestionar los requerimientos del área.</p>
+        <div class="pr-callout is-warn">Las solicitudes realizadas por WhatsApp, mensajes directos, conversaciones verbales u otros medios <strong>no se considerarán formalmente ingresadas</strong> hasta que sean enviadas al correo correspondiente.</div>
+        <p>Cada solicitud deberá incluir un brief completo con toda la información necesaria para comenzar el trabajo. Las solicitudes incompletas podrán quedar pendientes hasta que se entreguen los antecedentes faltantes.</p>
+
+        <h2><span class="pr-n">3</span>Brief obligatorio de solicitud</h2>
+        <p>Para iniciar cualquier trabajo, el colaborador solicitante deberá proporcionar la siguiente información:</p>
+        <dl class="pr-rules">
+          <div><dt>Nombre del solicitante</dt><dd>Persona responsable del requerimiento.</dd></div>
+          <div><dt>Marca</dt><dd>Indicar a qué marca o unidad del grupo corresponde la solicitud.</dd></div>
+          <div><dt>Tipo de pieza gráfica</dt><dd>Flyer, historia, publicación para redes sociales, carrusel, brochure, ebook, documento u otro formato.</dd></div>
+          <div><dt>Objetivo</dt><dd>Explicar qué se busca comunicar o conseguir con la pieza.</dd></div>
+          <div><dt>Formato y dimensiones</dt><dd>Indicar el canal de publicación, tamaño, orientación y especificaciones necesarias.</dd></div>
+          <div><dt>Textos definitivos</dt><dd>Incluir títulos, subtítulos, descripciones, precios, fechas, condiciones, llamados a la acción y datos de contacto.</dd></div>
+          <div><dt>Referencias visuales</dt><dd>Adjuntar ejemplos, diseños anteriores o referencias que permitan comprender el resultado esperado.</dd></div>
+          <div><dt>Archivos adjuntos</dt><dd>Proporcionar fotografías, logotipos, recursos gráficos, códigos QR, enlaces y cualquier otro material necesario.</dd></div>
+          <div><dt>Fecha requerida</dt><dd>Indicar cuándo debe estar disponible el material y, cuando corresponda, su fecha de publicación.</dd></div>
+        </dl>
+        <div class="pr-callout is-warn"><strong>Importante:</strong> los textos deben llegar previamente redactados, revisados y aprobados por el área o colaborador responsable del contenido.</div>
+        <p>La función del área de Diseño Gráfico es desarrollar visualmente la información entregada, mediante la composición, diagramación, jerarquización, selección tipográfica y aplicación de la identidad visual correspondiente.</p>
+        <p>Por lo tanto, la redacción, definición de contenidos, revisión de datos y validación de la información no forman parte automática del proceso de diseño. Si los textos están incompletos, sujetos a cambios o pendientes de aprobación, el inicio del trabajo podrá aplazarse hasta recibir la versión definitiva.</p>
+        <div class="pr-callout">La recepción de una solicitud no implica que se encuentre lista para comenzar: debe contar con todos los antecedentes necesarios.</div>
+
+        <h2><span class="pr-n">4</span>Plazos mínimos de anticipación</h2>
+        <p>La planificación deberá considerar la complejidad, extensión y volumen de trabajo de cada pieza.</p>
+        <h3>Piezas estáticas y carruseles cortos</h3>
+        <p>Se deberá solicitar el material con un <strong>mínimo de 48 horas de anticipación</strong>, considerando la fecha en que se necesita recibir la pieza final. Este plazo contempla el desarrollo gráfico y el proceso habitual de revisión, sujeto a que la solicitud ingrese con el brief completo y los materiales definitivos.</p>
+        <h3>Piezas extensas o de mayor complejidad</h3>
+        <p>Los proyectos que requieran más tiempo de desarrollo deberán solicitarse con una <strong>anticipación superior a 48 horas</strong>. Esto incluye, entre otros:</p>
+        <ul class="pr-check">
+          <li>Ebooks y documentos extensos.</li>
+          <li>Brochures, catálogos y revistas.</li>
+          <li>Presentaciones y documentos de varias páginas.</li>
+          <li>Carruseles extensos o con diagramación especialmente compleja.</li>
+          <li>Materiales que requieran múltiples versiones, adaptaciones o una gran cantidad de recursos gráficos.</li>
+        </ul>
+        <p>El plazo de estos proyectos deberá definirse según su extensión, complejidad, cantidad de páginas, disponibilidad de contenido y carga de trabajo del área.</p>
+        <p>Los plazos comenzarán a considerarse una vez recibida la información necesaria para trabajar. Si durante el proceso se incorporan nuevos contenidos, se reemplazan textos o se solicitan cambios sustanciales, la fecha de entrega podrá ajustarse.</p>
+        <div class="pr-callout is-warn">No se garantiza la resolución de solicitudes durante el mismo día. Aunque algunas piezas puedan desarrollarse en plazos breves, esto dependerá de la carga de trabajo, los compromisos previamente adquiridos y la complejidad del requerimiento.</div>
+
+        <h2><span class="pr-n">5</span>Priorización y planificación de solicitudes</h2>
+        <p>Las solicitudes serán organizadas de acuerdo con criterios de planificación que permitan distribuir adecuadamente la carga de trabajo y cumplir con los compromisos del área:</p>
+        <dl class="pr-rules">
+          <div><dt>Urgencia real</dt><dd>Necesidades críticas asociadas a actividades, campañas o compromisos institucionales.</dd></div>
+          <div><dt>Fecha de publicación</dt><dd>Proximidad de la fecha en que el material debe estar disponible.</dd></div>
+          <div><dt>Objetivo e impacto</dt><dd>Relevancia para campañas publicitarias, matrículas, actividades académicas u otras acciones estratégicas.</dd></div>
+          <div><dt>Complejidad del requerimiento</dt><dd>Tiempo estimado de producción y recursos necesarios.</dd></div>
+          <div><dt>Carga de trabajo vigente</dt><dd>Solicitudes en desarrollo, entregas comprometidas y disponibilidad del área.</dd></div>
+        </dl>
+        <p>Las solicitudes se incorporarán a la planificación según estos criterios y no exclusivamente por el orden en que los colaboradores las comuniquen informalmente.</p>
+        <p>Las solicitudes urgentes deberán justificarse e indicarse en el correo. Su carácter urgente no garantiza una entrega inmediata ni implica que puedan desplazar automáticamente otros trabajos ya programados.</p>
+        <p>Cuando existan conflictos entre fechas de entrega, el área podrá coordinar con la jefatura correspondiente la definición de prioridades.</p>
+
+        <h2><span class="pr-n">6</span>Desarrollo, revisión y aprobación</h2>
+        <p>Una vez recibida y revisada la solicitud, se procederá al desarrollo de la pieza gráfica según el brief, las referencias y los lineamientos visuales de la marca.</p>
+        <h3>Responsabilidades del solicitante</h3>
+        <ul class="pr-check">
+          <li>Entregar el brief completo y los materiales necesarios.</li>
+          <li>Proporcionar textos definitivos y revisar que los datos sean correctos.</li>
+          <li>Confirmar que precios, fechas, nombres, condiciones, enlaces y datos de contacto estén actualizados.</li>
+          <li>Identificar al responsable de aprobar el contenido cuando corresponda.</li>
+          <li>Consolidar las observaciones de revisión para evitar instrucciones contradictorias o modificaciones dispersas.</li>
+          <li>Revisar las propuestas dentro de un plazo razonable para no retrasar la entrega final.</li>
+        </ul>
+        <h3>Responsabilidades del área de Diseño Gráfico</h3>
+        <ul class="pr-check">
+          <li>Desarrollar la pieza según los requerimientos y la identidad visual correspondiente.</li>
+          <li>Organizar y jerarquizar visualmente la información proporcionada.</li>
+          <li>Presentar el diseño para revisión cuando corresponda.</li>
+          <li>Incorporar las modificaciones solicitadas que estén dentro del alcance del brief aprobado.</li>
+          <li>Preparar y entregar los archivos finales en los formatos acordados.</li>
+        </ul>
+        <h3>Aprobación del contenido</h3>
+        <p>La validación de la información y la aprobación del contenido serán responsabilidad del solicitante o del área competente que este designe. Diseño Gráfico no reemplaza la revisión técnica, académica, comercial o institucional de los contenidos.</p>
+        <p>Las observaciones deberán enviarse por correo electrónico, identificando claramente los cambios requeridos y, cuando sea posible, indicando la sección o elemento que debe modificarse.</p>
+        <div class="pr-callout">Los cambios que alteren significativamente el brief original, impliquen nuevos textos, agreguen páginas o requieran nuevas versiones podrán considerarse requerimientos adicionales y estar sujetos a una nueva estimación de plazos.</div>
+
+        <h2><span class="pr-n">7</span>Entrega de archivos finales y editables</h2>
+        <p>La entrega se realizará a través de los medios digitales definidos por el área, priorizando el correo electrónico, los enlaces a archivos de trabajo o las plataformas institucionales correspondientes. Según el tipo de requerimiento, la entrega podrá incluir:</p>
+        <dl class="pr-rules">
+          <div><dt>Archivos finales</dt><dd>Piezas exportadas en el formato requerido para publicación, impresión o distribución.</dd></div>
+          <div><dt>Archivos editables</dt><dd>Enlaces o documentos de Canva u otras herramientas, cuando corresponda y según las características del proyecto.</dd></div>
+          <div><dt>Versiones adaptadas</dt><dd>Formatos adicionales que hayan sido solicitados e incluidos en el brief.</dd></div>
+        </dl>
+        <p>En los proyectos desarrollados en Canva, se podrá compartir el enlace editable correspondiente para facilitar la continuidad del trabajo y las modificaciones autorizadas por parte del equipo.</p>
+        <p>Los archivos editables, recursos de trabajo y documentos de producción no se considerarán entregables automáticos de todos los proyectos: deberán estar contemplados en el alcance de la solicitud cuando corresponda.</p>
+        <p>El solicitante deberá verificar que los archivos recibidos correspondan a lo solicitado y comunicar oportunamente cualquier inconveniente relacionado con la entrega.</p>
+
+        <h2><span class="pr-n">8</span>Consideraciones generales</h2>
+        <ul class="pr-check">
+          <li>Toda solicitud deberá respetar el canal oficial de recepción y el brief obligatorio.</li>
+          <li>Los plazos mínimos son una base de planificación y no una garantía de entrega independiente de la complejidad o carga de trabajo.</li>
+          <li>La entrega tardía de textos, fotografías, logotipos u otros materiales podrá afectar la fecha comprometida.</li>
+          <li>Las modificaciones de contenido posteriores a la aprobación podrán requerir ajustes de plazo.</li>
+          <li>La incorporación de solicitudes nuevas o urgentes deberá evaluarse en función de los compromisos vigentes.</li>
+          <li>La planificación busca garantizar un flujo de trabajo ordenado, una distribución razonable de los tiempos y una mejor calidad de las entregas.</li>
+        </ul>
+
+        <h2><span class="pr-n">9</span>Vigencia y cumplimiento</h2>
+        <p>Este protocolo entrará en vigencia una vez comunicado y validado por la jefatura correspondiente.</p>
+        <p>Se solicita a todos los colaboradores respetar el procedimiento establecido y utilizar exclusivamente el correo oficial para ingresar sus requerimientos de diseño gráfico.</p>
+        <p>El cumplimiento de estas directrices permitirá mejorar la coordinación entre las áreas, reducir las solicitudes incompletas y facilitar una gestión más eficiente del trabajo.</p>
+        <p class="pr-sign"><strong>Área de Diseño Gráfico</strong> · Grupo Educacional San Amaro · <a class="pr-mail" href="mailto:diseno.grafico@sanamaro.cl">diseno.grafico@sanamaro.cl</a></p>
+      </div>
+    </article>
+
   </div>
 </section>
 
@@ -1008,22 +1169,46 @@ class Component extends DCLogic {
       if (card) card.dataset.text = norm(card.textContent + ' ' + d.textContent);
     });
 
+    // Filtro por área y, dentro de un área, por departamento (data-dept en la tarjeta).
+    // Los departamentos se arman solos según las tarjetas que existan en esa área.
+    const subBox = document.getElementById('pr-sub');
     let area = 'Todas';
+    let dept = '';
     const filter = () => {
       const term = norm(q.value.trim());
       let shown = 0;
       cards.forEach(c => {
         // Los protocolos institucionales ("Todas las áreas") aparecen en cualquier filtro de área.
-        const inArea = area === 'Todas' || c.dataset.area === area || c.dataset.area === 'Todas las áreas';
-        const ok = inArea && (!term || (c.dataset.text || norm(c.innerText)).includes(term));
+        const inArea = area === 'Todas' || c.dataset.area === area || (c.dataset.area === 'Todas las áreas' && !dept);
+        const inDept = !dept || c.dataset.dept === dept;
+        const ok = inArea && inDept && (!term || (c.dataset.text || norm(c.innerText)).includes(term));
         c.hidden = !ok;
         if (ok) shown++;
       });
       empty.classList.toggle('is-on', shown === 0);
     };
+    const renderSubs = () => {
+      const depts = [...new Set(cards.filter(c => c.dataset.area === area && c.dataset.dept).map(c => c.dataset.dept))];
+      subBox.innerHTML = '';
+      if (!depts.length) return;
+      const label = document.createElement('span');
+      label.className = 'pr-sub-l';
+      label.textContent = 'Departamento:';
+      subBox.appendChild(label);
+      ['', ...depts].forEach(dp => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'pr-sub' + (dp === dept ? ' is-on' : '');
+        b.textContent = dp || 'Todo ' + area;
+        b.addEventListener('click', () => { dept = dp; renderSubs(); filter(); });
+        subBox.appendChild(b);
+      });
+    };
     chips.forEach(ch => ch.addEventListener('click', () => {
       area = ch.dataset.area;
+      dept = '';
       chips.forEach(x => x.classList.toggle('is-on', x === ch));
+      renderSubs();
       filter();
     }));
     q.addEventListener('input', filter);
