@@ -113,6 +113,36 @@
     .pr-callout.is-warn{background:#FBF6EC;border-left-color:#C9962B;color:#5C4510;}
     .pr-callout.is-warn strong{color:#4A370C;}
 
+
+    .pr-tag.is-inst{background:#0D0D0D;color:#fff;}
+    .pr-person img.is-logo{object-position:center;}
+    .pr-avs{display:flex;flex-shrink:0;}
+    .pr-avs img + img{margin-left:-12px;box-shadow:0 0 0 2px #fff;}
+    .pr-keys-g{grid-template-columns:repeat(auto-fit,minmax(150px,1fr)) !important;}
+    .pr-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:24px 0 8px;}
+    .pr-facts div{background:#F5F5F3;border-radius:14px;padding:14px 16px;}
+    .pr-facts dt{font:600 11px 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#8A867C;margin-bottom:4px;}
+    .pr-facts dd{font-size:14.5px;font-weight:500;color:#0D0D0D;line-height:1.45;}
+    .pr-table-wrap{overflow-x:auto;margin:6px 0 18px;border:1px solid #EFEDE8;border-radius:16px;}
+    .pr-table{width:100%;border-collapse:collapse;font-size:15px;}
+    .pr-table th{text-align:left;font:600 11px 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#8A867C;background:#F5F5F3;padding:12px 16px;}
+    .pr-table td{padding:12px 16px;border-top:1px solid #EFEDE8;line-height:1.45;vertical-align:top;}
+    .pr-table td:last-child{font-weight:600;color:#0D0D0D;}
+    .pr-rules{display:grid;gap:10px;margin:6px 0 18px;}
+    .pr-rules div{border:1px solid #EFEDE8;border-radius:16px;padding:16px 18px;}
+    .pr-rules dt{font:600 15px 'Inter',sans-serif;color:#0D0D0D;margin-bottom:6px;}
+    .pr-rules dd{font-size:15px;line-height:1.65;color:#2B2925;}
+    .pr-values{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 18px;}
+    .pr-values span{font:600 11px 'Inter',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#0D0D0D;border:1.5px solid #0D0D0D;border-radius:100px;padding:7px 14px;}
+    .pr-quote{font-family:'Fraunces',serif;font-style:italic;font-size:20px;line-height:1.5;color:#0D0D0D;border-left:3px solid #0D0D0D;padding:4px 0 4px 20px;margin:0 0 8px;}
+    .pr-statement{background:#0D0D0D;color:#FAF9F5;border-radius:18px;padding:22px 24px;font-family:'Fraunces',serif;font-weight:600;font-size:19px;line-height:1.45;margin:8px 0 18px;}
+    .pr-pills{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 16px;}
+    .pr-pills span{font-size:13.5px;font-weight:500;background:#F5F5F3;border-radius:100px;padding:7px 13px;}
+    .pr-pills.is-no span{background:#FDF1EF;color:#8E2B20;text-decoration:line-through;text-decoration-color:rgba(142,43,32,.45);}
+    .pr-note{margin-top:36px;padding-top:20px;border-top:1px solid #EFEDE8;}
+    .pr-note p{font-size:13.5px !important;line-height:1.6 !important;color:#6B675E;}
+    .pr-sign{margin-top:32px !important;padding-top:18px;border-top:1px solid #EFEDE8;font-size:14.5px !important;color:#6B675E;}
+
     @media (max-width: 640px) {
       .pr-hero{padding:120px 0 52px;}
       .pr-main{padding:28px 0 64px;}
@@ -124,7 +154,9 @@
       .pr-doc-head{padding:28px 22px 22px;border-radius:22px 22px 0 0;}
       .pr-body{padding:4px 22px 32px;border-radius:0 0 22px 22px;}
       .pr-intro{grid-template-columns:1fr;}
-      .pr-keys-g{grid-template-columns:1fr;gap:12px;}
+      .pr-keys-g{grid-template-columns:1fr !important;gap:12px;}
+      .pr-quote{font-size:18px;}
+      .pr-statement{font-size:17px;}
       .pr-body h2{font-size:21px;margin-top:36px;}
       .pr-print{display:none;}
     }
@@ -183,9 +215,13 @@
     <div id="pr-list">
       <div class="pr-toolbar">
         <div class="pr-chips" id="pr-chips">
-          <button type="button" class="pr-chip is-on" data-area="Todas">Todas las áreas</button>
+          <button type="button" class="pr-chip is-on" data-area="Todas">Todos</button>
+          <button type="button" class="pr-chip" data-area="Todas las áreas">Institucionales</button>
           <button type="button" class="pr-chip" data-area="Operaciones y Logística">Operaciones y Logística</button>
           <button type="button" class="pr-chip" data-area="Gerencia Educacional">Gerencia Educacional</button>
+          <button type="button" class="pr-chip" data-area="Pacientes Modelo">Pacientes Modelo</button>
+          <button type="button" class="pr-chip" data-area="Marketing">Marketing</button>
+          <button type="button" class="pr-chip" data-area="Relaciones Públicas">Relaciones Públicas</button>
         </div>
         <label class="pr-search">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
@@ -194,6 +230,26 @@
       </div>
 
       <div class="pr-grid" id="pr-grid">
+        <a class="pr-card" href="#gestion-de-quejas" data-id="gestion-de-quejas" data-area="Todas las áreas">
+          <div class="pr-card-top"><span class="pr-tag is-inst">Todas las áreas</span><span class="pr-read" data-read-for="gestion-de-quejas"></span></div>
+          <h2 class="pr-card-title">Protocolo institucional de gestión de quejas</h2>
+          <p class="pr-card-ex">Cómo recibir, registrar, resolver y cerrar quejas de estudiantes, pacientes, docentes y clientes externos, y quién es responsable en cada área.</p>
+          <div class="pr-card-foot">
+            <span class="pr-person"><img class="is-logo" src="brand/apple-touch-icon.png" alt=""><span><b>Todos los colaboradores</b><small>Aplica a todas las áreas</small></span></span>
+            <span class="pr-go">Leer <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></span>
+          </div>
+        </a>
+
+        <a class="pr-card" href="#relacionamiento" data-id="relacionamiento" data-area="Todas las áreas">
+          <div class="pr-card-top"><span class="pr-tag is-inst">Todas las áreas</span><span class="pr-read" data-read-for="relacionamiento"></span></div>
+          <h2 class="pr-card-title">Protocolo de relacionamiento 2026</h2>
+          <p class="pr-card-ex">Lineamientos sobre relaciones personales entre integrantes del ecosistema: respeto, profesionalismo, conflictos de interés y cuándo informar.</p>
+          <div class="pr-card-foot">
+            <span class="pr-person"><img class="is-logo" src="brand/apple-touch-icon.png" alt=""><span><b>Todos los colaboradores</b><small>Aplica a todas las áreas</small></span></span>
+            <span class="pr-go">Leer <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></span>
+          </div>
+        </a>
+
         <a class="pr-card" href="#envio-insumos" data-id="envio-insumos" data-area="Operaciones y Logística">
           <div class="pr-card-top"><span class="pr-tag">Operaciones y Logística</span><span class="pr-read" data-read-for="envio-insumos"></span></div>
           <h2 class="pr-card-title">Protocolo de comunicación y seguimiento para envío de insumos</h2>
@@ -213,12 +269,42 @@
             <span class="pr-go">Leer <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></span>
           </div>
         </a>
+
+        <a class="pr-card" href="#pacientes-modelo" data-id="pacientes-modelo" data-area="Pacientes Modelo">
+          <div class="pr-card-top"><span class="pr-tag">Pacientes Modelo</span><span class="pr-read" data-read-for="pacientes-modelo"></span></div>
+          <h2 class="pr-card-title">Protocolo de atención a pacientes modelo</h2>
+          <p class="pr-card-ex">Agendamiento, abono de reserva, reagendamientos, urgencias, puntualidad y canal oficial de comunicación con los pacientes modelo.</p>
+          <div class="pr-card-foot">
+            <span class="pr-person"><img src="uploads/Tamara Villagra.webp" alt=""><span><b>Tamara Villagra</b><small>Encargada · Pacientes Modelo</small></span></span>
+            <span class="pr-go">Leer <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></span>
+          </div>
+        </a>
+
+        <a class="pr-card" href="#no-efemerides" data-id="no-efemerides" data-area="Marketing">
+          <div class="pr-card-top"><span class="pr-tag">Marketing</span><span class="pr-read" data-read-for="no-efemerides"></span></div>
+          <h2 class="pr-card-title">Protocolo de comunicación: no efemérides en RRSS</h2>
+          <p class="pr-card-ex">Por qué San Amaro no publica efemérides, las excepciones permitidas, qué fechas sí se comunican y los días prioritarios de publicación.</p>
+          <div class="pr-card-foot">
+            <span class="pr-person is-duo"><span class="pr-avs"><img src="uploads/Elio Rincón.webp" alt=""><img src="uploads/Dania Candia.webp?v=2" alt=""></span><span><b>Elio Rincón y Dania Candia</b><small>Responsables · Marketing</small></span></span>
+            <span class="pr-go">Leer <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></span>
+          </div>
+        </a>
+
+        <a class="pr-card" href="#summit-live" data-id="summit-live" data-area="Relaciones Públicas">
+          <div class="pr-card-top"><span class="pr-tag">Relaciones Públicas</span><span class="pr-read" data-read-for="summit-live"></span></div>
+          <h2 class="pr-card-title">Protocolo de eventos online Summit Live</h2>
+          <p class="pr-card-ex">Plan de coordinación y ejecución de un Summit online, desde 30 días antes hasta la verificación final el día del evento.</p>
+          <div class="pr-card-foot">
+            <span class="pr-person"><img src="uploads/Carla Fuenmayor.webp" alt=""><span><b>Carla Fuenmayor</b><small>Responsable · Relaciones Públicas</small></span></span>
+            <span class="pr-go">Leer <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></span>
+          </div>
+        </a>
       </div>
-      <p class="pr-empty" id="pr-empty" hidden>No encontramos protocolos con esa búsqueda.</p>
+      <p class="pr-empty" id="pr-empty">No encontramos protocolos con esa búsqueda.</p>
     </div>
 
     <!-- PROTOCOLO 1 -->
-    <article class="pr-doc" id="doc-envio-insumos" hidden>
+    <article class="pr-doc" id="doc-envio-insumos">
       <a href="#" class="pr-back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>Todos los protocolos</a>
       <header class="pr-doc-head">
         <span class="pr-tag">Operaciones y Logística</span>
@@ -321,7 +407,7 @@
     </article>
 
     <!-- PROTOCOLO 2 -->
-    <article class="pr-doc" id="doc-inventario-kits" hidden>
+    <article class="pr-doc" id="doc-inventario-kits">
       <a href="#" class="pr-back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>Todos los protocolos</a>
       <header class="pr-doc-head">
         <span class="pr-tag">Gerencia Educacional</span>
@@ -413,6 +499,408 @@
         <h2><span class="pr-n">!</span>Incumplimiento del protocolo</h2>
         <p>El incumplimiento de cualquiera de los procedimientos establecidos en este documento podrá generar diferencias de inventario, retrasos en la preparación de kits y dificultades en la planificación logística.</p>
         <div class="pr-callout is-warn">Por este motivo, el cumplimiento de este protocolo es <strong>obligatorio</strong> para todas las personas autorizadas a manipular el inventario de merchandising institucional.</div>
+      </div>
+    </article>
+
+
+    <!-- PROTOCOLO: GESTIÓN DE QUEJAS -->
+    <article class="pr-doc" id="doc-gestion-de-quejas">
+      <a href="#" class="pr-back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>Todos los protocolos</a>
+      <header class="pr-doc-head">
+        <span class="pr-tag is-inst">Todas las áreas</span>
+        <h1 class="pr-doc-title">Protocolo institucional de gestión de quejas</h1>
+        <div class="pr-doc-meta">
+          <span class="pr-person"><img class="is-logo" src="brand/apple-touch-icon.png" alt=""><span><b>Todos los colaboradores</b><small>Aplica a todas las áreas</small></span></span>
+          <span class="pr-meta-actions"><span class="pr-read" data-read-for="gestion-de-quejas"></span><button type="button" class="pr-print"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>Imprimir / PDF</button></span>
+        </div>
+      </header>
+
+      <div class="pr-body">
+        <dl class="pr-facts">
+          <div><dt>Versión</dt><dd>1.0</dd></div>
+          <div><dt>Fecha de vigencia</dt><dd>27-01-2026</dd></div>
+          <div><dt>Aprobado por</dt><dd>CVO – Alexis González</dd></div>
+          <div><dt>Ámbito de aplicación</dt><dd>Todas las marcas y operaciones del Grupo Educacional</dd></div>
+        </dl>
+
+        <h2><span class="pr-n">1</span>Objetivo</h2>
+        <p>Establecer un procedimiento formal, claro y eficiente para la recepción, análisis, resolución y cierre de quejas provenientes de estudiantes, pacientes, docentes y clientes externos, asegurando trazabilidad, mejora continua y protección institucional.</p>
+
+        <h2><span class="pr-n">2</span>Alcance</h2>
+        <p>Este protocolo aplica a todas las marcas, líneas formativas, clínicas, eventos y operaciones del Grupo Educacional.</p>
+
+        <h2><span class="pr-n">3</span>Canales oficiales de recepción</h2>
+        <p>Correo institucional, formulario oficial de quejas o comunicación escrita validada.</p>
+        <div class="pr-callout is-warn">No se gestionan quejas informales sin formalización previa.</div>
+
+        <h2><span class="pr-n">4</span>Registro y verificación</h2>
+        <p>Toda queja debe ser documentada, respaldada con evidencia y verificada con las partes involucradas antes de emitir conclusiones.</p>
+
+        <h2><span class="pr-n">5</span>Responsables por área</h2>
+        <p>La gestión del caso se asignará según la naturaleza de la queja, de acuerdo a la estructura institucional.</p>
+        <div class="pr-table-wrap">
+          <table class="pr-table">
+            <thead><tr><th>Área</th><th>Responsable</th></tr></thead>
+            <tbody>
+              <tr><td>Control de Gestión y Finanzas</td><td>Mariluz Pérez</td></tr>
+              <tr><td>Coordinadores Académicos y Comerciales</td><td>Según línea correspondiente</td></tr>
+              <tr><td>Operaciones</td><td>Valeria Muñoz</td></tr>
+              <tr><td>Gestión de Pacientes</td><td>Tamara Villagra</td></tr>
+              <tr><td>Marketing</td><td>Elio Rincón</td></tr>
+              <tr><td>Relaciones Públicas (ORO / Eventos / Institucional)</td><td>Carla Fuenmayor</td></tr>
+              <tr><td>Dirección General</td><td>CVO – Alexis González</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2><span class="pr-n">6</span>Resolución, escalamiento y cierre</h2>
+        <p>Las quejas deberán resolverse con rapidez y proporcionalidad. En ausencia de una solución directa, el caso será escalado con <strong>2–3 alternativas</strong> al nivel superior o al CVO.</p>
+        <div class="pr-callout">Todo caso debe cerrarse formalmente y quedar registrado como antecedente institucional.</div>
+
+        <p class="pr-sign">Aprobado por <strong>Alexis González</strong>, Chief Visionary Officer (CVO), y por los Coordinadores Académicos y Comerciales del Grupo Educacional.</p>
+      </div>
+    </article>
+
+    <!-- PROTOCOLO: RELACIONAMIENTO -->
+    <article class="pr-doc" id="doc-relacionamiento">
+      <a href="#" class="pr-back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>Todos los protocolos</a>
+      <header class="pr-doc-head">
+        <span class="pr-tag is-inst">Todas las áreas</span>
+        <h1 class="pr-doc-title">Protocolo de relacionamiento 2026</h1>
+        <div class="pr-doc-meta">
+          <span class="pr-person"><img class="is-logo" src="brand/apple-touch-icon.png" alt=""><span><b>Todos los colaboradores</b><small>Aplica a todas las áreas</small></span></span>
+          <span class="pr-meta-actions"><span class="pr-read" data-read-for="relacionamiento"></span><button type="button" class="pr-print"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>Imprimir / PDF</button></span>
+        </div>
+      </header>
+
+      <div class="pr-body">
+        <div class="pr-values"><span>Respeto</span><span>Familia</span><span>Profesionalismo</span><span>Cultura</span></div>
+        <blockquote class="pr-quote">Creemos en las relaciones, en la familia y en la libertad de las personas para construir vínculos afectivos. Esa libertad debe convivir siempre con el respeto, el profesionalismo y el cuidado de nuestro ecosistema.</blockquote>
+
+        <h2><span class="pr-n">1</span>Principio cultural</h2>
+        <p>El Grupo Educacional San Amaro reconoce y respeta las relaciones amorosas, afectivas o de pareja entre personas adultas, sean formales o informales, siempre que sean consentidas y no produzcan conflictos de interés, afectación del ambiente laboral, perjuicios a terceros ni dificultades para el correcto funcionamiento de la organización.</p>
+        <p>La vida privada pertenece a cada persona. La organización interviene únicamente cuando sus consecuencias alcanzan el ámbito profesional, académico, comercial u organizacional.</p>
+        <div class="pr-statement">Las relaciones pueden comenzar, cambiar o terminar.<br>El respeto profesional debe permanecer.</div>
+
+        <h2><span class="pr-n">2</span>Ámbito de aplicación</h2>
+        <p>Este lineamiento aplica a colaboradores, directivos, docentes y otras personas que actúen en representación del Grupo Educacional. Cuando el vínculo involucre estudiantes, pacientes, proveedores u otros integrantes del ecosistema, deberán considerarse además las reglas profesionales, académicas, contractuales y legales que correspondan.</p>
+        <p>Una relación consentida no constituye por sí misma una infracción. El foco de este protocolo está en sus posibles consecuencias dentro del ecosistema.</p>
+
+        <h2><span class="pr-n">3</span>Reglas de relacionamiento</h2>
+        <dl class="pr-rules">
+          <div><dt>Consentimiento</dt><dd>Todo vínculo debe ser libre y consentido. Un vínculo previo o actual nunca autoriza presiones, insinuaciones, requerimientos sexuales no consentidos ni represalias.</dd></div>
+          <div><dt>Profesionalismo</dt><dd>Las relaciones personales no deben alterar responsabilidades, desempeño, horarios, decisiones, trato hacia terceros ni funcionamiento de los equipos.</dd></div>
+          <div><dt>Conflicto de interés</dt><dd>No debe existir favoritismo ni intervención impropia en contratación, remuneración, evaluación, promoción, asignación de oportunidades o decisiones que beneficien o perjudiquen a la persona vinculada.</dd></div>
+          <div><dt>Jerarquía</dt><dd>Cuando una persona tenga poder de supervisión, evaluación o decisión sobre la otra, la situación deberá comunicarse confidencialmente a la instancia designada para evaluar medidas de mitigación.</dd></div>
+          <div><dt>Término de la relación</dt><dd>El término de un vínculo personal no puede trasladarse al trabajo mediante hostigamiento, exclusión, rumores, amenazas, exposición de intimidad, represalias o uso de la posición laboral.</dd></div>
+        </dl>
+
+        <h2><span class="pr-n">4</span>Cuándo debe informarse</h2>
+        <p>No se exige informar una relación por el solo hecho de existir. Sin embargo, deberá comunicarse confidencialmente cuando exista:</p>
+        <ul class="pr-check">
+          <li>Dependencia jerárquica directa.</li>
+          <li>Capacidad de evaluar o decidir sobre la otra persona.</li>
+          <li>Conflicto de interés real o potencial.</li>
+          <li>Efectos concretos de la relación en el equipo o en otro integrante del ecosistema.</li>
+        </ul>
+        <p>La comunicación deberá limitarse a lo necesario para gestionar el riesgo organizacional, resguardando la privacidad y honra de las personas.</p>
+
+        <h2><span class="pr-n">5</span>Respuesta organizacional</h2>
+        <p>Ante un conflicto de interés o impacto organizacional, San Amaro podrá adoptar medidas proporcionales y compatibles con la legislación aplicable: abstención en decisiones, cambio de supervisión, redistribución de funciones, separación de espacios o jornadas, reasignación u otras medidas razonables.</p>
+        <div class="pr-callout is-warn">Cuando existan hechos que puedan constituir acoso sexual, acoso laboral o violencia en el trabajo, se activarán los procedimientos formales establecidos por la organización conforme a la legislación vigente.</div>
+        <p>Las medidas disciplinarias o decisiones laborales deberán adoptarse únicamente con fundamento, proporcionalidad, debido procedimiento y conforme a la ley y reglamentos aplicables.</p>
+
+        <h2><span class="pr-n">6</span>Conductas incompatibles con nuestra cultura</h2>
+        <p>Son incompatibles con este protocolo el acoso sexual o laboral, la violencia, amenazas, represalias, hostigamiento, discriminación, abuso de autoridad, favoritismo que afecte decisiones organizacionales, divulgación indebida de información íntima y cualquier conducta que vulnere la dignidad o derechos de otra persona.</p>
+
+        <h2><span class="pr-n">7</span>Marco legal chileno</h2>
+        <p>Este protocolo complementa —y no reemplaza— el Reglamento Interno, el protocolo de prevención del acoso sexual, laboral y violencia en el trabajo, los procedimientos de investigación y sanción y demás obligaciones legales del Grupo Educacional.</p>
+        <p>Se considera especialmente la <strong>Ley N.º 21.643 (Ley Karin)</strong> y las normas del Código del Trabajo que exigen relaciones laborales libres de violencia y compatibles con la dignidad de las personas, así como medidas de prevención, investigación, resguardo y sanción frente al acoso sexual, laboral y la violencia en el trabajo.</p>
+        <div class="pr-callout">En caso de contradicción entre este documento y una norma legal, reglamentaria, contractual o profesional aplicable, prevalecerá la normativa vigente.</div>
+
+        <h2><span class="pr-n">8</span>Principio de decisión</h2>
+        <p>San Amaro cree en las relaciones y en la familia. No busca controlar la vida privada de sus integrantes. Sin embargo, cuando una relación genere un conflicto grave, sostenido o incompatible con el correcto funcionamiento del equipo o con cualquier integrante del ecosistema, la organización deberá actuar y tomar las decisiones necesarias dentro del marco legal.</p>
+        <div class="pr-statement">San Amaro respeta tu vida privada.<br>Cuando una relación personal produce consecuencias profesionales, pasa a ser también una responsabilidad organizacional.</div>
+
+        <div class="pr-note">
+          <p><strong>Nota de implementación.</strong> Documento de lineamiento interno. Antes de incorporarlo formalmente al Reglamento Interno, contratos, anexos o procedimientos disciplinarios, se recomienda revisión por asesoría laboral chilena y coordinación con el organismo administrador de la Ley N.º 16.744, para asegurar coherencia con el protocolo Ley Karin vigente de la organización.</p>
+          <p>Referencias normativas consultadas: Ley N.º 21.643; Código del Trabajo de Chile, especialmente arts. 2, 154 bis y 211-A y siguientes; información oficial de ChileAtiende, Dirección del Trabajo e Instituto de Seguridad Laboral.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- PROTOCOLO: PACIENTES MODELO -->
+    <article class="pr-doc" id="doc-pacientes-modelo">
+      <a href="#" class="pr-back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>Todos los protocolos</a>
+      <header class="pr-doc-head">
+        <span class="pr-tag">Pacientes Modelo</span>
+        <h1 class="pr-doc-title">Protocolo de atención a pacientes modelo</h1>
+        <div class="pr-doc-meta">
+          <span class="pr-person"><img src="uploads/Tamara Villagra.webp" alt=""><span><b>Tamara Villagra</b><small>Encargada · Pacientes Modelo</small></span></span>
+          <span class="pr-meta-actions"><span class="pr-read" data-read-for="pacientes-modelo"></span><button type="button" class="pr-print"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>Imprimir / PDF</button></span>
+        </div>
+      </header>
+
+      <div class="pr-body">
+        <div class="pr-keys">
+          <p class="pr-keys-t">Plazos clave</p>
+          <div class="pr-keys-g">
+            <div><b>2 días hábiles</b><span>Aviso mínimo para reagendar usando el mismo abono</span></div>
+            <div><b>Mismo día</b><span>Envío del justificante en caso de urgencia</span></div>
+            <div><b>15 minutos</b><span>Tolerancia máxima de atraso</span></div>
+          </div>
+        </div>
+
+        <h2><span class="pr-n">1</span>Agendamiento y confirmación</h2>
+        <p>Todo paciente modelo será agendado exclusivamente a través del sistema <strong>Dentalink</strong>. La información de su cita será enviada automáticamente al correo electrónico registrado.</p>
+        <p>En caso de requerir modificación o reagendamiento, el paciente deberá gestionar la solicitud vía WhatsApp con el equipo correspondiente, dentro de los plazos establecidos.</p>
+
+        <h2><span class="pr-n">2</span>Abono de reserva</h2>
+        <p>Para confirmar la cita, se solicitará el pago de un abono previo al tratamiento. Este abono:</p>
+        <ul class="pr-check">
+          <li>Garantiza la reserva del cupo clínico.</li>
+          <li>Permite la planificación operativa del equipo docente y clínico.</li>
+          <li>Será descontado del valor total del procedimiento al momento del pago final.</li>
+        </ul>
+
+        <h2><span class="pr-n">3</span>Inasistencia y reagendamiento</h2>
+        <p>El paciente podrá reagendar su cita utilizando el mismo abono únicamente si notifica su inasistencia con al menos <strong>2 días hábiles de anticipación</strong>.</p>
+
+        <h2><span class="pr-n">4</span>Política de urgencias (cláusula reforzada)</h2>
+        <p>Se considerará urgencia válida cualquier situación imprevista que imposibilite la asistencia del paciente, siempre y cuando:</p>
+        <ul class="pr-check">
+          <li>Sea de carácter <strong>real, verificable y justificado</strong>.</li>
+          <li>Cuente con <strong>respaldo formal obligatorio</strong>, como: certificado médico, documento de atención de urgencia, licencia médica o constancia formal emitida por una institución competente.</li>
+        </ul>
+        <h3>Condiciones clave</h3>
+        <ul class="pr-check">
+          <li>El justificante debe ser enviado <strong>el mismo día de la cita agendada</strong>, sin excepción.</li>
+          <li>No se aceptarán justificaciones posteriores fuera de plazo.</li>
+          <li>Se realizará validación de la autenticidad y pertinencia del documento.</li>
+        </ul>
+        <div class="pr-callout is-warn">En ausencia de respaldo válido, la inasistencia será considerada <strong>injustificada</strong>.</div>
+
+        <h2><span class="pr-n">5</span>No reembolso de abonos</h2>
+        <p>El abono no es reembolsable en caso de:</p>
+        <ul class="pr-check">
+          <li>Inasistencia injustificada.</li>
+          <li>Aviso fuera de plazo.</li>
+          <li>Falta de documentación válida en caso de urgencia.</li>
+        </ul>
+
+        <h2><span class="pr-n">6</span>Controles y retoques</h2>
+        <p>Los procedimientos realizados:</p>
+        <ul class="pr-check">
+          <li>No incluyen controles obligatorios ni retoques garantizados.</li>
+          <li>En caso de requerir evaluación, se asignará una cita dentro de los plazos clínicos definidos.</li>
+        </ul>
+        <div class="pr-callout">La no asistencia a dicha evaluación invalida cualquier gestión posterior.</div>
+
+        <h2><span class="pr-n">7</span>Puntualidad</h2>
+        <p>Se otorgará un máximo de <strong>15 minutos de tolerancia</strong>. Superado este tiempo:</p>
+        <ul class="pr-check">
+          <li>Se considerará inasistencia.</li>
+          <li>Aplicarán las condiciones de los puntos 3 y 5.</li>
+        </ul>
+
+        <h2><span class="pr-n">8</span>Naturaleza de atención como paciente modelo</h2>
+        <p>El paciente entiende y acepta que:</p>
+        <ul class="pr-check">
+          <li>Forma parte de un entorno formativo.</li>
+          <li>Las fechas y horarios no son fijos y pueden variar mensualmente según planificación académica.</li>
+        </ul>
+
+        <h2><span class="pr-n">9</span>Canal oficial de comunicación</h2>
+        <p>El único canal válido para solicitar citas, reagendamientos y evaluaciones es vía <strong>WhatsApp con el equipo de ejecutivas</strong>.</p>
+        <div class="pr-callout is-warn">No se gestionarán solicitudes por otros medios.</div>
+
+        <h2><span class="pr-n">10</span>Registro clínico</h2>
+        <p>El paciente autoriza la toma de fotografías y videos antes, durante y después del procedimiento, con fines de:</p>
+        <ul class="pr-check">
+          <li>Seguimiento clínico.</li>
+          <li>Evaluación académica.</li>
+          <li>Registro institucional.</li>
+        </ul>
+
+        <h2><span class="pr-n">11</span>Medios de pago</h2>
+        <p>Por políticas de seguridad, <strong>no se aceptan pagos en efectivo</strong>.</p>
+
+        <h2><span class="pr-n">12</span>Promociones y beneficios</h2>
+        <p>Los valores promocionales:</p>
+        <ul class="pr-check">
+          <li>Son válidos únicamente dentro de los plazos definidos.</li>
+          <li>Están sujetos a disponibilidad de cupos.</li>
+        </ul>
+
+        <h2><span class="pr-n">13</span>Cumplimiento de la política</h2>
+        <div class="pr-callout">El agendamiento de una cita implica la <strong>aceptación total de esta política</strong>.</div>
+      </div>
+    </article>
+
+    <!-- PROTOCOLO: NO EFEMÉRIDES -->
+    <article class="pr-doc" id="doc-no-efemerides">
+      <a href="#" class="pr-back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>Todos los protocolos</a>
+      <header class="pr-doc-head">
+        <span class="pr-tag">Marketing</span>
+        <h1 class="pr-doc-title">Protocolo de comunicación: no efemérides en RRSS</h1>
+        <div class="pr-doc-meta">
+          <span class="pr-person is-duo"><span class="pr-avs"><img src="uploads/Elio Rincón.webp" alt=""><img src="uploads/Dania Candia.webp?v=2" alt=""></span><span><b>Elio Rincón y Dania Candia</b><small>Responsables · Marketing</small></span></span>
+          <span class="pr-meta-actions"><span class="pr-read" data-read-for="no-efemerides"></span><button type="button" class="pr-print"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>Imprimir / PDF</button></span>
+        </div>
+      </header>
+
+      <div class="pr-body">
+        <div class="pr-intro">
+          <div><h4>Objetivo</h4><p>Establecer un lineamiento claro para el equipo de Marketing y Comunicaciones respecto a la no utilización de efemérides (fechas conmemorativas, celebraciones o hitos del calendario) como eje de contenido institucional, resguardando la coherencia, diferenciación y posicionamiento estratégico de la marca.</p></div>
+          <div><h4>Alcance</h4><p>Aplica a todos los canales oficiales de comunicación de San Amaro: redes sociales, email marketing, sitio web, material publicitario y comunicaciones internas y externas.</p></div>
+        </div>
+
+        <div class="pr-keys">
+          <p class="pr-keys-t">En resumen</p>
+          <div class="pr-keys-g">
+            <div><b>No</b><span>Publicaciones asociadas a efemérides, salvo excepciones justificadas</span></div>
+            <div><b>Martes</b><span>Día activo prioritario para publicaciones institucionales</span></div>
+            <div><b>Calidad</b><span>Por sobre volumen: cada pieza responde a un objetivo claro</span></div>
+          </div>
+        </div>
+
+        <h2><span class="pr-n">1</span>Lineamiento general</h2>
+        <p>San Amaro <strong>no realizará publicaciones asociadas a efemérides</strong>, tales como el Día de la Madre, Día del Padre, Día Internacional de la Mujer, Navidad, Año Nuevo, entre otras, salvo excepciones debidamente justificadas bajo los criterios estratégicos definidos en el punto 3.</p>
+
+        <h2><span class="pr-n">2</span>Fundamentos estratégicos</h2>
+        <dl class="pr-rules">
+          <div><dt>Diferenciación de marca</dt><dd>El uso masivo de efemérides genera saturación de contenido homogéneo, reduciendo la capacidad de destacar en entornos digitales altamente competitivos. San Amaro prioriza contenido propio, relevante y distintivo.</dd></div>
+          <div><dt>Coherencia y autenticidad</dt><dd>Las efemérides suelen promover mensajes genéricos que no necesariamente reflejan la propuesta de valor institucional. La marca comunica desde su propósito real, no desde tendencias calendarizadas.</dd></div>
+          <div><dt>Posicionamiento premium</dt><dd>Evitar publicaciones reactivas permite mantener una línea editorial más curada, estratégica y alineada con una percepción de marca seria, especializada y de alto estándar.</dd></div>
+          <div><dt>Enfoque en valor real</dt><dd>Se prioriza contenido que aporte valor tangible a la audiencia (formación, conocimiento, oportunidades, networking), por sobre mensajes simbólicos sin impacto directo.</dd></div>
+          <div><dt>Gestión de riesgos reputacionales</dt><dd>Algunas efemérides pueden involucrar sensibilidades sociales, culturales o políticas. La no participación reduce el riesgo de interpretaciones erróneas o cuestionamientos públicos.</dd></div>
+        </dl>
+
+        <h2><span class="pr-n">3</span>Excepciones (criterio restrictivo)</h2>
+        <p>De manera excepcional, se podrá considerar la participación en una efeméride solo si cumple <strong>todas</strong> las siguientes condiciones:</p>
+        <ul class="pr-check">
+          <li>Existe una conexión directa y demostrable con la propuesta académica o formativa.</li>
+          <li>Se desarrolla una acción concreta (ej.: actividad, beneficio, instancia educativa), no solo una publicación.</li>
+          <li>Aporta valor real a la comunidad (no es contenido simbólico).</li>
+          <li>Cuenta con validación previa del área de Marketing y RR.PP.</li>
+        </ul>
+
+        <h2><span class="pr-n">4</span>Enfoque alternativo de contenidos</h2>
+        <p>En reemplazo de efemérides, San Amaro enfocará su estrategia en:</p>
+        <ul class="pr-check">
+          <li>Historias de alumnos y casos clínicos.</li>
+          <li>Contenido educativo y especializado.</li>
+          <li>Activaciones académicas y eventos propios.</li>
+          <li>Alianzas estratégicas y networking.</li>
+          <li>Logros institucionales y avances del ecosistema.</li>
+        </ul>
+
+        <h2><span class="pr-n">5</span>Cumplimiento</h2>
+        <p>El incumplimiento de esta política deberá ser evaluado por el área de Comunicaciones y Dirección, con el objetivo de resguardar la coherencia de marca en todos los puntos de contacto.</p>
+
+        <h2><span class="pr-n">6</span>Lineamientos complementarios de calendario y publicaciones</h2>
+        <h3>Efemérides no autorizadas</h3>
+        <p>Grupo Educacional San Amaro no incorporará dentro de su estrategia comunicacional publicaciones relacionadas con celebraciones comerciales, sociales o tradicionales de calendario, incluyendo —pero no limitándose a—:</p>
+        <div class="pr-pills is-no"><span>Día de la Madre</span><span>Día del Padre</span><span>Día del Niño</span><span>Navidad</span><span>Año Nuevo</span><span>San Valentín</span><span>Halloween</span><span>Día Internacional de la Mujer</span></div>
+        <p>Tampoco fechas comerciales, virales o tendencias digitales sin relación directa con la propuesta académica institucional.</p>
+        <h3>Fechas autorizadas para comunicación</h3>
+        <p>Solo podrán considerarse publicaciones relacionadas con:</p>
+        <ul class="pr-check">
+          <li>Actividades propias de San Amaro.</li>
+          <li>Congresos, diplomados, cursos y postgrados.</li>
+          <li>Lanzamientos institucionales.</li>
+          <li>Hitos académicos internos.</li>
+          <li>Alianzas estratégicas.</li>
+          <li>Participación en eventos relevantes para el ecosistema de salud.</li>
+          <li>Comunicaciones corporativas de impacto institucional.</li>
+        </ul>
+        <div class="pr-callout">Toda publicación deberá responder a un objetivo estratégico, académico, reputacional o comercial claramente identificado.</div>
+        <h3>Frecuencia y días de publicación</h3>
+        <p>Con el objetivo de mantener consistencia, orden editorial y mejor rendimiento comunicacional, las publicaciones institucionales deberán concentrarse prioritariamente en días estratégicos definidos por el área de Marketing. Como lineamiento general:</p>
+        <ul class="pr-check">
+          <li>Los días <strong>martes</strong> serán considerados días activos prioritarios para publicaciones institucionales y contenido estratégico en redes sociales.</li>
+          <li>Se evitará publicar contenido únicamente por “cumplimiento de calendario”.</li>
+          <li>La frecuencia de publicaciones deberá priorizar calidad, coherencia y valor por sobre volumen.</li>
+        </ul>
+        <h3>Criterio editorial</h3>
+        <p>San Amaro comunica desde:</p>
+        <ul class="pr-check">
+          <li>Autoridad académica.</li>
+          <li>Posicionamiento institucional.</li>
+          <li>Valor educativo.</li>
+          <li>Construcción de comunidad profesional.</li>
+          <li>Generación de oportunidades reales para su ecosistema.</li>
+        </ul>
+        <p>Por lo tanto, toda pieza comunicacional deberá aportar contenido relevante y alineado con la identidad de la marca, evitando publicaciones genéricas o replicadas por tendencia de mercado.</p>
+      </div>
+    </article>
+
+    <!-- PROTOCOLO: SUMMIT LIVE -->
+    <article class="pr-doc" id="doc-summit-live">
+      <a href="#" class="pr-back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>Todos los protocolos</a>
+      <header class="pr-doc-head">
+        <span class="pr-tag">Relaciones Públicas</span>
+        <h1 class="pr-doc-title">Protocolo de eventos online Summit Live</h1>
+        <div class="pr-doc-meta">
+          <span class="pr-person"><img src="uploads/Carla Fuenmayor.webp" alt=""><span><b>Carla Fuenmayor</b><small>Responsable · Relaciones Públicas</small></span></span>
+          <span class="pr-meta-actions"><span class="pr-read" data-read-for="summit-live"></span><button type="button" class="pr-print"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>Imprimir / PDF</button></span>
+        </div>
+      </header>
+
+      <div class="pr-body">
+        <div class="pr-intro is-single">
+          <div><h4>Plan de coordinación y ejecución</h4><p>Pasos a seguir para organizar un Summit online de Grupo Educacional San Amaro, desde la planificación hasta el día del evento.</p></div>
+        </div>
+
+        <div class="pr-keys">
+          <p class="pr-keys-t">Cronograma</p>
+          <div class="pr-keys-g">
+            <div><b>30 días antes</b><span>Planificación y confirmación de participantes</span></div>
+            <div><b>48 horas antes</b><span>Correo con lineamientos a participantes</span></div>
+            <div><b>24 horas antes</b><span>Ensayo general del summit</span></div>
+            <div><b>20 min antes</b><span>Conexión de participantes el día del evento</span></div>
+          </div>
+        </div>
+
+        <h2><span class="pr-n">1</span>Planificación anticipada (30 días antes)</h2>
+        <ul class="pr-check">
+          <li>Coordinar con los participantes su confirmación final.</li>
+          <li>Levantar y validar títulos de charlas, contenidos y presentaciones.</li>
+          <li>Alinear expectativas de formato, duración y enfoque de cada intervención.</li>
+        </ul>
+
+        <h2><span class="pr-n">2</span>Gestión con Marketing</h2>
+        <p>Solicitar con anticipación las siguientes piezas:</p>
+        <ul class="pr-check">
+          <li>Cronograma oficial del summit.</li>
+          <li>Pantalla de espera institucional.</li>
+          <li>Historias promocionales (RRSS).</li>
+          <li>Flyers promocionales.</li>
+        </ul>
+
+        <h2><span class="pr-n">3</span>Comunicación a participantes (48 horas antes)</h2>
+        <p>Enviar correo con lineamientos clave:</p>
+        <ul class="pr-check">
+          <li>Uso de fondo neutral.</li>
+          <li>Conexión desde un espacio sin ruido ni interrupciones.</li>
+          <li>Ingreso a la sesión 15 minutos antes del inicio.</li>
+        </ul>
+
+        <h2><span class="pr-n">4</span>Validación operativa (24 horas antes)</h2>
+        <ul class="pr-check">
+          <li>Realizar ensayo general del summit.</li>
+          <li>Verificar funcionamiento de audio, video y pantalla compartida de todos los participantes.</li>
+          <li>Confirmar flujo del evento y tiempos de intervención.</li>
+        </ul>
+
+        <h2><span class="pr-n">5</span>Verificación final (día del evento)</h2>
+        <ul class="pr-check">
+          <li>Los participantes deberán conectarse <strong>20 minutos antes del inicio</strong>.</li>
+          <li>Este espacio se utilizará para validar el cumplimiento de todos los lineamientos previamente definidos.</li>
+          <li>Verificar condiciones técnicas: calidad de audio y estabilidad de la conexión a internet.</li>
+          <li>Confirmar el correcto funcionamiento de la pantalla compartida.</li>
+          <li>Asegurar que cada participante esté listo en tiempo y forma para su intervención.</li>
+        </ul>
       </div>
     </article>
 
@@ -525,7 +1013,9 @@ class Component extends DCLogic {
       const term = norm(q.value.trim());
       let shown = 0;
       cards.forEach(c => {
-        const ok = (area === 'Todas' || c.dataset.area === area) && (!term || (c.dataset.text || norm(c.innerText)).includes(term));
+        // Los protocolos institucionales ("Todas las áreas") aparecen en cualquier filtro de área.
+        const inArea = area === 'Todas' || c.dataset.area === area || c.dataset.area === 'Todas las áreas';
+        const ok = inArea && (!term || (c.dataset.text || norm(c.innerText)).includes(term));
         c.hidden = !ok;
         if (ok) shown++;
       });
