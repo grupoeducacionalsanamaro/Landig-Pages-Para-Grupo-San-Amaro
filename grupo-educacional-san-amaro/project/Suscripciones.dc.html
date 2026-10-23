@@ -365,11 +365,13 @@ class Component extends DCLogic {
         section: 5, entry: 1733847316, inst: 'premier', eyebrow: 'Focalizados',
         title: '¿En qué técnica te gustaría perfeccionarte?',
         intro: 'Estos son los programas Focalizados disponibles en Premier Medical Institute. Selecciona la formación de tu interés para conocer los detalles, próximas fechas y disponibilidad de cupos.',
+        // v = texto exacto del Google Form (incluye dobles espacios y puntos finales); title/sub = cómo se muestra.
         options: [
-          'Formación avanzada en Toxina Botulínica',
-          'Formación avanzada en Bioestimuladores de Colágeno',
-          'Formación avanzada en RinoLips (Ácido Hialurónico)',
-          'Formación avanzada en Full Fillers (Ácido Hialurónico)'
+          { v: 'EYES 360 | Abordaje Integral de la Región Periocular.', title: 'Eyes 360', sub: 'Abordaje Integral de la Región Periocular' },
+          { v: 'FILLERS FULL FACE | Rellenos Avanzados con Ácido Hialurónico', title: 'Fillers Full Face', sub: 'Rellenos Avanzados con Ácido Hialurónico' },
+          { v: 'RINOLIPS |  Labios y Rinomodelación.', title: 'RinoLips', sub: 'Labios y Rinomodelación' },
+          { v: 'TOXIN EXPERT |  Toxina Botulínica Full Face.', title: 'Toxin Expert', sub: 'Toxina Botulínica Full Face' },
+          { v: 'MEDICINA REGENERATIVA AVANZADA |  Bioestimuladores de Colágeno, Polinucleótidos e Introducción a los Exosomas.', title: 'Medicina Regenerativa Avanzada', sub: 'Bioestimuladores de Colágeno, Polinucleótidos e Introducción a los Exosomas' }
         ],
         next: () => 'contact'
       },
@@ -404,10 +406,11 @@ class Component extends DCLogic {
         title: '¿En qué técnica te gustaría perfeccionarte?',
         intro: 'Estas son las formaciones avanzadas disponibles en Harmony Instituto Internacional.',
         options: [
-          'Toxin Experts (Toxina Botulínica)',
-          'Bioestimuladores de Colágeno',
-          'RinoLips (Ácido Hialurónico)',
-          'Fillers Full Face (Ácido Hialurónico)'
+          { v: 'TOXIN EXPERT |  Toxina Botulínica Full Face.', title: 'Toxin Expert', sub: 'Toxina Botulínica Full Face' },
+          { v: 'FILLERS FULL FACE | Rellenos Avanzados con Ácido Hialurónico', title: 'Fillers Full Face', sub: 'Rellenos Avanzados con Ácido Hialurónico' },
+          { v: 'BIOESTIMULADORES | Bioestimuladores de Colágeno, Polinucleótidos e Introducción a los Exosomas', title: 'Bioestimuladores', sub: 'Bioestimuladores de Colágeno, Polinucleótidos e Introducción a los Exosomas' },
+          { v: 'EYES 360 | Abordaje Integral de la Región Periocular.', title: 'Eyes 360', sub: 'Abordaje Integral de la Región Periocular' },
+          { v: 'RINOLIPS |  Labios y Rinomodelación.', title: 'RinoLips', sub: 'Labios y Rinomodelación' }
         ],
         next: () => 'contact'
       },
